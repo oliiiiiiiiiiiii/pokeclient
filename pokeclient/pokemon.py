@@ -1,7 +1,4 @@
-import dataclasses
 import httpx
-
-@dataclasses.dataclass
 class pokemon:
 
     def __init__(self,pokemon_name):
