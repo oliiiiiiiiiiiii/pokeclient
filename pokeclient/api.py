@@ -1,5 +1,5 @@
-from json.decoder import JSONDecodeError
-from httpx import get
+import json
+import httpx
 
 class poke_client:  
 
@@ -7,12 +7,12 @@ class poke_client:
 
     def poke_name_by_id(self,number:int)->str:
         try:
-            return get(f"{poke_client.base_url}pokemon/{str(number)}").json()["name"]
-        except JSONDecodeError:
+            return httpx.get(f"{poke_client.base_url}pokemon/{str(number)}").json()["name"]
+        except json.decoder.JSONDecodeError:
             return None
 
     def poke_id_by_name(self,name:int)->str:
         try:
-            return get(f"{poke_client.base_url}pokemon/{str(name)}").json()['id']
-        except JSONDecodeError:
+            return httpx.get(f"{poke_client.base_url}pokemon/{str(name)}").json()['id']
+        except json.decoder.JSONDecodeErrorJSONDecodeError:
             return None
