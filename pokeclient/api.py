@@ -9,10 +9,10 @@ class poke_client:
         try:
             return get(f"{poke_client.base_url}pokemon/{str(number)}").json()["name"]
         except JSONDecodeError:
-            return "No Such Pokemon with that id"
+            return None
 
     def poke_id_by_name(self,name:int)->str:
         try:
             return get(f"{poke_client.base_url}pokemon/{str(name)}").json()['id']
         except JSONDecodeError:
-            return "No Such Pokemon with that name"
+            return None
