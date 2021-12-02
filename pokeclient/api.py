@@ -17,7 +17,7 @@ class PokeClient:
 
     def fetch_pokemon_with_name(self, name: str)-> Optional[Pokemon]:
         try:
-            data = httpx.get(f"{self.base_url}pokemon/{str(name)}").json()
+            data = httpx.get(f"{self.base_url}pokemon/{str(name).lower()}").json()
             return Pokemon(data)
         except json.decoder.JSONDecodeError:
             raise PokeNotFound
