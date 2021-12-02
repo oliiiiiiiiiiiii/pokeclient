@@ -18,3 +18,11 @@ class Stat:
 class Type:
     slot: int
     name: str
+
+@dataclass
+class Form:
+    name:str
+
+@dataclass
+class Held_Item:
+    name:str

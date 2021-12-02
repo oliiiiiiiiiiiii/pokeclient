@@ -1,4 +1,4 @@
-from datas.Pokemon_datas import Move, Type, Species, Stat
+from .datas.Pokemon_datas import Move, Type, Species, Stat, Form
 from typing import Optional, Dict, List, Any
 
 PokemonPayload: Dict[str, Any] = Any
@@ -28,9 +28,9 @@ class Pokemon:
     def default(self) -> bool:
         return bool(self.__data.get("is_default"))
 
-   # @property
-    #def location_area_encounters(self) -> str:
-        #return self.__data.get("location_area_encounters") #TODO use GET method to amke http request with the url returned.
+    @property
+    def location_area_encounters(self) -> str:
+        return self.__data.get("location_area_encounters") #TODO use GET method to amke http request with the url returned.
 
     @property
     def species(self) -> Optional[Dict[str, Any]]:
@@ -59,3 +59,9 @@ class Pokemon:
         if not self.__data.get("moves"):
             return None
         return [Move(data.get("move").get("name")) for data in self.__data.get("moves")]
+
+    @property
+    def forms(self) -> Optional[List[Form]]:
+        if not self.__data.get("forms"):
+            return None
+        return [Form(data.get("name")) for data in self.__data.get("forms")]

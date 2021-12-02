@@ -7,5 +7,5 @@ def method(obj):
             print(f"{_}:", attr)
 
 client = PokeClient()
-e = client.fetch_pokemon_with_id(50)
+e = client.fetch_pokemon_with_id(25)
 method(e)
