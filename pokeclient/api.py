@@ -1,6 +1,6 @@
 import json
 import httpx
-from .pokemon import Pokemon
+from Pokecpokemon import Pokemon
 from typing import Union, Optional
 from .errors import PokeNotFound
 

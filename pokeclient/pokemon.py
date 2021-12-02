@@ -1,26 +1,8 @@
-from dataclasses import dataclass
+from datas.Pokemon_datas import Move, Type, Species, Stat
 from typing import Optional, Dict, List, Any
 
 PokemonPayload: Dict[str, Any] = Any
 
-@dataclass
-class Move:
-  name:str
-
-@dataclass
-class Species:
-    name: str
-
-@dataclass
-class Stat:
-    base_stat: int
-    effort: int
-    name: str
-
-@dataclass
-class Type:
-    slot: int
-    name: str
 
 class Pokemon:
     def __init__(self, data: PokemonPayload):
