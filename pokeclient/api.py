@@ -1,18 +1,23 @@
 import json
 import httpx
+from .pokemon import Pokemon
+from typing import Union, Optional
+from .errors import PokeNotFound
 
-class poke_client:  
+class PokeClient:  
 
     base_url = 'https://pokeapi.co/api/v2/'
 
-    def poke_name_by_id(self,number:int)->str:
+    def fetch_pokemon_with_id(self, number: Union[str, int]) -> Optional[Pokemon]:
         try:
-            return httpx.get(f"{poke_client.base_url}pokemon/{str(number)}").json()["name"]
+            data = httpx.get(f"{PokeClient.base_url}pokemon/{str(number)}").json()
+            return Pokemon(data)
         except json.decoder.JSONDecodeError:
-            return None
+            raise PokeNotFound
 
-    def poke_id_by_name(self,name:int)->str:
+    def fetch_pokemon_with_name(self, name: str)-> Optional[Pokemon]:
         try:
-            return httpx.get(f"{poke_client.base_url}pokemon/{str(name)}").json()['id']
-        except json.decoder.JSONDecodeErrorJSONDecodeError:
-            return None
+            data = httpx.get(f"{PokeClient.base_url}pokemon/{str(name)}").json()
+            return Pokemon(data)
+        except json.decoder.JSONDecodeError:
+            raise PokeNotFound
