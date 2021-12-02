@@ -1,3 +1,3 @@
 # pokeclient
 
-Idk why I am making this
+A python api wrapper for https://pokeapi.co/
