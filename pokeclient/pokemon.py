@@ -13,6 +13,9 @@ class Pokemon:
     def __init__(self, data: PokemonPayload):
         self.__data = data
 
+    def __str__(self):
+        return f'Pokemon( id = {self.id}, name = {self.name})'
+
     @property
     def name(self) -> str:
         return self.__data.get("name")

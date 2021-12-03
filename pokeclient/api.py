@@ -32,3 +32,9 @@ class PokeClient:
             return move.lower() in Pokemon(data).moves
         except json.decoder.JSONDecodeError:
             raise PokeNotFound
+
+
+    def random_pokemon(self) -> Optional[Pokemon]:
+        data = httpx.get(f"{PokeClient.base_url}pokemon?limit=1118").json()
+        data = [data.get('results')[_].get('name') for _ in range(1118)]
+        return self.fetch_pokemon(__import__('random').choice(data))

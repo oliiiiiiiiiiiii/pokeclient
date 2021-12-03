@@ -1,5 +1,4 @@
 from pokeclient.api import PokeClient
 
 
-print(a:=PokeClient().fetch_pokemon("PIKACHU"))
-print(dir(a))
+print(a:=PokeClient().random_pokemon())
