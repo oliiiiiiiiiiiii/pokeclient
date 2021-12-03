@@ -11,9 +11,7 @@ class PokeClient:
 
     def fetch_pokemon(self, poke: Union[str, int]) -> Optional[Pokemon]:
         try:
-            if isinstance(poke, int):
-                address = str(poke)
-            else:
+            if isinstance(poke, str):
                 try:
                     address = int(poke)
                 except ValueError:
@@ -25,9 +23,7 @@ class PokeClient:
 
     def can_move(self, poke: Union[str, int], move: str) -> Optional[bool]:
         try:
-            if isinstance(poke, int):
-                address = str(poke)
-            else:
+            if isinstance(poke, str):
                 try:
                     address = int(poke)
                 except ValueError:
