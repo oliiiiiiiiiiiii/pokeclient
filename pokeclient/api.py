@@ -4,20 +4,35 @@ from .pokemon import Pokemon
 from typing import Union, Optional
 from .errors import PokeNotFound
 
-class PokeClient:  
+
+class PokeClient:
 
     base_url = 'https://pokeapi.co/api/v2/'
 
-    def fetch_pokemon_with_id(self, number: Union[str, int]) -> Optional[Pokemon]:
+    def fetch_pokemon(self, poke: Union[str, int]) -> Optional[Pokemon]:
         try:
-            data = httpx.get(f"{self.base_url}pokemon/{str(number)}").json()
+            if isinstance(poke, int):
+                address = str(poke)
+            else:
+                try:
+                    address = int(poke)
+                except ValueError:
+                    address = poke.lower()
+            data = httpx.get(f"{PokeClient.base_url}pokemon/{address}").json()
             return Pokemon(data)
         except json.decoder.JSONDecodeError:
             raise PokeNotFound
 
-    def fetch_pokemon_with_name(self, name: str)-> Optional[Pokemon]:
+    def can_move(self, poke: Union[str, int], move: str) -> Optional[bool]:
         try:
-            data = httpx.get(f"{self.base_url}pokemon/{str(name).lower()}").json()
-            return Pokemon(data)
+            if isinstance(poke, int):
+                address = str(poke)
+            else:
+                try:
+                    address = int(poke)
+                except ValueError:
+                    address = poke.lower()
+            data = httpx.get(f"{PokeClient.base_url}pokemon/{address}").json()
+            return move.lower() in Pokemon(data).moves
         except json.decoder.JSONDecodeError:
             raise PokeNotFound

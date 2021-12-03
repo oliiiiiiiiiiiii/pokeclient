@@ -1,8 +1,13 @@
-from .datas.Pokemon_datas import Move, Type, Species, Stat, Form
 from typing import Optional, Dict, List, Any
+from dataclasses import dataclass
 
 PokemonPayload: Dict[str, Any] = Any
 
+@dataclass
+class Stat:
+    base_stat: int
+    effort: int
+    name: str
 
 class Pokemon:
     def __init__(self, data: PokemonPayload):
@@ -37,7 +42,7 @@ class Pokemon:
         data = self.__data.get("species")
         if not data:
             return None
-        return Species(data.get("name"))
+        return data.get("name")
 
     @property
     def stats(self) -> Optional[List[Stat]]:
@@ -47,21 +52,21 @@ class Pokemon:
         return [Stat(data.get("base_stat"), data.get("effort"), data.get("stat").get("name")) for data in self.__data.get("stats")]
 
     @property
-    def types(self) -> Optional[List[Type]]:
+    def types(self) -> Optional[List[str]]:
         if not self.__data.get("types"):
             return None
 
-        return [Type(data.get("slot"), data.get("type").get("name")) for data in self.__data.get("types")]
+        return [(data.get("slot"), data.get("type").get("name")) for data in self.__data.get("types")]
 
 
     @property
-    def moves(self) -> Optional[List[Move]]:
+    def moves(self) -> Optional[List[str]]:
         if not self.__data.get("moves"):
             return None
-        return [Move(data.get("move").get("name")) for data in self.__data.get("moves")]
+        return [data.get("move").get("name") for data in self.__data.get("moves")]
 
     @property
-    def forms(self) -> Optional[List[Form]]:
+    def forms(self) -> Optional[List[str]]:
         if not self.__data.get("forms"):
             return None
-        return [Form(data.get("name")) for data in self.__data.get("forms")]
+        return [data.get("name") for data in self.__data.get("forms")]
