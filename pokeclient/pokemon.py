@@ -1,7 +1,7 @@
 from typing import Optional, Dict, List, Any
 from dataclasses import dataclass
+from .payload import DataPayload
 
-PokemonPayload: Dict[str, Any] = Any
 
 @dataclass
 class Stat:
@@ -9,8 +9,9 @@ class Stat:
     effort: int
     name: str
 
+
 class Pokemon:
-    def __init__(self, data: PokemonPayload):
+    def __init__(self, data: DataPayload):
         self.__data = data
 
     def __str__(self):
@@ -38,7 +39,9 @@ class Pokemon:
 
     @property
     def location_area_encounters(self) -> str:
-        return self.__data.get("location_area_encounters") #TODO use GET method to amke http request with the url returned.
+        return self.__data.get(
+            "location_area_encounters"
+        )  #TODO use GET method to amke http request with the url returned.
 
     @property
     def species(self) -> Optional[Dict[str, Any]]:
@@ -52,21 +55,28 @@ class Pokemon:
         if not self.__data.get("stats"):
             return None
 
-        return [Stat(data.get("base_stat"), data.get("effort"), data.get("stat").get("name")) for data in self.__data.get("stats")]
+        return [
+            Stat(data.get("base_stat"), data.get("effort"),
+                 data.get("stat").get("name"))
+            for data in self.__data.get("stats")
+        ]
 
     @property
     def types(self) -> Optional[List[str]]:
         if not self.__data.get("types"):
             return None
 
-        return [(data.get("slot"), data.get("type").get("name")) for data in self.__data.get("types")]
-
+        return [(data.get("slot"), data.get("type").get("name"))
+                for data in self.__data.get("types")]
 
     @property
     def moves(self) -> Optional[List[str]]:
         if not self.__data.get("moves"):
             return None
-        return [data.get("move").get("name") for data in self.__data.get("moves")]
+        return [
+            (data.get("move").get("name"))
+            for data in self.__data.get("moves")
+        ]
 
     @property
     def forms(self) -> Optional[List[str]]:
