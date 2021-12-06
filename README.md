@@ -2,4 +2,4 @@
 
 A python api wrapper for https://pokeapi.co/
 
-Developed by me and TheGenocide
+Developed by me and TheGenocide.
