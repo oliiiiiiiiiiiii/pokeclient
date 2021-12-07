@@ -1,20 +1,22 @@
 from typing import Union
-import attr
+from attr import attr
+from attr.setters import frozen
 from url import base_url
 
 
 @attr.s(frozen=True)
 class contest:
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        self.name_or_id = name_or_id
+        object.__setattr__(self,'name_or_id',name_or_id)
 
 
-class contest_type(contest):
+@attr.s(frozen=True)
+class contest_type:
 
     """Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        super().__init__(name_or_id=name_or_id)
+        object.__setattr__(self,'name_or_id',name_or_id)
 
     @property
     def url(self) -> str:
@@ -22,12 +24,12 @@ class contest_type(contest):
 
 
 @attr.s(frozen=True)
-class contest_effect(contest):
+class contest_effect:
 
     """Contest effects refer to the effects of moves when used in contests."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        super().__init__(name_or_id=name_or_id)
+        object.__setattr__(self,'name_or_id',name_or_id)
 
     @property
     def url(self) -> str:
@@ -35,12 +37,12 @@ class contest_effect(contest):
 
 
 @attr.s(frozen=True)
-class super_contest_effect(contest):
+class super_contest_effect:
 
     """Super contest effects refer to the effects of moves when used in super contests."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        super().__init__(name_or_id)
+        object.__setattr__(self,'name_or_id',name_or_id)
 
     @property
     def url(self) -> str:

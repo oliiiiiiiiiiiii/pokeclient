@@ -13,7 +13,7 @@ class generation:
     in the previous generation are released."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        self.name_or_id = name_or_id
+        object.__setattr__(self,'name_or_id',id)
 
     @property
     def url(self):
@@ -29,7 +29,7 @@ class pokedex:
     dex and some smaller dexes related to portions of a region."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        self.name_or_id = name_or_id
+        object.__setattr__(self,'name_or_id',id)
 
     @property
     def url(self):
@@ -42,7 +42,7 @@ class version:
     """Versions of the games, e.g., Red, Blue or Yellow."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        self.name_or_id = name_or_id
+        object.__setattr__(self,'name_or_id',id)
 
     @property
     def url(self):
@@ -55,7 +55,7 @@ class version_groups:
     """Version groups categorize highly similar versions of the games."""
 
     def __init__(self, name_or_id: Union[str, int]) -> None:
-        self.name_or_id = name_or_id
+        object.__setattr__(self,'name_or_id',id)
 
     @property
     def url(self):
