@@ -1,8 +1,9 @@
 from typing import Union
-import attr
+from dataclasses import dataclass
 from url import base_url
 
-@attr.s(frozen=True)
+
+@dataclass(frozen=True)
 class evolution_chain:
 
     """Evolution chains are essentially family trees.
@@ -11,29 +12,21 @@ class evolution_chain:
     conditions for each as well as
     Pokémon they can evolve into up through the hierarchy."""
 
-    def __init__(self, id: int) -> None:
-        object.__setattr__(self,'name_or_id',id)
+    id: int
 
     @property
-    def url(self):
+    def url(self) -> str:
         return f"{base_url}evolution-chain/{self.id}"
 
 
-@attr.s(frozen=True)
+@dataclass(frozen=True)
 class evolution_trigger:
 
     """Evolution triggers are the events and
     conditions that cause a Pokémon to evolve."""
 
-    def __init__(self, id: int) -> None:
-        object.__setattr__(self,'name_or_id',id)
+    id: int
 
     @property
-    def url(self):
+    def url(self) -> str:
         return f"{base_url}evolution-trigger/{self.id}"
-
-@attr.s(frozen=True)
-class evolution:
-
-    def __init__(self, id: int) -> None:
-        object.__setattr__(self,'name_or_id',id)
