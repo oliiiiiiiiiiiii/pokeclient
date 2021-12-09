@@ -45,7 +45,7 @@ class pal_park_area:
 
 
 @dataclass(frozen=True)
-class pal_park_area:
+class region:
 
     """A region is an organized area of the Pokémon world.
     Most often, the main difference
