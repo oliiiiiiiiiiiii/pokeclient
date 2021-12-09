@@ -50,7 +50,7 @@ class gender:
 
 
 @dataclass(frozen=True)
-class gender:
+class growth_rate:
 
     """Growth rates are the speed with which
     Pokémon gain levels through experience."""
