@@ -1,6 +1,6 @@
 from typing import Union
 from dataclasses import dataclass
-from .. import url
+from ... import url
 
 base_url = url.base_url
 
