@@ -18,6 +18,9 @@ class item_attribute:
     def url(self):
         return f"{base_url}item-attribute/{self.name_or_id}/"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class item_category:
@@ -31,6 +34,9 @@ class item_category:
     def url(self):
         return f"{base_url}item-category/{self.name_or_id}/"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class item_fling_effect:
@@ -44,6 +50,9 @@ class item_fling_effect:
     def url(self):
         return f"{base_url}item-fling-effect/{self.name_or_id}/"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class item_pocket:
@@ -57,6 +66,9 @@ class item_pocket:
     def url(self):
         return f"{base_url}item-pocket/{self.name_or_id}/"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class item:
@@ -72,3 +84,7 @@ class item:
     @property
     def url(self):
         return f"{base_url}item/{self.name_or_id}/"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

@@ -18,6 +18,9 @@ class move:
     def url(self) -> str:
         return f"{base_url}move/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_ailment:
@@ -31,6 +34,9 @@ class move_ailment:
     def url(self) -> str:
         return f"{base_url}move-ailment/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_battle_style:
@@ -43,6 +49,9 @@ class move_battle_style:
     def url(self) -> str:
         return f"{base_url}move-battle-style/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_categories:
@@ -56,6 +65,9 @@ class move_categories:
     def url(self) -> str:
         return f"{base_url}move-category/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_damage_class:
@@ -69,6 +81,9 @@ class move_damage_class:
     def url(self) -> str:
         return f"{base_url}move-damage-class/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_learn_method:
@@ -81,6 +96,9 @@ class move_learn_method:
     def url(self) -> str:
         return f"{base_url}move-learn-method/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class move_target:
@@ -94,3 +112,7 @@ class move_target:
     @property
     def url(self) -> str:
         return f"{base_url}move-target/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

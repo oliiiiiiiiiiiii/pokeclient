@@ -15,3 +15,7 @@ class machine:
     @property
     def url(self) -> str:
         return f"{base_url}machine/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

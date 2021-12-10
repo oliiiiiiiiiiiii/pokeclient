@@ -14,6 +14,9 @@ class encounter_method:
     def url(self):
         return f"{base_url}encounter-method/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class encounter_condition:
@@ -26,6 +29,9 @@ class encounter_condition:
     def url(self):
         return f"{base_url}encounter-condition/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class encounter_condition_values:
@@ -37,3 +43,6 @@ class encounter_condition_values:
     @property
     def url(self):
         return f"{base_url}encounter-condition-value/{self.name_or_id}"
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

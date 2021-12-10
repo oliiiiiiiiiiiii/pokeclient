@@ -16,6 +16,9 @@ class location:
     def url(self) -> str:
         return f"{base_url}location/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class location_area:
@@ -31,6 +34,9 @@ class location_area:
     def url(self) -> str:
         return f"{base_url}location-area/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class pal_park_area:
@@ -43,6 +49,9 @@ class pal_park_area:
     def url(self) -> str:
         return f"{base_url}pal-park-area/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class region:
@@ -57,3 +66,7 @@ class region:
     @property
     def url(self) -> str:
         return f"{base_url}region/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

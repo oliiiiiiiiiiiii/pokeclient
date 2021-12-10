@@ -18,6 +18,9 @@ class generation:
     def url(self) -> str:
         return f"{base_url}generation/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class pokedex:
@@ -33,6 +36,9 @@ class pokedex:
     def url(self) -> str:
         return f"{base_url}pokedex/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class version:
@@ -45,6 +51,9 @@ class version:
     def url(self) -> str:
         return f"{base_url}version/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class version_groups:
@@ -56,3 +65,7 @@ class version_groups:
     @property
     def url(self) -> str:
         return f"{base_url}version-group/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

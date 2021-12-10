@@ -1,6 +1,8 @@
 from typing import Union
 from dataclasses import dataclass
+import httpx
 from ..url import base_url
+
 
 @dataclass(frozen=True)
 class berry_firmnesses:
@@ -12,6 +14,10 @@ class berry_firmnesses:
     @property
     def url(self) -> str:
         return f"{base_url}berry-firmness/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 
 @dataclass(frozen=True)
@@ -26,6 +32,9 @@ class berry_flavor:
     def url(self) -> str:
         return f"{base_url}berry-flavor/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class berry:
@@ -38,3 +47,7 @@ class berry:
     @property
     def url(self) -> str:
         return f"{base_url}berry/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

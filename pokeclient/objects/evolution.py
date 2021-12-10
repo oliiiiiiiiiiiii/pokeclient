@@ -18,6 +18,9 @@ class evolution_chain:
     def url(self) -> str:
         return f"{base_url}evolution-chain/{self.id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
 class evolution_trigger:
@@ -30,3 +33,7 @@ class evolution_trigger:
     @property
     def url(self) -> str:
         return f"{base_url}evolution-trigger/{self.id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()

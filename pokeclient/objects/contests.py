@@ -14,6 +14,10 @@ class contest_type:
     def url(self) -> str:
         return f"{base_url}contest-type/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
+
 
 @dataclass(frozen=True)
 class contest_effect:
@@ -26,6 +30,10 @@ class contest_effect:
     def url(self) -> str:
         return f"{base_url}contest-effect/{self.name_or_id}"
 
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
+
 
 @dataclass(frozen=True)
 class super_contest_effect:
@@ -37,3 +45,7 @@ class super_contest_effect:
     @property
     def url(self) -> str:
         return f"{base_url}super-contest-effect/{self.name_or_id}"
+
+    @property
+    def raw_data(self) -> int:
+        return httpx.get(self.url).json()
