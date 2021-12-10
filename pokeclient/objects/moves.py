@@ -1,7 +1,7 @@
 from typing import Union
 from dataclasses import dataclass
 from ..url import base_url
-
+import httpx
 
 @dataclass(frozen=True)
 class move:
@@ -54,7 +54,7 @@ class move_battle_style:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_categories:
+class move_category:
 
     """Very general categories that loosely
     group move effects."""

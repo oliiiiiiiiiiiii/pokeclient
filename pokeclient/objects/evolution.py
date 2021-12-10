@@ -1,7 +1,6 @@
-from typing import Union
 from dataclasses import dataclass
 from ..url import base_url
-
+import httpx
 
 @dataclass(frozen=True)
 class evolution_chain:

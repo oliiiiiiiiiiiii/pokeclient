@@ -1,7 +1,7 @@
 from typing import Union
 from dataclasses import dataclass
 from ..url import base_url
-
+import httpx
 
 @dataclass(frozen=True)
 class encounter_method:
@@ -34,7 +34,7 @@ class encounter_condition:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class encounter_condition_values:
+class encounter_condition_value:
 
     """Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night."""
 

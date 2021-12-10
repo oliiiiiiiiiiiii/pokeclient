@@ -1,7 +1,7 @@
 from typing import Union
 from dataclasses import dataclass
 from ..url import base_url
-
+import httpx
 
 @dataclass(frozen=True)
 class generation:
@@ -56,7 +56,7 @@ class version:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class version_groups:
+class version_group:
 
     """Version groups categorize highly similar versions of the games."""
 
