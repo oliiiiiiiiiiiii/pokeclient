@@ -12,6 +12,11 @@ class berriess:
     def add_berry_firmness(self,id,data:dict):
         self.berry_firmness[id] = data
 
+    def add_berry_flavour(self,id,data:dict):
+        self.berry_flavour[id] = data
+
+    def add_berry(self,id,data:dict):
+        self.berry_flavour[id] = data
 
 @dataclass
 class contests:

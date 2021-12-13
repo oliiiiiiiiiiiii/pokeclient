@@ -67,7 +67,38 @@ class berry_flavor:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise BerryNotFound(self.name_or_id)
+            else:
+                berry_cache.add_berry_flavour(data.get('id'), data)
+                berry_cache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id,str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = berry_cache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise BerryNotFound(self.name_or_id)
+                        else:
+                            berry_cache.add_berry_flavour(data.get('id'), data)
+                            berry_cache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id,int):
+                id = self.name_or_id
+            else:
+                raise BerryNotFound(self.name_or_id)
+                return
+        data = berry_cache.add_berry_flavour.get(id)
+        return data
 
 
 @dataclass(frozen=True)
@@ -84,4 +115,35 @@ class berry:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise BerryNotFound(self.name_or_id)
+            else:
+                berry_cache.add_berry(data.get('id'), data)
+                berry_cache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id,str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = berry_cache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise BerryNotFound(self.name_or_id)
+                        else:
+                            berry_cache.add_berry(data.get('id'), data)
+                            berry_cache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id,int):
+                id = self.name_or_id
+            else:
+                raise BerryNotFound(self.name_or_id)
+                return
+        data = berry_cache.add_berry.get(id)
+        return data
