@@ -1,7 +1,11 @@
 from typing import Union
 from dataclasses import dataclass
-from ..url import base_url
 import httpx
+import json
+from ..url import base_url
+from ..cache import contest_cache
+from ..errors import ContestNotFound
+
 
 @dataclass(frozen=True)
 class contest_type:

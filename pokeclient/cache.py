@@ -25,6 +25,14 @@ class contests:
     super_contest_effects : dict
     name_to_id_dict : dict
 
+    def add_contest_types(self,id,data:dict):
+        self.contest_types[id] = data
+
+    def add_contest_effects(self,id,data:dict):
+        self.contest_effects[id] = data
+
+    def add_super_contest_effects(self,id,data:dict):
+        self.super_contest_effects[id] = data
 
 @dataclass
 class encounters:
@@ -33,12 +41,27 @@ class encounters:
     encounter_condition_values : dict
     name_to_id_dict : dict
 
+    def add_encounter_methods(self,id,data:dict):
+        self.encounter_methods[id] = data
+
+    def add_encounter_conditions(self,id,data:dict):
+        self.encounter_conditions[id] = data
+
+    def add_encounter_condition_values(self,id,data:dict):
+        self.encounter_condition_values[id] = data
+
 
 @dataclass
 class evolutions:
     evolution_chains : dict
     encounter_triggers : dict
     name_to_id_dict : dict
+
+    def add_evolution_chains(self,id,data:dict):
+        self.evolution_chains[id] = data
+
+    def add_encounter_triggers(self,id,data:dict):
+        self.encounter_triggers[id] = data
 
 
 @dataclass
@@ -104,3 +127,12 @@ class pokemonss:
 
 
 berry_cache = berriess(dict(),dict(),dict(),dict())
+contest_cache = contests(dict(),dict(),dict(),dict())
+encounter_cache = encounters(dict(),dict(),dict(),dict())
+evolution_cache = evolutions(dict(),dict(),dict())
+game_cache = games(dict(),dict(),dict(),dict())
+items_cache = itemss(dict(),dict(),dict(),dict(),dict(),dict())
+location_cache = locationss(dict(),dict(),dict(),dict(),dict())
+machine_cache = machiness(dict(),dict())
+move_cache = movess(dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict())
+poke_cache = pokemonss(dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict())

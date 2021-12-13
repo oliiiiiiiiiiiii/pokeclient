@@ -1,10 +1,11 @@
 from typing import Union
 from dataclasses import dataclass
 import httpx
+import json
 from ..url import base_url
 from ..cache import berry_cache
 from ..errors  import BerryNotFound
-import json
+
 
 @dataclass(frozen=True)
 class berry_firmnesses:
