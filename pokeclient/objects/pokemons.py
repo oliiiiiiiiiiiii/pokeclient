@@ -12,6 +12,7 @@ class ability:
     but can have only one ability at a time."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -31,6 +32,7 @@ class characteristic:
     divided by 5 (gene_modulo)."""
 
     id: int
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -49,6 +51,7 @@ class gender:
     or even different evolutionary lines."""
 
     id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -65,6 +68,7 @@ class growth_rate:
     Pokémon gain levels through experience."""
 
     id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -80,6 +84,7 @@ class nature:
     """Natures influence how a Pokémon's stats grow."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -98,6 +103,7 @@ class pokeathlon_stat:
     one for each of the different Pokéathlon stats."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -121,6 +127,7 @@ class pokemon:
     such as base stats, available abilities and typings."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -136,6 +143,7 @@ class pokemon_location_area:
     """Pokémon Location Areas are ares where Pokémon can be found."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -155,6 +163,7 @@ class pokemon_color:
     orange are listed as red or brown."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -176,6 +185,7 @@ class pokemon_form:
     represent such a variety."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -194,6 +204,7 @@ class pokemon_habitat:
     designated for rare or legendary Pokémon."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -209,6 +220,7 @@ class pokemon_shape:
     """Shapes used for sorting Pokémon in a Pokédex."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -230,6 +242,7 @@ class pokemon_species:
     Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -248,6 +261,7 @@ class stat:
     be altered momentarily by effects in battles."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -265,6 +279,7 @@ class Type:
     Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

@@ -11,6 +11,7 @@ class machine:
     specific TM or HM corresponds to a single Machine."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

@@ -12,6 +12,7 @@ class evolution_chain:
     Pokémon they can evolve into up through the hierarchy."""
 
     id: int
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -28,6 +29,7 @@ class evolution_trigger:
     conditions that cause a Pokémon to evolve."""
 
     id: int
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

@@ -11,6 +11,7 @@ class location:
     like cities or routes."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -29,6 +30,7 @@ class location_area:
     possible Pokémon encounters."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -44,6 +46,7 @@ class pal_park_area:
     """Areas used for grouping Pokémon encounters in Pal Park."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -62,6 +65,7 @@ class region:
     of Pokémon that can be encountered within them."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

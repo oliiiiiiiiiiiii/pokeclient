@@ -13,6 +13,7 @@ class item_attribute:
     helping catch Pokémon, or to access a new area."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self):
@@ -29,6 +30,7 @@ class item_category:
     items will be placed in the players bag."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self):
@@ -45,6 +47,7 @@ class item_fling_effect:
     "Fling" when used with different items."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self):
@@ -61,6 +64,7 @@ class item_pocket:
     players bag used for storing items by category."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self):
@@ -80,6 +84,7 @@ class item:
     helping catch Pokémon, or to access a new area."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self):

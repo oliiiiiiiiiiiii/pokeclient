@@ -13,6 +13,7 @@ class generation:
     in the previous generation are released."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -31,6 +32,7 @@ class pokedex:
     dex and some smaller dexes related to portions of a region."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -46,6 +48,7 @@ class version:
     """Versions of the games, e.g., Red, Blue or Yellow."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -61,6 +64,7 @@ class version_group:
     """Version groups categorize highly similar versions of the games."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

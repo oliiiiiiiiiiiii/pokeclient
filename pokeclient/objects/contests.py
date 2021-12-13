@@ -9,6 +9,7 @@ class contest_type:
     """Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -25,6 +26,7 @@ class contest_effect:
     """Contest effects refer to the effects of moves when used in contests."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -41,6 +43,7 @@ class super_contest_effect:
     """Super contest effects refer to the effects of moves when used in super contests."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

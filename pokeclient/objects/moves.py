@@ -13,6 +13,7 @@ class move:
     purpose of removing obstacles or exploring new areas."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -29,6 +30,7 @@ class move_ailment:
     caused by moves used during battle."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -44,6 +46,7 @@ class move_battle_style:
     """Styles of moves when used in the Battle Palace."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -60,6 +63,7 @@ class move_category:
     group move effects."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -76,6 +80,7 @@ class move_damage_class:
     e.g. physical, special, or non-damaging."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -91,6 +96,7 @@ class move_learn_method:
     """Methods by which Pokémon can learn moves."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:
@@ -108,6 +114,7 @@ class move_target:
     or even other moves."""
 
     name_or_id: Union[str, int]
+    from_cache : bool = False
 
     @property
     def url(self) -> str:

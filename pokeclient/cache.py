@@ -1,10 +1,16 @@
 from dataclasses import dataclass
 
+
+
 @dataclass
 class berriess:
     berry_firmness : dict
     berry_flavor : dict
     berries : dict
+    name_to_id_dict : dict
+    
+    def add_berry_firmness(self,id,data:dict):
+        self.berry_firmness[id] = data
 
 
 @dataclass
@@ -81,3 +87,6 @@ class pokemonss:
     pokemon_species : dict
     stats : dict
     types : dict
+
+
+berry_cache = berriess(dict(),dict(),dict(),dict())
