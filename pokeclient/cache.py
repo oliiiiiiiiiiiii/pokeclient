@@ -18,6 +18,7 @@ class contests:
     contest_types : dict
     contest_effects : dict
     super_contest_effects : dict
+    name_to_id_dict : dict
 
 
 @dataclass
@@ -25,12 +26,14 @@ class encounters:
     encounter_methods : dict
     encounter_conditions : dict
     encounter_condition_values : dict
+    name_to_id_dict : dict
 
 
 @dataclass
 class evolutions:
     evolution_chains : dict
     encounter_triggers : dict
+    name_to_id_dict : dict
 
 
 @dataclass
@@ -38,6 +41,7 @@ class games:
     generations : dict
     versions : dict
     version_groups : dict
+    name_to_id_dict : dict
 
 
 @dataclass
@@ -47,6 +51,7 @@ class itemss:
     item_fling_effects : dict
     item_pockets : dict
     items : dict
+    name_to_id_dict : dict
 
 @dataclass
 class locationss:
@@ -54,11 +59,13 @@ class locationss:
     location_areas : dict
     pal_park_areas : dict
     regions : dict
+    name_to_id_dict : dict
 
 
 @dataclass
 class machiness:
     machines : dict
+    name_to_id_dict : dict
 
 @dataclass
 class movess:
@@ -69,6 +76,7 @@ class movess:
     move_damage_classes : dict
     move_learn_methods : dict
     move_targets : dict
+    name_to_id_dict : dict
 
 @dataclass
 class pokemonss:
@@ -87,6 +95,7 @@ class pokemonss:
     pokemon_species : dict
     stats : dict
     types : dict
+    name_to_id_dict : dict
 
 
 berry_cache = berriess(dict(),dict(),dict(),dict())
