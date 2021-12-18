@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class ability:
+class Ability:
 
     """Abilities provide passive effects for
     Pokémon in battle or in the overworld.
@@ -23,7 +23,7 @@ class ability:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class characteristic:
+class Characteristic:
 
     """Characteristics indicate which
     stat contains a Pokémon's highest IV.
@@ -43,7 +43,7 @@ class characteristic:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class gender:
+class Gender:
 
     """Genders were introduced in Generation II
     for the purposes of breeding
@@ -62,7 +62,7 @@ class gender:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class growth_rate:
+class GrowthRate:
 
     """Growth rates are the speed with which
     Pokémon gain levels through experience."""
@@ -79,7 +79,7 @@ class growth_rate:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class nature:
+class Nature:
 
     """Natures influence how a Pokémon's stats grow."""
 
@@ -95,7 +95,7 @@ class nature:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokeathlon_stat:
+class PokeathlonStat:
 
     """Pokeathlon Stats are different attributes of
     a Pokémon's performance in Pokéathlons.
@@ -114,7 +114,7 @@ class pokeathlon_stat:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon:
+class Pokemon:
 
     """Pokémon are the creatures that
     inhabit the world of the Pokémon games.
@@ -138,7 +138,7 @@ class pokemon:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_location_area:
+class PokemonLocationArea:
 
     """Pokémon Location Areas are ares where Pokémon can be found."""
 
@@ -154,7 +154,7 @@ class pokemon_location_area:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_color:
+class PokemonColor:
 
     """Colors used for sorting Pokémon in a Pokédex.
     The color listed in the Pokédex is usually the
@@ -174,7 +174,7 @@ class pokemon_color:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_form:
+class PokemonForm:
 
     """Some Pokémon may appear in
     one of multiple, visually different forms.
@@ -196,7 +196,7 @@ class pokemon_form:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_habitat:
+class PokemonHabitat:
 
     """Habitats are generally different
     terrain Pokémon can be
@@ -215,7 +215,7 @@ class pokemon_habitat:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_shape:
+class PokemonShape:
 
     """Shapes used for sorting Pokémon in a Pokédex."""
 
@@ -231,7 +231,7 @@ class pokemon_shape:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pokemon_species:
+class PokemonSpecies:
 
     """A Pokémon Species forms the basis
     for at least one Pokémon.
@@ -253,7 +253,7 @@ class pokemon_species:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class stat:
+class Stat:
 
     """Stats determine certain aspects of battles.
     Each Pokémon has a value for each stat

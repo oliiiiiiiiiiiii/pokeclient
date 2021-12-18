@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class move:
+class Move:
 
     """Moves are the skills of Pokémon in battle.
     In battle, a Pokémon uses one move each turn.
@@ -24,7 +24,7 @@ class move:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_ailment:
+class MoveAilment:
 
     """Move Ailments are status conditions
     caused by moves used during battle."""
@@ -41,7 +41,7 @@ class move_ailment:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_battle_style:
+class MoveBattleStyle:
 
     """Styles of moves when used in the Battle Palace."""
 
@@ -57,7 +57,7 @@ class move_battle_style:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_category:
+class MoveCategory:
 
     """Very general categories that loosely
     group move effects."""
@@ -74,7 +74,7 @@ class move_category:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_damage_class:
+class MoveDamageClass:
 
     """Damage classes moves can have,
     e.g. physical, special, or non-damaging."""
@@ -91,7 +91,7 @@ class move_damage_class:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_learn_method:
+class MoveLearnMethod:
 
     """Methods by which Pokémon can learn moves."""
 
@@ -107,7 +107,7 @@ class move_learn_method:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class move_target:
+class MoveTarget:
 
     """Targets moves can be directed at during battle.
     Targets can be Pokémon, environments

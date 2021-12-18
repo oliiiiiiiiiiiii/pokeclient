@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class encounter_method:
+class EncounterMethod:
 
     """Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass."""
 
@@ -20,7 +20,7 @@ class encounter_method:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class encounter_condition:
+class EncounterCondition:
 
     """Conditions which affect what pokemon might appear in the wild, e.g., day or night."""
 
@@ -36,7 +36,7 @@ class encounter_condition:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class encounter_condition_value:
+class EncounterConditionValue:
 
     """Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night."""
 

@@ -3,17 +3,18 @@ from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
-from ..cache import contest_cache
+from ..cache import contests
 from ..errors import ContestNotFound
+
+contest_cache = contests(dict(), dict(), dict(), dict())
 
 
 @dataclass(frozen=True)
-class contest_type:
-
+class ContestType:
     """Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests."""
 
     name_or_id: Union[str, int]
-    from_cache : bool = False
+    from_cache: bool = False
 
     @property
     def url(self) -> str:
@@ -25,12 +26,11 @@ class contest_type:
 
 
 @dataclass(frozen=True)
-class contest_effect:
-
+class ContestEffect:
     """Contest effects refer to the effects of moves when used in contests."""
 
     name_or_id: Union[str, int]
-    from_cache : bool = False
+    from_cache: bool = False
 
     @property
     def url(self) -> str:
@@ -42,12 +42,11 @@ class contest_effect:
 
 
 @dataclass(frozen=True)
-class super_contest_effect:
-
+class SuperContestEffect:
     """Super contest effects refer to the effects of moves when used in super contests."""
 
     name_or_id: Union[str, int]
-    from_cache : bool = False
+    from_cache: bool = False
 
     @property
     def url(self) -> str:

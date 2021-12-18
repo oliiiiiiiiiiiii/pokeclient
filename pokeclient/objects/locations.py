@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class location:
+class Location:
 
     """Locations that can be visited within the games.
     Locations make up sizable portions of regions,
@@ -22,7 +22,7 @@ class location:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class location_area:
+class LocationArea:
 
     """Location areas are sections of areas,
     such as floors in a building or cave.
@@ -41,7 +41,7 @@ class location_area:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class pal_park_area:
+class PalParkArea:
 
     """Areas used for grouping Pokémon encounters in Pal Park."""
 
@@ -57,7 +57,7 @@ class pal_park_area:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class region:
+class Region:
 
     """A region is an organized area of the Pokémon world.
     Most often, the main difference

@@ -3,7 +3,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class evolution_chain:
+class EvolutionChain:
 
     """Evolution chains are essentially family trees.
     They start with the lowest
@@ -23,7 +23,7 @@ class evolution_chain:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class evolution_trigger:
+class EvolutionTrigger:
 
     """Evolution triggers are the events and
     conditions that cause a Pokémon to evolve."""

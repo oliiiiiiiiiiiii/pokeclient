@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class machine:
+class Machine:
 
     """Machines are the representation of items that
     teach moves to Pokémon. They vary from version to version, so it is not certain that one

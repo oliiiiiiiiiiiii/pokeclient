@@ -4,7 +4,7 @@ from ..url import base_url
 import httpx
 
 @dataclass(frozen=True)
-class item_attribute:
+class ItemAttribute:
 
     """An item is an object in the games which the
     player can pick up, keep in their bag, and use
@@ -24,7 +24,7 @@ class item_attribute:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class item_category:
+class ItemCategory:
 
     """Item categories determine where
     items will be placed in the players bag."""
@@ -41,7 +41,7 @@ class item_category:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class item_fling_effect:
+class ItemFlingEffect:
 
     """The various effects of the move
     "Fling" when used with different items."""
@@ -58,7 +58,7 @@ class item_fling_effect:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class item_pocket:
+class ItemPocket:
 
     """Pockets within the
     players bag used for storing items by category."""
@@ -75,7 +75,7 @@ class item_pocket:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
-class item:
+class Item:
 
     """An item is an object in the games which
     the player can pick up, keep in their bag,
