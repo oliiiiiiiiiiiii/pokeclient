@@ -11,13 +11,25 @@ class Berries(CacheManager):
         self.berries = dict()
 
     def add_berry_firmness(self, id, data: dict):
-        self.berry_firmness[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.berry_firmness[id] = data
+        else:
+            self.__init__()
+            self.berry_firmness[id] = data
 
     def add_berry_flavour(self, id, data: dict):
-        self.berry_flavour[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.berry_flavour[id] = data
+        else:
+            self.__init__()
+            self.berry_flavour[id] = data
 
     def add_berry(self, id, data: dict):
-        self.berry_flavour[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.berry_flavour[id] = data
+        else:
+            self.__init__()
+            self.berry_flavour[id] = data
 
 
 class Contests(CacheManager):
@@ -54,9 +66,8 @@ class Encounters(CacheManager):
         self.encounter_condition_values[id] = data
 
 
-class Evolutions(CacheManager):
-    def __init__(self) -> None:
-        super().__init__()    
+class Evolutions:
+    def __init__(self) -> None:   
         self.evolution_chains = dict()
         self.encounter_triggers = dict()
 
