@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -18,5 +18,5 @@ class Machine:
         return f"{base_url}machine/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()

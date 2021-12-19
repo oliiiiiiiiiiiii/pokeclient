@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -18,7 +18,7 @@ class Location:
         return f"{base_url}location/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -37,7 +37,7 @@ class LocationArea:
         return f"{base_url}location-area/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -53,7 +53,7 @@ class PalParkArea:
         return f"{base_url}pal-park-area/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -72,5 +72,5 @@ class Region:
         return f"{base_url}region/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()

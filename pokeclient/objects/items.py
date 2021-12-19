@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -20,7 +20,7 @@ class ItemAttribute:
         return f"{base_url}item-attribute/{self.name_or_id}/"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -37,7 +37,7 @@ class ItemCategory:
         return f"{base_url}item-category/{self.name_or_id}/"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -54,7 +54,7 @@ class ItemFlingEffect:
         return f"{base_url}item-fling-effect/{self.name_or_id}/"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -71,7 +71,7 @@ class ItemPocket:
         return f"{base_url}item-pocket/{self.name_or_id}/"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -91,5 +91,5 @@ class Item:
         return f"{base_url}item/{self.name_or_id}/"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()

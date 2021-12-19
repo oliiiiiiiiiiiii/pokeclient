@@ -5,6 +5,8 @@ import json
 from ..url import base_url
 from ..cache import Encounters
 from ..errors import EncounterNotFound
+from typing import Any
+
 
 EncounterCache = Encounters()
 
@@ -21,7 +23,7 @@ class EncounterMethod:
         return f"{base_url}encounter-method/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -42,7 +44,7 @@ class EncounterMethod:
                         try:
                             data = httpx.get(self.url).json()
                         except json.decoder.JSONDecodeError:
-                            raise EncounterCache(self.name_or_id)
+                            raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.encounter_method(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
@@ -68,7 +70,7 @@ class EncounterCondition:
         return f"{base_url}encounter-condition/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -89,7 +91,7 @@ class EncounterCondition:
                         try:
                             data = httpx.get(self.url).json()
                         except json.decoder.JSONDecodeError:
-                            raise EncounterCache(self.name_or_id)
+                            raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.encounter_condition(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
@@ -115,7 +117,7 @@ class EncounterConditionValue:
         return f"{base_url}encounter-condition-value/{self.name_or_id}"
         
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -136,7 +138,7 @@ class EncounterConditionValue:
                         try:
                             data = httpx.get(self.url).json()
                         except json.decoder.JSONDecodeError:
-                            raise EncounterCache(self.name_or_id)
+                            raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.encounter_condition_value(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')

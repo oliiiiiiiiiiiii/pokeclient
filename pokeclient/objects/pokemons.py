@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -19,7 +19,7 @@ class Ability:
         return f"{base_url}ability/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -39,7 +39,7 @@ class Characteristic:
         return f"{base_url}characteristic/{self.id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -58,7 +58,7 @@ class Gender:
         return f"{base_url}gender/{self.id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -75,7 +75,7 @@ class GrowthRate:
         return f"{base_url}gender/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -91,7 +91,7 @@ class Nature:
         return f"{base_url}nature/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -110,7 +110,7 @@ class PokeathlonStat:
         return f"{base_url}pokeathlon-stat/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -134,7 +134,7 @@ class Pokemon:
         return f"{base_url}pokemon/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -150,7 +150,7 @@ class PokemonLocationArea:
         return f"{base_url}pokemon/{self.name_or_id}/encounters"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -170,7 +170,7 @@ class PokemonColor:
         return f"{base_url}pokemon-color/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -192,7 +192,7 @@ class PokemonForm:
         return f"{base_url}pokemon-form/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -211,7 +211,7 @@ class PokemonHabitat:
         return f"{base_url}pokemon-habitat/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -227,7 +227,7 @@ class PokemonShape:
         return f"{base_url}pokemon-shape/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -249,7 +249,7 @@ class PokemonSpecies:
         return f"{base_url}pokemon-species/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -268,7 +268,7 @@ class Stat:
         return f"{base_url}stat/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -286,5 +286,5 @@ class Type:
         return f"{base_url}type/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()

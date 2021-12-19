@@ -5,6 +5,7 @@ import json
 from ..url import base_url
 from ..cache import Contests
 from ..errors import ContestNotFound
+from typing import Any
 
 ContestCache = Contests()
 
@@ -21,7 +22,7 @@ class ContestType:
         return f"{base_url}contest-type/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -68,7 +69,7 @@ class ContestEffect:
         return f"{base_url}contest-effect/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -115,7 +116,7 @@ class SuperContestEffect:
         return f"{base_url}super-contest-effect/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()

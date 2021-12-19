@@ -5,6 +5,7 @@ import json
 from ..url import base_url
 from ..cache import Berries
 from ..errors import BerryNotFound
+from typing import Any
 
 BerryCache = Berries()
 
@@ -21,7 +22,7 @@ class BerryFirmness:
         return f"{base_url}berry-firmness/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -70,7 +71,7 @@ class BerryFlavour:
         return f"{base_url}berry-flavor/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()
@@ -119,7 +120,7 @@ class Berry:
         return f"{base_url}berry/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         if not self.from_cache:
             try:
                 data = httpx.get(self.url).json()

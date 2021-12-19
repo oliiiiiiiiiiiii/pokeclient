@@ -1,7 +1,13 @@
 from typing import Union
 from dataclasses import dataclass
-from ..url import base_url
 import httpx
+import json
+from ..url import base_url
+from ..cache import Games
+from ..errors import GameNotFound
+from typing import Any
+
+GameCache = Games()
 
 @dataclass(frozen=True)
 class Generation:
@@ -20,8 +26,39 @@ class Generation:
         return f"{base_url}generation/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+    def raw_data(self) -> Any:
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise GameNotFound(self.name_or_id)
+            else:
+                GameCache.add_encounter_method(data.get('id'), data)
+                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise GameNotFound(self.name_or_id)
+                        else:
+                            GameCache.encounter_method(data.get('id'), data)
+                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise GameNotFound(self.name_or_id)
+                return
+        data = GameCache.encounter_method.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Pokedex:
@@ -39,8 +76,39 @@ class Pokedex:
         return f"{base_url}pokedex/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+    def raw_data(self) -> Any:
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise GameNotFound(self.name_or_id)
+            else:
+                GameCache.add_encounter_method(data.get('id'), data)
+                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise GameNotFound(self.name_or_id)
+                        else:
+                            GameCache.encounter_method(data.get('id'), data)
+                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise GameNotFound(self.name_or_id)
+                return
+        data = GameCache.encounter_method.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Version:
@@ -71,5 +139,5 @@ class VersionGroup:
         return f"{base_url}version-group/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()

@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -20,7 +20,7 @@ class Move:
         return f"{base_url}move/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -37,7 +37,7 @@ class MoveAilment:
         return f"{base_url}move-ailment/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -53,7 +53,7 @@ class MoveBattleStyle:
         return f"{base_url}move-battle-style/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -70,7 +70,7 @@ class MoveCategory:
         return f"{base_url}move-category/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -87,7 +87,7 @@ class MoveDamageClass:
         return f"{base_url}move-damage-class/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -103,7 +103,7 @@ class MoveLearnMethod:
         return f"{base_url}move-learn-method/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -121,5 +121,5 @@ class MoveTarget:
         return f"{base_url}move-target/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
