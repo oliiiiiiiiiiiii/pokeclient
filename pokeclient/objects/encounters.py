@@ -1,7 +1,12 @@
 from typing import Union
 from dataclasses import dataclass
-from ..url import base_url
 import httpx
+import json
+from ..url import base_url
+from ..cache import Encounters
+from ..errors import EncounterNotFound
+
+EncounterCache = Encounters()
 
 @dataclass(frozen=True)
 class EncounterMethod:
@@ -17,7 +22,38 @@ class EncounterMethod:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise EncounterNotFound(self.name_or_id)
+            else:
+                EncounterCache.add_encounter_method(data.get('id'), data)
+                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise EncounterCache(self.name_or_id)
+                        else:
+                            EncounterCache.encounter_method(data.get('id'), data)
+                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise EncounterNotFound(self.name_or_id)
+                return
+        data = EncounterCache.encounter_method.get(id)
+        return data
 
 @dataclass(frozen=True)
 class EncounterCondition:
@@ -33,7 +69,38 @@ class EncounterCondition:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise EncounterNotFound(self.name_or_id)
+            else:
+                EncounterCache.add_encounter_condition(data.get('id'), data)
+                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise EncounterCache(self.name_or_id)
+                        else:
+                            EncounterCache.encounter_condition(data.get('id'), data)
+                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise EncounterNotFound(self.name_or_id)
+                return
+        data = EncounterCache.encounter_condition.get(id)
+        return data
 
 @dataclass(frozen=True)
 class EncounterConditionValue:
@@ -49,4 +116,35 @@ class EncounterConditionValue:
         
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise EncounterNotFound(self.name_or_id)
+            else:
+                EncounterCache.add_encounter_condition_value(data.get('id'), data)
+                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise EncounterCache(self.name_or_id)
+                        else:
+                            EncounterCache.encounter_condition_value(data.get('id'), data)
+                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise EncounterNotFound(self.name_or_id)
+                return
+        data = EncounterCache.encounter_condition_value.get(id)
+        return data
