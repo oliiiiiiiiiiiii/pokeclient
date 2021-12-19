@@ -1,15 +1,14 @@
-from dataclasses import dataclass
-
-@dataclass
 class CacheManager:
-    name_to_id_dict = dict()
+    def __init__(self) -> None:
+        self.name_to_id_dict = dict()
 
 
-@dataclass
 class Berries(CacheManager):
-    berry_firmness = dict()
-    berry_flavor = dict()
-    berries = dict()
+    def __init__(self) -> None:
+        super().__init__()
+        self.berry_firmness = dict()
+        self.berry_flavor = dict()
+        self.berries = dict()
 
     def add_berry_firmness(self, id, data: dict):
         self.berry_firmness[id] = data
@@ -21,11 +20,12 @@ class Berries(CacheManager):
         self.berry_flavour[id] = data
 
 
-@dataclass
 class Contests(CacheManager):
-    contest_types = dict()
-    contest_effects = dict()
-    super_contest_effects = dict()
+    def __init__(self) -> None:
+        super().__init__()
+        self.contest_types = dict()
+        self.contest_effects = dict()
+        self.super_contest_effects = dict()
 
     def add_contest_type(self, id, data: dict):
         self.contest_types[id] = data
@@ -37,11 +37,12 @@ class Contests(CacheManager):
         self.super_contest_effects[id] = data
 
 
-@dataclass
 class Encounters(CacheManager):
-    encounter_methods = dict()
-    encounter_conditions = dict()
-    encounter_condition_values = dict()
+    def __init__(self) -> None:
+        super().__init__()
+        self.encounter_methods = dict()
+        self.encounter_conditions = dict()
+        self.encounter_condition_values = dict()
 
     def add_encounter_method(self, id, data: dict):
         self.encounter_methods[id] = data
@@ -53,10 +54,11 @@ class Encounters(CacheManager):
         self.encounter_condition_values[id] = data
 
 
-@dataclass
 class Evolutions(CacheManager):
-    evolution_chains = dict()
-    encounter_triggers = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.evolution_chains = dict()
+        self.encounter_triggers = dict()
 
     def add_evolution_chains(self, id, data: dict):
         self.evolution_chains[id] = data
@@ -65,11 +67,12 @@ class Evolutions(CacheManager):
         self.encounter_triggers[id] = data
 
 
-@dataclass
 class Games(CacheManager):
-    generations = dict()
-    versions = dict()
-    version_groups = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.generations = dict()
+        self.versions = dict()
+        self.version_groups = dict()
 
     def add_generation(self, id, data: dict):
         self.generations[id] = data
@@ -81,13 +84,14 @@ class Games(CacheManager):
         self.version_groups[id] = data
 
 
-@dataclass
 class Items(CacheManager):
-    item_attributes = dict()
-    item_categories = dict()
-    item_fling_effects = dict()
-    item_pockets = dict()
-    items = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.item_attributes = dict()
+        self.item_categories = dict()
+        self.item_fling_effects = dict()
+        self.item_pockets = dict()
+        self.items = dict()
 
     def add_item_attribute(self, id, data: dict):
         self.item_attributes[id] = data
@@ -101,12 +105,13 @@ class Items(CacheManager):
     def add_item_pocket(self, id, data: dict):
         self.item_pockets[id] = data
 
-@dataclass
 class Locations(CacheManager):
-    locations = dict()
-    location_areas = dict()
-    pal_park_areas = dict()
-    regions = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.locations = dict()
+        self.location_areas = dict()
+        self.pal_park_areas = dict()
+        self.regions = dict()
 
     def add_location(self, id, data: dict):
         self.locations[id] = data
@@ -121,23 +126,25 @@ class Locations(CacheManager):
         self.regions[id] = data
 
 
-@dataclass
 class Machines(CacheManager):
-    machines = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.machines = dict()
 
     def add_machine(self, id, data: dict):
         self.machines[id] = data
 
 
-@dataclass
 class Moves(CacheManager):
-    moves = dict()
-    move_ailments = dict()
-    move_battle_styles = dict()
-    move_categories = dict()
-    move_damage_classes = dict()
-    move_learn_methods = dict()
-    move_targets = dict()
+    def __init__(self) -> None:
+        super().__init__()    
+        self.moves = dict()
+        self.move_ailments = dict()
+        self.move_battle_styles = dict()
+        self.move_categories = dict()
+        self.move_damage_classes = dict()
+        self.move_learn_methods = dict()
+        self.move_targets = dict()
 
     def add_move(self, id, data: dict):
         self.moves[id] = data
@@ -160,20 +167,21 @@ class Moves(CacheManager):
     def add_move_target(self, id, data: dict):
         self.move_targets[id] = data   
 
-@dataclass
 class Pokemons(CacheManager):
-    abilities = dict()
-    characteristics = dict()
-    genders = dict()
-    growth_rates = dict()
-    natures = dict()
-    pokeathlon_stats = dict()
-    pokemons = dict()
-    pokemon_location_areas = dict()
-    pokemon_colors = dict()
-    pokemon_forms = dict()
-    pokemon_habitats = dict()
-    pokemon_shapes = dict()
-    pokemon_species = dict()
-    stats = dict()
-    types = dict()
+    def __init__(self) -> None:
+        super().__init__()
+        self.abilities = dict()
+        self.characteristics = dict()
+        self.genders = dict()
+        self.growth_rates = dict()
+        self.natures = dict()
+        self.pokeathlon_stats = dict()
+        self.pokemons = dict()
+        self.pokemon_location_areas = dict()
+        self.pokemon_colors = dict()
+        self.pokemon_forms = dict()
+        self.pokemon_habitats = dict()
+        self.pokemon_shapes = dict()
+        self.pokemon_species = dict()
+        self.stats = dict()
+        self.types = dict()
