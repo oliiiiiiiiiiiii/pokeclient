@@ -185,3 +185,46 @@ class Pokemons(CacheManager):
         self.pokemon_species = dict()
         self.stats = dict()
         self.types = dict()
+
+        
+    def add_ability(self, id, data: dict):
+        self.abilities[id] = data
+
+    def add_characteristic(self, id, data: dict):
+        self.characteristics[id] = data
+
+    def add_gender(self, id, data: dict):
+        self.genders[id] = data
+
+    def add_growth_rate(self, id, data: dict):
+        self.growth_rates[id] = data
+
+    def add_nature(self, id, data: dict):
+        self.natures[id] = data
+
+    def add_pokeathlon_stat(self, id, data: dict):
+        self.pokeathlon_stats[id] = data
+
+    def add_pokemon(self, id, data: dict):
+        self.pokemons[id] = data   
+
+    def add_pokemon_location_area(self, id, data: dict):
+        self.pokemon_location_areas[id] = data 
+
+    def add_pokemon_color(self, id, data: dict):
+        self.pokemon_colors[id] = data
+
+    def add_pokemon_form(self, id, data: dict):
+        self.pokemon_forms[id] = data
+
+    def add_pokemon_habitat(self, id, data: dict):
+        self.pokemon_habitats[id] = data
+
+    def add_pokemon_shape(self, id, data: dict):
+        self.pokemon_shapes[id] = data
+
+    def add_pokemon_species(self, id, data: dict):
+        self.pokemon_species[id] = data
+
+    def add_stat(self, id, data: dict):
+        self.pokemon_stats[id] = data
