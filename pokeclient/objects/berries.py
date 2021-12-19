@@ -45,10 +45,8 @@ class BerryFirmness:
                         except json.decoder.JSONDecodeError:
                             raise BerryNotFound(self.name_or_id)
                         else:
-                            BerryCache.add_berry_firmness(
-                                data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get(
-                                'name')] = data.get('id')
+                            BerryCache.add_berry_firmness(data.get('id'), data)
+                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -97,8 +95,7 @@ class BerryFlavour:
                             raise BerryNotFound(self.name_or_id)
                         else:
                             BerryCache.add_berry_flavour(data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get(
-                                'name')] = data.get('id')
+                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -147,8 +144,7 @@ class Berry:
                             raise BerryNotFound(self.name_or_id)
                         else:
                             BerryCache.add_berry(data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get(
-                                'name')] = data.get('id')
+                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

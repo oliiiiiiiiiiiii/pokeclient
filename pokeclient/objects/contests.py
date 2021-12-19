@@ -3,10 +3,10 @@ from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
-from ..cache import contests
+from ..cache import Contests
 from ..errors import ContestNotFound
 
-contest_cache = contests(dict(), dict(), dict(), dict())
+ContestCache = Contests()
 
 
 @dataclass(frozen=True)
@@ -22,7 +22,38 @@ class ContestType:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ContestNotFound(self.name_or_id)
+            else:
+                ContestCache.add_contest_type(data.get('id'), data)
+                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ContestCache(self.name_or_id)
+                        else:
+                            ContestCache.contest_type(data.get('id'), data)
+                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ContestNotFound(self.name_or_id)
+                return
+        data = ContestCache.contest_type.get(id)
+        return data
 
 
 @dataclass(frozen=True)
@@ -38,7 +69,38 @@ class ContestEffect:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ContestNotFound(self.name_or_id)
+            else:
+                ContestCache.add_contest_effect(data.get('id'), data)
+                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ContestCache(self.name_or_id)
+                        else:
+                            ContestCache.contest_effect(data.get('id'), data)
+                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ContestNotFound(self.name_or_id)
+                return
+        data = ContestCache.contest_effect.get(id)
+        return data
 
 
 @dataclass(frozen=True)
@@ -54,4 +116,35 @@ class SuperContestEffect:
 
     @property
     def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ContestNotFound(self.name_or_id)
+            else:
+                ContestCache.add_super_contest_effect(data.get('id'), data)
+                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ContestCache(self.name_or_id)
+                        else:
+                            ContestCache.super_contest_effect(data.get('id'), data)
+                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ContestNotFound(self.name_or_id)
+                return
+        data = ContestCache.super_contest_effect.get(id)
+        return data
