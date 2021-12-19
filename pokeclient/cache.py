@@ -40,13 +40,25 @@ class Contests(CacheManager):
         self.super_contest_effects = dict()
 
     def add_contest_type(self, id, data: dict):
-        self.contest_types[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.contest_types[id] = data
+        else:
+            self.__init__()
+            self.contest_types[id] = data
 
     def add_contest_effect(self, id, data: dict):
-        self.contest_effects[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.contest_effects[id] = data
+        else:
+            self.__init__()
+            self.contest_effects[id] = data
 
     def add_super_contest_effect(self, id, data: dict):
-        self.super_contest_effects[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.super_contest_effects[id] = data
+        else:
+            self.__init__()
+            self.super_contest_effects[id] = data
 
 
 class Encounters(CacheManager):
@@ -57,13 +69,26 @@ class Encounters(CacheManager):
         self.encounter_condition_values = dict()
 
     def add_encounter_method(self, id, data: dict):
-        self.encounter_methods[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.encounter_methods[id] = data
+        else:
+            self.__init__()
+            self.encounter_methods[id] = data
 
     def add_encounter_condition(self, id, data: dict):
-        self.encounter_conditions[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.encounter_conditions[id] = data
+        else:
+            self.__init__()
+            self.encounter_conditions[id] = data
 
     def add_encounter_condition_value(self, id, data: dict):
-        self.encounter_condition_values[id] = data
+        if not len(self.name_to_id_dict) >= 10:
+            self.encounter_condition_values[id] = data
+        else:
+            self.__init__()
+            self.encounter_condition_values[id] = data
+
 
 
 class Evolutions:
