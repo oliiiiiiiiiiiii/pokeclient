@@ -1,7 +1,12 @@
 from typing import Union, Any
 from dataclasses import dataclass
-from ..url import base_url
 import httpx
+import json
+from ..url import base_url
+from ..cache import Items
+from ..errors import ItemNotFound
+
+ItemCache = Items()
 
 @dataclass(frozen=True)
 class ItemAttribute:

@@ -1,3 +1,4 @@
+from typing import Any
 from dataclasses import dataclass
 from ..url import base_url
 import httpx
@@ -19,7 +20,7 @@ class EvolutionChain:
         return f"{base_url}evolution-chain/{self.id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
 
 @dataclass(frozen=True)
@@ -36,5 +37,5 @@ class EvolutionTrigger:
         return f"{base_url}evolution-trigger/{self.id}"
 
     @property
-    def raw_data(self) -> int:
+    def raw_data(self) -> Any:
         return httpx.get(self.url).json()
