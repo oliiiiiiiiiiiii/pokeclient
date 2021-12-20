@@ -10,21 +10,21 @@ class Berries(CacheManager):
         self.berry_flavors = dict()
         self.berries = dict()
 
-    def add_berry_firmness(self, id, data: dict):
+    def add_berry_firmness(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.berry_firmness[id] = data
         else:
             self.__init__()
             self.berry_firmness[id] = data
 
-    def add_berry_flavour(self, id, data: dict):
+    def add_berry_flavour(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.berry_flavours[id] = data
         else:
             self.__init__()
             self.berry_flavour[id] = data
 
-    def add_berry(self, id, data: dict):
+    def add_berry(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.berries[id] = data
         else:
@@ -39,21 +39,21 @@ class Contests(CacheManager):
         self.contest_effects = dict()
         self.super_contest_effects = dict()
 
-    def add_contest_type(self, id, data: dict):
+    def add_contest_type(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.contest_types[id] = data
         else:
             self.__init__()
             self.contest_types[id] = data
 
-    def add_contest_effect(self, id, data: dict):
+    def add_contest_effect(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.contest_effects[id] = data
         else:
             self.__init__()
             self.contest_effects[id] = data
 
-    def add_super_contest_effect(self, id, data: dict):
+    def add_super_contest_effect(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.super_contest_effects[id] = data
         else:
@@ -68,21 +68,21 @@ class Encounters(CacheManager):
         self.encounter_conditions = dict()
         self.encounter_condition_values = dict()
 
-    def add_encounter_method(self, id, data: dict):
+    def add_encounter_method(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.encounter_methods[id] = data
         else:
             self.__init__()
             self.encounter_methods[id] = data
 
-    def add_encounter_condition(self, id, data: dict):
+    def add_encounter_condition(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.encounter_conditions[id] = data
         else:
             self.__init__()
             self.encounter_conditions[id] = data
 
-    def add_encounter_condition_value(self, id, data: dict):
+    def add_encounter_condition_value(self, id, data: dict) -> None:
         if not len(self.name_to_id_dict) >= 10:
             self.encounter_condition_values[id] = data
         else:
@@ -96,10 +96,10 @@ class Evolutions:
         self.evolution_chains = dict()
         self.encounter_triggers = dict()
 
-    def add_evolution_chains(self, id, data: dict):
+    def add_evolution_chains(self, id, data: dict) -> None:
         self.evolution_chains[id] = data
 
-    def add_encounter_triggers(self, id, data: dict):
+    def add_encounter_triggers(self, id, data: dict) -> None:
         self.encounter_triggers[id] = data
 
 
@@ -111,16 +111,16 @@ class Games(CacheManager):
         self.versions = dict()
         self.version_groups = dict()
 
-    def add_generation(self, id, data: dict):
+    def add_generation(self, id, data: dict) -> None:
         self.generations[id] = data
 
-    def add_pokedex(self, id, data: dict):
+    def add_pokedex(self, id, data: dict) -> None:
         self.pokedexes[id] = data
 
-    def add_version(self, id, data: dict):
+    def add_version(self, id, data: dict) -> None:
         self.versions[id] = data
 
-    def add_version_group(self, id, data: dict):
+    def add_version_group(self, id, data: dict) -> None:
         self.version_groups[id] = data
 
 
@@ -133,16 +133,16 @@ class Items(CacheManager):
         self.item_pockets = dict()
         self.items = dict()
 
-    def add_item_attribute(self, id, data: dict):
+    def add_item_attribute(self, id, data: dict) -> None:
         self.item_attributes[id] = data
 
-    def add_item_category(self, id, data: dict):
+    def add_item_category(self, id, data: dict) -> None:
         self.item_categories[id] = data
 
-    def add_item_fling_effect(self, id, data: dict):
+    def add_item_fling_effect(self, id, data: dict) -> None:
         self.item_fling_effects[id] = data
 
-    def add_item_pocket(self, id, data: dict):
+    def add_item_pocket(self, id, data: dict) -> None:
         self.item_pockets[id] = data
 
 class Locations(CacheManager):
@@ -153,16 +153,16 @@ class Locations(CacheManager):
         self.pal_park_areas = dict()
         self.regions = dict()
 
-    def add_location(self, id, data: dict):
+    def add_location(self, id, data: dict) -> None:
         self.locations[id] = data
 
-    def add_location_area(self, id, data: dict):
+    def add_location_area(self, id, data: dict) -> None:
         self.location_areas[id] = data
 
-    def add_pal_park_area(self, id, data: dict):
+    def add_pal_park_area(self, id, data: dict) -> None:
         self.pal_park_areas[id] = data
 
-    def add_region(self, id, data: dict):
+    def add_region(self, id, data: dict) -> None:
         self.regions[id] = data
 
 
@@ -171,7 +171,7 @@ class Machines(CacheManager):
         super().__init__()    
         self.machines = dict()
 
-    def add_machine(self, id, data: dict):
+    def add_machine(self, id, data: dict) -> None:
         self.machines[id] = data
 
 
@@ -186,25 +186,25 @@ class Moves(CacheManager):
         self.move_learn_methods = dict()
         self.move_targets = dict()
 
-    def add_move(self, id, data: dict):
+    def add_move(self, id, data: dict) -> None:
         self.moves[id] = data
 
-    def add_move_ailment(self, id, data: dict):
+    def add_move_ailment(self, id, data: dict) -> None:
         self.move_ailments[id] = data
 
-    def add_battle_style(self, id, data: dict):
+    def add_battle_style(self, id, data: dict) -> None:
         self.move_battle_styles[id] = data
 
-    def add_move_category(self, id, data: dict):
+    def add_move_category(self, id, data: dict) -> None:
         self.move_categories[id] = data
 
-    def add_move_damage_class(self, id, data: dict):
+    def add_move_damage_class(self, id, data: dict) -> None:
         self.move_damage_classes[id] = data
 
-    def add_move_learn_method(self, id, data: dict):
+    def add_move_learn_method(self, id, data: dict) -> None:
         self.move_learn_methods[id] = data
 
-    def add_move_target(self, id, data: dict):
+    def add_move_target(self, id, data: dict) -> None:
         self.move_targets[id] = data   
 
 class Pokemons(CacheManager):
@@ -227,44 +227,47 @@ class Pokemons(CacheManager):
         self.types = dict()
 
         
-    def add_ability(self, id, data: dict):
+    def add_ability(self, id, data: dict) -> None:
         self.abilities[id] = data
 
-    def add_characteristic(self, id, data: dict):
+    def add_characteristic(self, id, data: dict) -> None:
         self.characteristics[id] = data
 
-    def add_gender(self, id, data: dict):
+    def add_gender(self, id, data: dict) -> None:
         self.genders[id] = data
 
-    def add_growth_rate(self, id, data: dict):
+    def add_growth_rate(self, id, data: dict) -> None:
         self.growth_rates[id] = data
 
-    def add_nature(self, id, data: dict):
+    def add_nature(self, id, data: dict) -> None:
         self.natures[id] = data
 
-    def add_pokeathlon_stat(self, id, data: dict):
+    def add_pokeathlon_stat(self, id, data: dict) -> None:
         self.pokeathlon_stats[id] = data
 
-    def add_pokemon(self, id, data: dict):
+    def add_pokemon(self, id, data: dict) -> None:
         self.pokemons[id] = data   
 
-    def add_pokemon_location_area(self, id, data: dict):
+    def add_pokemon_location_area(self, id, data: dict) -> None:
         self.pokemon_location_areas[id] = data 
 
-    def add_pokemon_color(self, id, data: dict):
+    def add_pokemon_color(self, id, data: dict) -> None:
         self.pokemon_colors[id] = data
 
-    def add_pokemon_form(self, id, data: dict):
+    def add_pokemon_form(self, id, data: dict) -> None:
         self.pokemon_forms[id] = data
 
-    def add_pokemon_habitat(self, id, data: dict):
+    def add_pokemon_habitat(self, id, data: dict) -> None:
         self.pokemon_habitats[id] = data
 
-    def add_pokemon_shape(self, id, data: dict):
+    def add_pokemon_shape(self, id, data: dict) -> None:
         self.pokemon_shapes[id] = data
 
-    def add_pokemon_species(self, id, data: dict):
+    def add_pokemon_species(self, id, data: dict) -> None:
         self.pokemon_species[id] = data
 
-    def add_stat(self, id, data: dict):
-        self.pokemon_stats[id] = data
+    def add_stat(self, id, data: dict) -> None:
+        self.stats[id] = data
+
+    def add_type(self, id, data: dict) -> None:
+        self.types[id] = data
