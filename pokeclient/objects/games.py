@@ -1,11 +1,10 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
 from ..cache import Games
 from ..errors import GameNotFound
-from typing import Any
 
 GameCache = Games()
 
@@ -33,7 +32,7 @@ class Generation:
             except json.decoder.JSONDecodeError:
                 raise GameNotFound(self.name_or_id)
             else:
-                GameCache.add_encounter_method(data.get('id'), data)
+                GameCache.add_generation(data.get('id'), data)
                 GameCache.name_to_id_dict[data.get('name')] = data.get('id')
                 return data
         else:
@@ -49,7 +48,7 @@ class Generation:
                         except json.decoder.JSONDecodeError:
                             raise GameNotFound(self.name_or_id)
                         else:
-                            GameCache.encounter_method(data.get('id'), data)
+                            GameCache.add_generation(data.get('id'), data)
                             GameCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -57,7 +56,7 @@ class Generation:
             else:
                 raise GameNotFound(self.name_or_id)
                 return
-        data = GameCache.encounter_method.get(id)
+        data = GameCache.generation.get(id)
         return data
 
 @dataclass(frozen=True)
@@ -83,7 +82,7 @@ class Pokedex:
             except json.decoder.JSONDecodeError:
                 raise GameNotFound(self.name_or_id)
             else:
-                GameCache.add_encounter_method(data.get('id'), data)
+                GameCache.add_pokedex(data.get('id'), data)
                 GameCache.name_to_id_dict[data.get('name')] = data.get('id')
                 return data
         else:
@@ -99,7 +98,7 @@ class Pokedex:
                         except json.decoder.JSONDecodeError:
                             raise GameNotFound(self.name_or_id)
                         else:
-                            GameCache.encounter_method(data.get('id'), data)
+                            GameCache.add_pokedex(data.get('id'), data)
                             GameCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -107,7 +106,7 @@ class Pokedex:
             else:
                 raise GameNotFound(self.name_or_id)
                 return
-        data = GameCache.encounter_method.get(id)
+        data = GameCache.pokedexes.get(id)
         return data
 
 @dataclass(frozen=True)
@@ -123,8 +122,39 @@ class Version:
         return f"{base_url}version/{self.name_or_id}"
 
     @property
-    def raw_data(self) -> int:
-        return httpx.get(self.url).json()
+    def raw_data(self) -> Any:
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise GameNotFound(self.name_or_id)
+            else:
+                GameCache.add_version(data.get('id'), data)
+                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise GameNotFound(self.name_or_id)
+                        else:
+                            GameCache.add_version(data.get('id'), data)
+                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise GameNotFound(self.name_or_id)
+                return
+        data = GameCache.versions.get(id)
+        return data
 
 @dataclass(frozen=True)
 class VersionGroup:
@@ -140,4 +170,35 @@ class VersionGroup:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise GameNotFound(self.name_or_id)
+            else:
+                GameCache.add_version_group(data.get('id'), data)
+                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise GameNotFound(self.name_or_id)
+                        else:
+                            GameCache.add_version_group(data.get('id'), data)
+                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise GameNotFound(self.name_or_id)
+                return
+        data = GameCache.version_groups.get(id)
+        return data

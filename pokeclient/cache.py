@@ -7,7 +7,7 @@ class Berries(CacheManager):
     def __init__(self) -> None:
         super().__init__()
         self.berry_firmness = dict()
-        self.berry_flavor = dict()
+        self.berry_flavors = dict()
         self.berries = dict()
 
     def add_berry_firmness(self, id, data: dict):
@@ -19,17 +19,17 @@ class Berries(CacheManager):
 
     def add_berry_flavour(self, id, data: dict):
         if not len(self.name_to_id_dict) >= 10:
-            self.berry_flavour[id] = data
+            self.berry_flavours[id] = data
         else:
             self.__init__()
             self.berry_flavour[id] = data
 
     def add_berry(self, id, data: dict):
         if not len(self.name_to_id_dict) >= 10:
-            self.berry_flavour[id] = data
+            self.berries[id] = data
         else:
             self.__init__()
-            self.berry_flavour[id] = data
+            self.berries[id] = data
 
 
 class Contests(CacheManager):
@@ -107,11 +107,15 @@ class Games(CacheManager):
     def __init__(self) -> None:
         super().__init__()    
         self.generations = dict()
+        self.pokedexes = dict()
         self.versions = dict()
         self.version_groups = dict()
 
     def add_generation(self, id, data: dict):
         self.generations[id] = data
+
+    def add_pokedex(self, id, data: dict):
+        self.pokedexes[id] = data
 
     def add_version(self, id, data: dict):
         self.versions[id] = data

@@ -1,11 +1,10 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
 from ..cache import Encounters
 from ..errors import EncounterNotFound
-from typing import Any
 
 
 EncounterCache = Encounters()
@@ -46,7 +45,7 @@ class EncounterMethod:
                         except json.decoder.JSONDecodeError:
                             raise EncounterNotFound(self.name_or_id)
                         else:
-                            EncounterCache.encounter_method(data.get('id'), data)
+                            EncounterCache.add_encounter_method(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -54,7 +53,7 @@ class EncounterMethod:
             else:
                 raise EncounterNotFound(self.name_or_id)
                 return
-        data = EncounterCache.encounter_method.get(id)
+        data = EncounterCache.encounter_methods.get(id)
         return data
 
 @dataclass(frozen=True)
@@ -93,7 +92,7 @@ class EncounterCondition:
                         except json.decoder.JSONDecodeError:
                             raise EncounterNotFound(self.name_or_id)
                         else:
-                            EncounterCache.encounter_condition(data.get('id'), data)
+                            EncounterCache.add_encounter_condition(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -101,7 +100,7 @@ class EncounterCondition:
             else:
                 raise EncounterNotFound(self.name_or_id)
                 return
-        data = EncounterCache.encounter_condition.get(id)
+        data = EncounterCache.encounter_conditions.get(id)
         return data
 
 @dataclass(frozen=True)
@@ -140,7 +139,7 @@ class EncounterConditionValue:
                         except json.decoder.JSONDecodeError:
                             raise EncounterNotFound(self.name_or_id)
                         else:
-                            EncounterCache.encounter_condition_value(data.get('id'), data)
+                            EncounterCache.add_encounter_condition_value(data.get('id'), data)
                             EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -148,5 +147,5 @@ class EncounterConditionValue:
             else:
                 raise EncounterNotFound(self.name_or_id)
                 return
-        data = EncounterCache.encounter_condition_value.get(id)
+        data = EncounterCache.encounter_condition_values.get(id)
         return data

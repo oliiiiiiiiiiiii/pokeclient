@@ -1,11 +1,10 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
 from ..cache import Contests
 from ..errors import ContestNotFound
-from typing import Any
 
 ContestCache = Contests()
 
@@ -45,7 +44,7 @@ class ContestType:
                         except json.decoder.JSONDecodeError:
                             raise ContestCache(self.name_or_id)
                         else:
-                            ContestCache.contest_type(data.get('id'), data)
+                            ContestCache.add_contest_type(data.get('id'), data)
                             ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -53,7 +52,7 @@ class ContestType:
             else:
                 raise ContestNotFound(self.name_or_id)
                 return
-        data = ContestCache.contest_type.get(id)
+        data = ContestCache.contest_types.get(id)
         return data
 
 
@@ -92,7 +91,7 @@ class ContestEffect:
                         except json.decoder.JSONDecodeError:
                             raise ContestCache(self.name_or_id)
                         else:
-                            ContestCache.contest_effect(data.get('id'), data)
+                            ContestCache.add_contest_effect(data.get('id'), data)
                             ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -100,7 +99,7 @@ class ContestEffect:
             else:
                 raise ContestNotFound(self.name_or_id)
                 return
-        data = ContestCache.contest_effect.get(id)
+        data = ContestCache.contest_effects.get(id)
         return data
 
 
@@ -139,7 +138,7 @@ class SuperContestEffect:
                         except json.decoder.JSONDecodeError:
                             raise ContestCache(self.name_or_id)
                         else:
-                            ContestCache.super_contest_effect(data.get('id'), data)
+                            ContestCache.add_super_contest_effect(data.get('id'), data)
                             ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
@@ -147,5 +146,5 @@ class SuperContestEffect:
             else:
                 raise ContestNotFound(self.name_or_id)
                 return
-        data = ContestCache.super_contest_effect.get(id)
+        data = ContestCache.super_contest_effects.get(id)
         return data

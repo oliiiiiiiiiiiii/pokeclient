@@ -1,11 +1,10 @@
-from typing import Union
+from typing import Union, Any
 from dataclasses import dataclass
 import httpx
 import json
 from ..url import base_url
 from ..cache import Berries
 from ..errors import BerryNotFound
-from typing import Any
 
 BerryCache = Berries()
 
@@ -103,7 +102,7 @@ class BerryFlavour:
             else:
                 raise BerryNotFound(self.name_or_id)
                 return
-        data = BerryCache.add_berry_flavour.get(id)
+        data = BerryCache.berry_flavours.get(id)
         return data
 
 
@@ -152,5 +151,5 @@ class Berry:
             else:
                 raise BerryNotFound(self.name_or_id)
                 return
-        data = BerryCache.add_berry.get(id)
+        data = BerryCache.berries.get(id)
         return data
