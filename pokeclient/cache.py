@@ -60,7 +60,6 @@ class Contests(CacheManager):
             self.__init__()
             self.super_contest_effects[id] = data
 
-
 class Encounters(CacheManager):
     def __init__(self) -> None:
         super().__init__()
@@ -97,10 +96,19 @@ class Evolutions:
         self.evolution_triggers = dict()
 
     def add_evolution_chain(self, id, data: dict) -> None:
-        self.evolution_chains[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.evolution_chains[id] = data
+        else:
+            self.__init__()
+            self.encounter_condition_values[id] = data
 
     def add_evolution_trigger(self, id, data: dict) -> None:
-        self.evolution_triggers[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.evolution_triggers[id] = data
+        else:
+            self.__init__()
+            self.evolution_triggers[id] = data
+        
 
 
 class Games(CacheManager):
@@ -112,17 +120,33 @@ class Games(CacheManager):
         self.version_groups = dict()
 
     def add_generation(self, id, data: dict) -> None:
-        self.generations[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.generations[id] = data
+        else:
+            self.__init__()
+            self.generations[id] = data
+        
     def add_pokedex(self, id, data: dict) -> None:
-        self.pokedexes[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.pokedexes[id] = data
+        else:
+            self.__init__()
+            self.pokedexes[id] = data
+        
     def add_version(self, id, data: dict) -> None:
-        self.versions[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.versions[id] = data
+        else:
+            self.__init__()
+            self.versions[id] = data
+        
     def add_version_group(self, id, data: dict) -> None:
-        self.version_groups[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.version_groups[id] = data
+        else:
+            self.__init__()
+            self.version_groups[id] = data
+        
 
 class Items(CacheManager):
     def __init__(self) -> None:
@@ -134,17 +158,33 @@ class Items(CacheManager):
         self.items = dict()
 
     def add_item_attribute(self, id, data: dict) -> None:
-        self.item_attributes[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.item_attributes[id] = data
+        else:
+            self.__init__()
+            self.item_attributes[id] = data
+        
     def add_item_category(self, id, data: dict) -> None:
-        self.item_categories[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.item_categories[id] = data
+        else:
+            self.__init__()
+            self.item_categories[id] = data
+        
     def add_item_fling_effect(self, id, data: dict) -> None:
-        self.item_fling_effects[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.item_fling_effects[id] = data
+        else:
+            self.__init__()
+            self.item_fling_effects[id] = data
 
     def add_item_pocket(self, id, data: dict) -> None:
-        self.item_pockets[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.item_pockets[id] = data
+        else:
+            self.__init__()
+            self.item_pockets[id] = data
+        
 class Locations(CacheManager):
     def __init__(self) -> None:
         super().__init__()    
@@ -154,16 +194,35 @@ class Locations(CacheManager):
         self.regions = dict()
 
     def add_location(self, id, data: dict) -> None:
-        self.locations[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.locations[id] = data
+        else:
+            self.__init__()
+            self.locations[id] = data
+        
 
     def add_location_area(self, id, data: dict) -> None:
-        self.location_areas[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.location_areas[id] = data
+        else:
+            self.__init__()
+            self.location_areas[id] = data
+        
     def add_pal_park_area(self, id, data: dict) -> None:
-        self.pal_park_areas[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.pal_park_areas[id] = data
+        else:
+            self.__init__()
+            self.pal_park_areas[id] = data
+        
 
     def add_region(self, id, data: dict) -> None:
-        self.regions[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.regions[id] = data
+        else:
+            self.__init__()
+            self.regions[id] = data
+        
 
 
 class Machines(CacheManager):
@@ -172,7 +231,12 @@ class Machines(CacheManager):
         self.machines = dict()
 
     def add_machine(self, id, data: dict) -> None:
-        self.machines[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.machines[id] = data
+        else:
+            self.__init__()
+            self.machines[id] = data
+        
 
 
 class Moves(CacheManager):
@@ -187,26 +251,54 @@ class Moves(CacheManager):
         self.move_targets = dict()
 
     def add_move(self, id, data: dict) -> None:
-        self.moves[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.moves[id] = data
+        else:
+            self.__init__()
+            self.moves[id] = data
 
     def add_move_ailment(self, id, data: dict) -> None:
-        self.move_ailments[id] = data
+        if not len(self.evolution_chains) >= 10:
+            self.move_ailments[id] = data
+        else:
+            self.__init__()
+            self.move_ailments[id] = data        
 
     def add_move_battle_style(self, id, data: dict) -> None:
-        self.move_battle_styles[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.move_battle_styles[id] = data
+        else:
+            self.__init__()
+            self.move_battle_styles[id] = data          
+        
     def add_move_category(self, id, data: dict) -> None:
-        self.move_categories[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.move_categories[id] = data
+        else:
+            self.__init__()
+            self.move_categories[id] = data  
+        
     def add_move_damage_class(self, id, data: dict) -> None:
-        self.move_damage_classes[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.move_damage_classes[id] = data
+        else:
+            self.__init__()
+            self.move_damage_classes[id] = data         
+        
     def add_move_learn_method(self, id, data: dict) -> None:
-        self.move_learn_methods[id] = data
-
+        if not len(self.evolution_chains) >= 10:
+            self.move_learn_methods[id] = data
+        else:
+            self.__init__()
+            self.move_learn_methods[id] = data       
+        
     def add_move_target(self, id, data: dict) -> None:
-        self.move_targets[id] = data   
-
+        if not len(self.evolution_chains) >= 10:
+            self.move_targets[id] = data   
+        else:
+            self.__init__()
+            self.move_targets[id] = data    
+        
 class Pokemons(CacheManager):
     def __init__(self) -> None:
         super().__init__()
