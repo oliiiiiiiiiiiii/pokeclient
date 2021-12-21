@@ -1,7 +1,12 @@
 from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
+from ..cache import Machines
+from ..errors import MachineNotFound
+import json
 import httpx
+
+MachineCache = Machines()
 
 @dataclass(frozen=True)
 class Machine:
@@ -19,4 +24,35 @@ class Machine:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise MachineNotFound(self.name_or_id)
+            else:
+                MachineCache.add_machine(data.get('id'), data)
+                MachineCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = MachineCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise MachineNotFound(self.name_or_id)
+                        else:
+                            MachineCache.add_machine(data.get('id'), data)
+                            MachineCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise MachineNotFound(self.name_or_id)
+                return
+        data = MachineCache.machines.get(id)
+        return data
