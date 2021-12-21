@@ -192,7 +192,7 @@ class Moves(CacheManager):
     def add_move_ailment(self, id, data: dict) -> None:
         self.move_ailments[id] = data
 
-    def add_battle_style(self, id, data: dict) -> None:
+    def add_move_battle_style(self, id, data: dict) -> None:
         self.move_battle_styles[id] = data
 
     def add_move_category(self, id, data: dict) -> None:
