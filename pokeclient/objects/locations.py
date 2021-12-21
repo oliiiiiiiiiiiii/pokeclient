@@ -1,7 +1,12 @@
 from typing import Union, Any
 from dataclasses import dataclass
-from ..url import base_url
 import httpx
+import json
+from ..url import base_url
+from ..cache import Locations
+from ..errors import LocationNotFound
+
+LocationCache = Locations()
 
 @dataclass(frozen=True)
 class Location:
@@ -19,7 +24,38 @@ class Location:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise LocationNotFound(self.name_or_id)
+            else:
+                LocationCache.add_location(data.get('id'), data)
+                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise LocationNotFound(self.name_or_id)
+                        else:
+                            LocationCache.add_location(data.get('id'), data)
+                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise LocationNotFound(self.name_or_id)
+                return
+        data = LocationCache.locations.get(id)
+        return data
 
 @dataclass(frozen=True)
 class LocationArea:
@@ -38,7 +74,38 @@ class LocationArea:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise LocationNotFound(self.name_or_id)
+            else:
+                LocationCache.add_location_area(data.get('id'), data)
+                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise LocationNotFound(self.name_or_id)
+                        else:
+                            LocationCache.add_location_area(data.get('id'), data)
+                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise LocationNotFound(self.name_or_id)
+                return
+        data = LocationCache.location_area.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PalParkArea:
@@ -52,9 +119,41 @@ class PalParkArea:
     def url(self) -> str:
         return f"{base_url}pal-park-area/{self.name_or_id}"
 
+
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise LocationNotFound(self.name_or_id)
+            else:
+                LocationCache.add_pal_park_area(data.get('id'), data)
+                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise LocationNotFound(self.name_or_id)
+                        else:
+                            LocationCache.add_pal_park_area(data.get('id'), data)
+                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise LocationNotFound(self.name_or_id)
+                return
+        data = LocationCache.pal_park_areas.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Region:
@@ -73,4 +172,35 @@ class Region:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise LocationNotFound(self.name_or_id)
+            else:
+                LocationCache.add_region(data.get('id'), data)
+                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise LocationNotFound(self.name_or_id)
+                        else:
+                            LocationCache.add_region(data.get('id'), data)
+                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise LocationNotFound(self.name_or_id)
+                return
+        data = LocationCache.regions.get(id)
+        return data
