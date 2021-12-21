@@ -24,10 +24,41 @@ class ItemAttribute:
     def url(self):
         return f"{base_url}item-attribute/{self.name_or_id}/"
 
+
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
-
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ItemNotFound(self.name_or_id)
+            else:
+                ItemCache.add_item_attribute(data.get('id'), data)
+                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ItemNotFound(self.name_or_id)
+                        else:
+                            ItemCache.add_item_attribute(data.get('id'), data)
+                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ItemNotFound(self.name_or_id)
+                return
+        data = ItemCache.item_attributes.get(id)
+        return data
 @dataclass(frozen=True)
 class ItemCategory:
 
@@ -43,7 +74,38 @@ class ItemCategory:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ItemNotFound(self.name_or_id)
+            else:
+                ItemCache.add_item_category(data.get('id'), data)
+                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ItemNotFound(self.name_or_id)
+                        else:
+                            ItemCache.add_item_category(data.get('id'), data)
+                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ItemNotFound(self.name_or_id)
+                return
+        data = ItemCache.item_categories.get(id)
+        return data
 
 @dataclass(frozen=True)
 class ItemFlingEffect:
@@ -60,7 +122,38 @@ class ItemFlingEffect:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ItemNotFound(self.name_or_id)
+            else:
+                ItemCache.add_item_fling_effect(data.get('id'), data)
+                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ItemNotFound(self.name_or_id)
+                        else:
+                            ItemCache.add_item_fling_effect(data.get('id'), data)
+                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ItemNotFound(self.name_or_id)
+                return
+        data = ItemCache.item_fling_effects.get(id)
+        return data
 
 @dataclass(frozen=True)
 class ItemPocket:
@@ -77,7 +170,38 @@ class ItemPocket:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ItemNotFound(self.name_or_id)
+            else:
+                ItemCache.add_item_pocket(data.get('id'), data)
+                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ItemNotFound(self.name_or_id)
+                        else:
+                            ItemCache.add_item_pocket(data.get('id'), data)
+                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ItemNotFound(self.name_or_id)
+                return
+        data = ItemCache.item_pockets.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Item:
@@ -97,4 +221,35 @@ class Item:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise ItemNotFound(self.name_or_id)
+            else:
+                ItemCache.add_item(data.get('id'), data)
+                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise ItemNotFound(self.name_or_id)
+                        else:
+                            ItemCache.add_item(data.get('id'), data)
+                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise ItemNotFound(self.name_or_id)
+                return
+        data = ItemCache.items.get(id)
+        return data

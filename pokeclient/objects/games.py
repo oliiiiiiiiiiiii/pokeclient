@@ -56,7 +56,7 @@ class Generation:
             else:
                 raise GameNotFound(self.name_or_id)
                 return
-        data = GameCache.generation.get(id)
+        data = GameCache.generations.get(id)
         return data
 
 @dataclass(frozen=True)

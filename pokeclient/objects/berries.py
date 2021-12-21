@@ -8,7 +8,6 @@ from ..errors import BerryNotFound
 
 BerryCache = Berries()
 
-
 @dataclass(frozen=True)
 class BerryFirmness:
     """Determination of berry's softness or hardness."""
