@@ -1,7 +1,12 @@
 from typing import Any
 from dataclasses import dataclass
+import json
 from ..url import base_url
+from ..cache import Evolutions
+from ..errors import EvolutionNotFound
 import httpx
+
+EvolutionCache = Evolutions()
 
 @dataclass(frozen=True)
 class EvolutionChain:
@@ -21,7 +26,32 @@ class EvolutionChain:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise EvolutionNotFound(self.id)
+            else:
+                EvolutionCache.add_evolution_chain(data.get('id'), data)
+                return data
+        else:
+            if isinstance(self.id, str):
+                try:
+                    id = int(self.id)
+                except ValueError:
+                    try:
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise EvolutionNotFound(self.id)
+                    else:
+                        EvolutionCache.add_evolution_chain(data.get('id'), data)
+                        return data
+            elif isinstance(self.id, int):
+                id = self.id
+            else:
+                raise EvolutionNotFound(self.id)
+        data = EvolutionCache.evolution_chains.get(id)
+        return data            
 
 @dataclass(frozen=True)
 class EvolutionTrigger:
@@ -38,4 +68,29 @@ class EvolutionTrigger:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise EvolutionNotFound(self.id)
+            else:
+                EvolutionCache.add_evolution_trigger(data.get('id'), data)
+                return data
+        else:
+            if isinstance(self.id, str):
+                try:
+                    id = int(self.id)
+                except ValueError:
+                    try:
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise EvolutionNotFound(self.id)
+                    else:
+                        EvolutionCache.add_evolution_trigger(data.get('id'), data)
+                        return data
+            elif isinstance(self.id, int):
+                id = self.id
+            else:
+                raise EvolutionNotFound(self.id)
+        data = EvolutionCache.evolution_triggers.get(id)
+        return data  

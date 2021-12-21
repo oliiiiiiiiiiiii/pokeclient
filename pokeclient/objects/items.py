@@ -34,7 +34,7 @@ class ItemAttribute:
                 raise ItemNotFound(self.name_or_id)
             else:
                 ItemCache.add_item_attribute(data.get('id'), data)
-                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ItemCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -42,7 +42,7 @@ class ItemAttribute:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ItemCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -50,7 +50,7 @@ class ItemAttribute:
                             raise ItemNotFound(self.name_or_id)
                         else:
                             ItemCache.add_item_attribute(data.get('id'), data)
-                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ItemCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -81,7 +81,7 @@ class ItemCategory:
                 raise ItemNotFound(self.name_or_id)
             else:
                 ItemCache.add_item_category(data.get('id'), data)
-                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ItemCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -89,7 +89,7 @@ class ItemCategory:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ItemCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -97,7 +97,7 @@ class ItemCategory:
                             raise ItemNotFound(self.name_or_id)
                         else:
                             ItemCache.add_item_category(data.get('id'), data)
-                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ItemCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -129,7 +129,7 @@ class ItemFlingEffect:
                 raise ItemNotFound(self.name_or_id)
             else:
                 ItemCache.add_item_fling_effect(data.get('id'), data)
-                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ItemCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -137,7 +137,7 @@ class ItemFlingEffect:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ItemCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -145,7 +145,7 @@ class ItemFlingEffect:
                             raise ItemNotFound(self.name_or_id)
                         else:
                             ItemCache.add_item_fling_effect(data.get('id'), data)
-                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ItemCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -177,7 +177,7 @@ class ItemPocket:
                 raise ItemNotFound(self.name_or_id)
             else:
                 ItemCache.add_item_pocket(data.get('id'), data)
-                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ItemCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -185,7 +185,7 @@ class ItemPocket:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ItemCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -193,7 +193,7 @@ class ItemPocket:
                             raise ItemNotFound(self.name_or_id)
                         else:
                             ItemCache.add_item_pocket(data.get('id'), data)
-                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ItemCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -228,7 +228,7 @@ class Item:
                 raise ItemNotFound(self.name_or_id)
             else:
                 ItemCache.add_item(data.get('id'), data)
-                ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ItemCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -236,7 +236,7 @@ class Item:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ItemCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ItemCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -244,7 +244,7 @@ class Item:
                             raise ItemNotFound(self.name_or_id)
                         else:
                             ItemCache.add_item(data.get('id'), data)
-                            ItemCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ItemCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

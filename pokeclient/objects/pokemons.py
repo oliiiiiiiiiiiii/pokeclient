@@ -1,7 +1,12 @@
 from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
+from ..cache import Moves
+from ..errors import MoveNotFound
+import json
 import httpx
+
+MovesCache = Moves()
 
 @dataclass(frozen=True)
 class Ability:

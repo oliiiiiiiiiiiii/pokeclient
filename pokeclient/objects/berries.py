@@ -28,7 +28,7 @@ class BerryFirmness:
                 raise BerryNotFound(self.name_or_id)
             else:
                 BerryCache.add_berry_firmness(data.get('id'), data)
-                BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                BerryCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -36,7 +36,7 @@ class BerryFirmness:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = BerryCache.name_to_id_dict.get(
+                        id = BerryCache.name_id_map.get(
                             self.name_or_id).lower()
                     except AttributeError:
                         try:
@@ -45,7 +45,7 @@ class BerryFirmness:
                             raise BerryNotFound(self.name_or_id)
                         else:
                             BerryCache.add_berry_firmness(data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            BerryCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -77,7 +77,7 @@ class BerryFlavour:
                 raise BerryNotFound(self.name_or_id)
             else:
                 BerryCache.add_berry_flavour(data.get('id'), data)
-                BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                BerryCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -85,7 +85,7 @@ class BerryFlavour:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = BerryCache.name_to_id_dict.get(
+                        id = BerryCache.name_id_map.get(
                             self.name_or_id).lower()
                     except AttributeError:
                         try:
@@ -94,7 +94,7 @@ class BerryFlavour:
                             raise BerryNotFound(self.name_or_id)
                         else:
                             BerryCache.add_berry_flavour(data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            BerryCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -126,7 +126,7 @@ class Berry:
                 raise BerryNotFound(self.name_or_id)
             else:
                 BerryCache.add_berry(data.get('id'), data)
-                BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                BerryCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -134,7 +134,7 @@ class Berry:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = BerryCache.name_to_id_dict.get(
+                        id = BerryCache.name_id_map.get(
                             self.name_or_id).lower()
                     except AttributeError:
                         try:
@@ -143,7 +143,7 @@ class Berry:
                             raise BerryNotFound(self.name_or_id)
                         else:
                             BerryCache.add_berry(data.get('id'), data)
-                            BerryCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            BerryCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

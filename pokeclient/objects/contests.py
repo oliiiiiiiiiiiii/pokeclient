@@ -29,7 +29,7 @@ class ContestType:
                 raise ContestNotFound(self.name_or_id)
             else:
                 ContestCache.add_contest_type(data.get('id'), data)
-                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ContestCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -37,7 +37,7 @@ class ContestType:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ContestCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -45,7 +45,7 @@ class ContestType:
                             raise ContestCache(self.name_or_id)
                         else:
                             ContestCache.add_contest_type(data.get('id'), data)
-                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ContestCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -76,7 +76,7 @@ class ContestEffect:
                 raise ContestNotFound(self.name_or_id)
             else:
                 ContestCache.add_contest_effect(data.get('id'), data)
-                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ContestCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -84,7 +84,7 @@ class ContestEffect:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ContestCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -92,7 +92,7 @@ class ContestEffect:
                             raise ContestCache(self.name_or_id)
                         else:
                             ContestCache.add_contest_effect(data.get('id'), data)
-                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ContestCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -123,7 +123,7 @@ class SuperContestEffect:
                 raise ContestNotFound(self.name_or_id)
             else:
                 ContestCache.add_super_contest_effect(data.get('id'), data)
-                ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                ContestCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -131,7 +131,7 @@ class SuperContestEffect:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = ContestCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = ContestCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -139,7 +139,7 @@ class SuperContestEffect:
                             raise ContestCache(self.name_or_id)
                         else:
                             ContestCache.add_super_contest_effect(data.get('id'), data)
-                            ContestCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            ContestCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

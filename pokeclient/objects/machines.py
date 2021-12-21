@@ -31,7 +31,7 @@ class Machine:
                 raise MachineNotFound(self.name_or_id)
             else:
                 MachineCache.add_machine(data.get('id'), data)
-                MachineCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MachineCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -39,7 +39,7 @@ class Machine:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MachineCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MachineCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -47,7 +47,7 @@ class Machine:
                             raise MachineNotFound(self.name_or_id)
                         else:
                             MachineCache.add_machine(data.get('id'), data)
-                            MachineCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MachineCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

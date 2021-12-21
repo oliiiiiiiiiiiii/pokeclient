@@ -30,7 +30,7 @@ class EncounterMethod:
                 raise EncounterNotFound(self.name_or_id)
             else:
                 EncounterCache.add_encounter_method(data.get('id'), data)
-                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                EncounterCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -38,7 +38,7 @@ class EncounterMethod:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = EncounterCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -46,7 +46,7 @@ class EncounterMethod:
                             raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.add_encounter_method(data.get('id'), data)
-                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            EncounterCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -77,7 +77,7 @@ class EncounterCondition:
                 raise EncounterNotFound(self.name_or_id)
             else:
                 EncounterCache.add_encounter_condition(data.get('id'), data)
-                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                EncounterCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -85,7 +85,7 @@ class EncounterCondition:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = EncounterCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -93,7 +93,7 @@ class EncounterCondition:
                             raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.add_encounter_condition(data.get('id'), data)
-                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            EncounterCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -124,7 +124,7 @@ class EncounterConditionValue:
                 raise EncounterNotFound(self.name_or_id)
             else:
                 EncounterCache.add_encounter_condition_value(data.get('id'), data)
-                EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                EncounterCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -132,7 +132,7 @@ class EncounterConditionValue:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = EncounterCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = EncounterCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -140,7 +140,7 @@ class EncounterConditionValue:
                             raise EncounterNotFound(self.name_or_id)
                         else:
                             EncounterCache.add_encounter_condition_value(data.get('id'), data)
-                            EncounterCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            EncounterCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

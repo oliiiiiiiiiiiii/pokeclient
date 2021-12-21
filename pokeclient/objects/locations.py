@@ -31,7 +31,7 @@ class Location:
                 raise LocationNotFound(self.name_or_id)
             else:
                 LocationCache.add_location(data.get('id'), data)
-                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                LocationCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -39,7 +39,7 @@ class Location:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = LocationCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -47,7 +47,7 @@ class Location:
                             raise LocationNotFound(self.name_or_id)
                         else:
                             LocationCache.add_location(data.get('id'), data)
-                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            LocationCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -81,7 +81,7 @@ class LocationArea:
                 raise LocationNotFound(self.name_or_id)
             else:
                 LocationCache.add_location_area(data.get('id'), data)
-                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                LocationCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -89,7 +89,7 @@ class LocationArea:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = LocationCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -97,7 +97,7 @@ class LocationArea:
                             raise LocationNotFound(self.name_or_id)
                         else:
                             LocationCache.add_location_area(data.get('id'), data)
-                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            LocationCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -129,7 +129,7 @@ class PalParkArea:
                 raise LocationNotFound(self.name_or_id)
             else:
                 LocationCache.add_pal_park_area(data.get('id'), data)
-                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                LocationCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -137,7 +137,7 @@ class PalParkArea:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = LocationCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -145,7 +145,7 @@ class PalParkArea:
                             raise LocationNotFound(self.name_or_id)
                         else:
                             LocationCache.add_pal_park_area(data.get('id'), data)
-                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            LocationCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -179,7 +179,7 @@ class Region:
                 raise LocationNotFound(self.name_or_id)
             else:
                 LocationCache.add_region(data.get('id'), data)
-                LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                LocationCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -187,7 +187,7 @@ class Region:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = LocationCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = LocationCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -195,7 +195,7 @@ class Region:
                             raise LocationNotFound(self.name_or_id)
                         else:
                             LocationCache.add_region(data.get('id'), data)
-                            LocationCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            LocationCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

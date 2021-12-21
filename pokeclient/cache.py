@@ -1,6 +1,6 @@
 class CacheManager:
     def __init__(self) -> None:
-        self.name_to_id_dict = dict()
+        self.name_id_map = dict()
 
 
 class Berries(CacheManager):
@@ -11,21 +11,21 @@ class Berries(CacheManager):
         self.berries = dict()
 
     def add_berry_firmness(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.berry_firmness[id] = data
         else:
             self.__init__()
             self.berry_firmness[id] = data
 
     def add_berry_flavour(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.berry_flavours[id] = data
         else:
             self.__init__()
             self.berry_flavour[id] = data
 
     def add_berry(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.berries[id] = data
         else:
             self.__init__()
@@ -40,21 +40,21 @@ class Contests(CacheManager):
         self.super_contest_effects = dict()
 
     def add_contest_type(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.contest_types[id] = data
         else:
             self.__init__()
             self.contest_types[id] = data
 
     def add_contest_effect(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.contest_effects[id] = data
         else:
             self.__init__()
             self.contest_effects[id] = data
 
     def add_super_contest_effect(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.super_contest_effects[id] = data
         else:
             self.__init__()
@@ -69,21 +69,21 @@ class Encounters(CacheManager):
         self.encounter_condition_values = dict()
 
     def add_encounter_method(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.encounter_methods[id] = data
         else:
             self.__init__()
             self.encounter_methods[id] = data
 
     def add_encounter_condition(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.encounter_conditions[id] = data
         else:
             self.__init__()
             self.encounter_conditions[id] = data
 
     def add_encounter_condition_value(self, id, data: dict) -> None:
-        if not len(self.name_to_id_dict) >= 10:
+        if not len(self.name_id_map) >= 10:
             self.encounter_condition_values[id] = data
         else:
             self.__init__()
@@ -94,13 +94,13 @@ class Encounters(CacheManager):
 class Evolutions:
     def __init__(self) -> None:   
         self.evolution_chains = dict()
-        self.encounter_triggers = dict()
+        self.evolution_triggers = dict()
 
-    def add_evolution_chains(self, id, data: dict) -> None:
+    def add_evolution_chain(self, id, data: dict) -> None:
         self.evolution_chains[id] = data
 
-    def add_encounter_triggers(self, id, data: dict) -> None:
-        self.encounter_triggers[id] = data
+    def add_evolution_trigger(self, id, data: dict) -> None:
+        self.evolution_triggers[id] = data
 
 
 class Games(CacheManager):

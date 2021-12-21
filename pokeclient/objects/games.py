@@ -33,7 +33,7 @@ class Generation:
                 raise GameNotFound(self.name_or_id)
             else:
                 GameCache.add_generation(data.get('id'), data)
-                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                GameCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -41,7 +41,7 @@ class Generation:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = GameCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -49,7 +49,7 @@ class Generation:
                             raise GameNotFound(self.name_or_id)
                         else:
                             GameCache.add_generation(data.get('id'), data)
-                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            GameCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -83,7 +83,7 @@ class Pokedex:
                 raise GameNotFound(self.name_or_id)
             else:
                 GameCache.add_pokedex(data.get('id'), data)
-                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                GameCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -91,7 +91,7 @@ class Pokedex:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = GameCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -99,7 +99,7 @@ class Pokedex:
                             raise GameNotFound(self.name_or_id)
                         else:
                             GameCache.add_pokedex(data.get('id'), data)
-                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            GameCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -130,7 +130,7 @@ class Version:
                 raise GameNotFound(self.name_or_id)
             else:
                 GameCache.add_version(data.get('id'), data)
-                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                GameCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -138,7 +138,7 @@ class Version:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = GameCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -146,7 +146,7 @@ class Version:
                             raise GameNotFound(self.name_or_id)
                         else:
                             GameCache.add_version(data.get('id'), data)
-                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            GameCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -177,7 +177,7 @@ class VersionGroup:
                 raise GameNotFound(self.name_or_id)
             else:
                 GameCache.add_version_group(data.get('id'), data)
-                GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                GameCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -185,7 +185,7 @@ class VersionGroup:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = GameCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = GameCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -193,7 +193,7 @@ class VersionGroup:
                             raise GameNotFound(self.name_or_id)
                         else:
                             GameCache.add_version_group(data.get('id'), data)
-                            GameCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            GameCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id

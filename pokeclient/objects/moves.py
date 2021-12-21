@@ -33,7 +33,7 @@ class Move:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -41,7 +41,7 @@ class Move:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -49,7 +49,7 @@ class Move:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -81,7 +81,7 @@ class MoveAilment:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_ailment(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -89,7 +89,7 @@ class MoveAilment:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -97,7 +97,7 @@ class MoveAilment:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_ailment(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -128,7 +128,7 @@ class MoveBattleStyle:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_battle_style(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -136,7 +136,7 @@ class MoveBattleStyle:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -144,7 +144,7 @@ class MoveBattleStyle:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_battle_style(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -176,7 +176,7 @@ class MoveCategory:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_category(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -184,7 +184,7 @@ class MoveCategory:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -192,7 +192,7 @@ class MoveCategory:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_category(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -224,7 +224,7 @@ class MoveDamageClass:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_damage_class(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -232,7 +232,7 @@ class MoveDamageClass:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -240,7 +240,7 @@ class MoveDamageClass:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_damage_class(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -271,7 +271,7 @@ class MoveLearnMethod:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_learn_method(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -279,7 +279,7 @@ class MoveLearnMethod:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -287,7 +287,7 @@ class MoveLearnMethod:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_learn_method(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
@@ -320,7 +320,7 @@ class MoveTarget:
                 raise MoveNotFound(self.name_or_id)
             else:
                 MovesCache.add_move_target(data.get('id'), data)
-                MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                MovesCache.name_id_map[data.get('name')] = data.get('id')
                 return data
         else:
             if isinstance(self.name_or_id, str):
@@ -328,7 +328,7 @@ class MoveTarget:
                     id = int(self.name_or_id)
                 except ValueError:
                     try:
-                        id = MovesCache.name_to_id_dict.get(self.name_or_id).lower()
+                        id = MovesCache.name_id_map.get(self.name_or_id).lower()
                     except AttributeError:
                         try:
                             data = httpx.get(self.url).json()
@@ -336,7 +336,7 @@ class MoveTarget:
                             raise MoveNotFound(self.name_or_id)
                         else:
                             MovesCache.add_move_target(data.get('id'), data)
-                            MovesCache.name_to_id_dict[data.get('name')] = data.get('id')
+                            MovesCache.name_id_map[data.get('name')] = data.get('id')
                             return data
             elif isinstance(self.name_or_id, int):
                 id = self.name_or_id
