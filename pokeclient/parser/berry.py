@@ -1,6 +1,19 @@
 from dataclasses import dataclass
 from payload import DataPayload
 
+@dataclass(frozen=True)
+class BerryFlavorMap:
+
+    data : DataPayload
+
+    @property
+    def potency(self):
+        return self.data.get("potency")
+
+    @property
+    def potency(self):
+        return self.data.get("flavor")
+
 
 @dataclass(frozen=True)
 class Berry:
@@ -39,10 +52,13 @@ class Berry:
     def soil_dryness(self):
         return self.data.get("soil_dryness")
 
+    @property
+    def flavors(self):
+        return [BerryFlavorMap(_) for _ in self.data.get("flavors")]       
+
 """
 TODO : 
 firmness
-flavors
 item
 natural_gift_type
 """

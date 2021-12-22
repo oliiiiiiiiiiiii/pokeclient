@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from payload import DataPayload
+from berry_flavor import BerryFlavor
+
 
 @dataclass(frozen=True)
 class ContestName:
@@ -35,7 +37,6 @@ class ContestType:
     def names(self):
         return [ContestName(_) for _ in self.data.get("names")]
 
-"""
-TODO : 
-berry_flavor
-"""
+    @property
+    def berry_flavor(self):
+        return BerryFlavor(self.data.get('berry_flavor'))
