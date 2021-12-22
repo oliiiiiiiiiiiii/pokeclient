@@ -1,12 +1,12 @@
 from typing import Union, Any
 from dataclasses import dataclass
 from ..url import base_url
-from ..cache import Moves
-from ..errors import MoveNotFound
+from ..cache import Pokemons
+from ..errors import PokemonNotFound
 import json
 import httpx
 
-MovesCache = Moves()
+PokemonsCache = Pokemons()
 
 @dataclass(frozen=True)
 class Ability:
