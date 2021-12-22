@@ -44,6 +44,15 @@ class GenerationGameIndex:
     '''    
 
 @dataclass
+class MachineVersionDetail:
+    '''
+    TODO:
+    machine
+    version_group
+    '''    
+
+
+@dataclass
 class Name:
     name:str
     language:Language
