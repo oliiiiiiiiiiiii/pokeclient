@@ -27,6 +27,15 @@ class Encounter:
     '''
 
 @dataclass
+class FlavorText:
+    flavor_text:str
+    language:Language
+    '''
+    TODO:
+    version
+    '''    
+
+@dataclass
 class Name:
     name:str
     language:Language
