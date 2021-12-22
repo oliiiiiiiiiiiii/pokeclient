@@ -99,7 +99,7 @@ class ContestEffect:
 class SuperContestEffect:
     """Super contest effects refer to the effects of moves when used in super contests."""
 
-    name_or_id: Union[str, int]
+    id: int
     from_cache: bool = False
 
     @property
@@ -112,30 +112,25 @@ class SuperContestEffect:
             try:
                 data = httpx.get(self.url).json()
             except json.decoder.JSONDecodeError:
-                raise ContestNotFound(self.name_or_id)
+                raise ContestNotFound(self.id)
             else:
                 ContestCache.add_super_contest_effect(data.get('id'), data)
-                ContestCache.name_id_map[data.get('name')] = data.get('id')
-                return data
+                return data 
         else:
-            if isinstance(self.name_or_id, str):
+            if isinstance(self.id, str):
                 try:
-                    id = int(self.name_or_id)
+                    id = int(self.id)
                 except ValueError:
                     try:
-                        id = ContestCache.name_id_map.get(self.name_or_id).lower()
-                    except AttributeError:
-                        try:
-                            data = httpx.get(self.url).json()
-                        except json.decoder.JSONDecodeError:
-                            raise ContestCache(self.name_or_id)
-                        else:
-                            ContestCache.add_super_contest_effect(data.get('id'), data)
-                            ContestCache.name_id_map[data.get('name')] = data.get('id')
-                            return data
-            elif isinstance(self.name_or_id, int):
-                id = self.name_or_id
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise ContestNotFound(self.id)
+                    else:
+                        ContestCache.add_super_contest_effect(data.get('id'), data)
+                        return data 
+            elif isinstance(self.id, int):
+                id = self.id
             else:
-                raise ContestNotFound(self.name_or_id)
+                raise ContestNotFound(self.id)
         data = ContestCache.super_contest_effects.get(id)
-        return data
+        return data 

@@ -41,7 +41,8 @@ class Contests(CacheManager):
 
     def add_contest_type(self, id, data: dict) -> None:
         if (not len(self.name_id_map) >= 10
-            or not len(self.contest_effects) >= 10):
+            or not len(self.contest_effects) >= 10
+            or not len(self.super_contest_effects) >= 10):
             self.contest_types[id] = data
         else:
             self.__init__()
@@ -49,14 +50,17 @@ class Contests(CacheManager):
 
     def add_contest_effect(self, id, data: dict) -> None:
         if (not len(self.name_id_map) >= 10
-            or not len(self.contest_effects) >= 10):
+            or not len(self.contest_effects) >= 10
+            or not len(self.super_contest_effects) >= 10):
             self.contest_effects[id] = data
         else:
             self.__init__()
             self.contest_effects[id] = data
 
     def add_super_contest_effect(self, id, data: dict) -> None:
-        if not len(self.name_id_map) >= 10:
+        if (not len(self.name_id_map) >= 10
+            or not len(self.contest_effects) >= 10
+            or not len(self.super_contest_effects) >= 10):
             self.super_contest_effects[id] = data
         else:
             self.__init__()
