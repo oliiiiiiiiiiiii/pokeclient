@@ -25,7 +25,37 @@ class Ability:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_ability(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_ability(data.get('id'), data)
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.abilities.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Characteristic:
@@ -45,7 +75,32 @@ class Characteristic:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.id)
+            else:
+                PokemonsCache.add_characteristic(data.get('id'), data)
+                return data
+        else:
+            if isinstance(self.id, str):
+                try:
+                    id = int(self.id)
+                except ValueError:
+                    try:
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise PokemonNotFound(self.id)
+                    else:
+                        PokemonsCache.add_characteristic(data.get('id'), data)
+                        return data
+            elif isinstance(self.id, int):
+                id = self.id
+            else:
+                raise PokemonNotFound(self.id)
+        data = PokemonsCache.characteristics.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Gender:
@@ -64,7 +119,32 @@ class Gender:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.id)
+            else:
+                PokemonsCache.add_gender(data.get('id'), data)
+                return data
+        else:
+            if isinstance(self.id, str):
+                try:
+                    id = int(self.id)
+                except ValueError:
+                    try:
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise PokemonNotFound(self.id)
+                    else:
+                        PokemonsCache.add_gender(data.get('id'), data)
+                        return data
+            elif isinstance(self.id, int):
+                id = self.id
+            else:
+                raise PokemonNotFound(self.id)
+        data = PokemonsCache.genders.get(id)
+        return data
 
 @dataclass(frozen=True)
 class GrowthRate:
@@ -81,7 +161,32 @@ class GrowthRate:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.id)
+            else:
+                PokemonsCache.add_growth_rate(data.get('id'), data)
+                return data
+        else:
+            if isinstance(self.id, str):
+                try:
+                    id = int(self.id)
+                except ValueError:
+                    try:
+                        data = httpx.get(self.url).json()
+                    except json.decoder.JSONDecodeError:
+                        raise PokemonNotFound(self.id)
+                    else:
+                        PokemonsCache.add_growth_rate(data.get('id'), data)
+                        return data
+            elif isinstance(self.id, int):
+                id = self.id
+            else:
+                raise PokemonNotFound(self.id)
+        data = PokemonsCache.growth_rates.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Nature:
@@ -97,7 +202,37 @@ class Nature:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_nature(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_nature(data.get('id'), data)
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.natures.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokeathlonStat:
@@ -116,7 +251,37 @@ class PokeathlonStat:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokeathlon_stat(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokeathlon_stat(data.get('id'), data)
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokeathlon_stats.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Pokemon:
@@ -140,7 +305,37 @@ class Pokemon:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon(data.get('id'), data)
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemons.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonLocationArea:
@@ -156,7 +351,37 @@ class PokemonLocationArea:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_location_area(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_location_area(data.get('id'), data)
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_location_areas.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonColor:
@@ -176,7 +401,37 @@ class PokemonColor:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_color(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_color((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_colors.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonForm:
@@ -198,7 +453,37 @@ class PokemonForm:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_form(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_form((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_forms.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonHabitat:
@@ -217,7 +502,37 @@ class PokemonHabitat:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_habitat(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_habitat((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_habitats.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonShape:
@@ -233,7 +548,37 @@ class PokemonShape:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_shape(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_shape((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_shapes.get(id)
+        return data
 
 @dataclass(frozen=True)
 class PokemonSpecies:
@@ -255,7 +600,37 @@ class PokemonSpecies:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_pokemon_species(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_pokemon_species((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.pokemon_species.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Stat:
@@ -274,7 +649,37 @@ class Stat:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_stat(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_stat((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.stats.get(id)
+        return data
 
 @dataclass(frozen=True)
 class Type:
@@ -292,4 +697,34 @@ class Type:
 
     @property
     def raw_data(self) -> Any:
-        return httpx.get(self.url).json()
+        if not self.from_cache:
+            try:
+                data = httpx.get(self.url).json()
+            except json.decoder.JSONDecodeError:
+                raise PokemonNotFound(self.name_or_id)
+            else:
+                PokemonsCache.add_type(data.get('id'), data)
+                PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                return data
+        else:
+            if isinstance(self.name_or_id, str):
+                try:
+                    id = int(self.name_or_id)
+                except ValueError:
+                    try:
+                        id = PokemonsCache.name_id_map.get(self.name_or_id).lower()
+                    except AttributeError:
+                        try:
+                            data = httpx.get(self.url).json()
+                        except json.decoder.JSONDecodeError:
+                            raise PokemonNotFound(self.name_or_id)
+                        else:
+                            PokemonsCache.add_type((data.get('id'), data))
+                            PokemonsCache.name_id_map[data.get('name')] = data.get('id')
+                            return data
+            elif isinstance(self.name_or_id, int):
+                id = self.name_or_id
+            else:
+                raise PokemonNotFound(self.name_or_id)
+        data = PokemonsCache.types.get(id)
+        return data

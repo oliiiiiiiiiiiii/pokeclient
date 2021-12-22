@@ -96,14 +96,14 @@ class Evolutions:
         self.evolution_triggers = dict()
 
     def add_evolution_chain(self, id, data: dict) -> None:
-        if not len(self.evolution_chains) >= 10:
+        if not len(self.evolution_chains) >= 10 or not len(self.evolution_triggers) >= 10:
             self.evolution_chains[id] = data
         else:
             self.__init__()
             self.encounter_condition_values[id] = data
 
     def add_evolution_trigger(self, id, data: dict) -> None:
-        if not len(self.evolution_chains) >= 10:
+        if not len(self.evolution_chains) >= 10 or not len(self.evolution_triggers) >= 10:
             self.evolution_triggers[id] = data
         else:
             self.__init__()
@@ -320,46 +320,193 @@ class Pokemons(CacheManager):
 
         
     def add_ability(self, id, data: dict) -> None:
-        self.abilities[id] = data
-
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.abilities[id] = data   
+        else:
+            self.__init__()
+            self.abilities[id] = data          
+        
     def add_characteristic(self, id, data: dict) -> None:
-        self.characteristics[id] = data
-
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.characteristics[id] = data  
+        else:
+            self.__init__()
+            self.characteristics[id] = data 
+        
     def add_gender(self, id, data: dict) -> None:
-        self.genders[id] = data
-
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.genders[id] = data
+        else:
+            self.__init__()
+            self.genders[id] = data         
+        
     def add_growth_rate(self, id, data: dict) -> None:
-        self.growth_rates[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.growth_rates[id] = data
+        else:
+            self.__init__()
+            self.growth_rates[id] = data        
+        
 
     def add_nature(self, id, data: dict) -> None:
-        self.natures[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.natures[id] = data
+        else:
+            self.__init__()
+            self.natures[id] = data         
+        
 
     def add_pokeathlon_stat(self, id, data: dict) -> None:
-        self.pokeathlon_stats[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokeathlon_stats[id] = data
+        else:
+            self.__init__()
+            self.pokeathlon_stats[id] = data       
+        
 
     def add_pokemon(self, id, data: dict) -> None:
-        self.pokemons[id] = data   
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemons[id] = data   
+        else:
+            self.__init__()
+            self.pokemons[id] = data           
+        
 
     def add_pokemon_location_area(self, id, data: dict) -> None:
-        self.pokemon_location_areas[id] = data 
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_location_areas[id] = data   
+        else:
+            self.__init__()
+            self.pokemon_location_areas[id] = data         
+         
 
     def add_pokemon_color(self, id, data: dict) -> None:
-        self.pokemon_colors[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_colors[id] = data  
+        else:
+            self.__init__()
+            self.pokemon_colors[id] = data         
+        
 
     def add_pokemon_form(self, id, data: dict) -> None:
-        self.pokemon_forms[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_forms[id] = data
+        else:
+            self.__init__()
+            self.pokemon_forms[id] = data        
+        
 
     def add_pokemon_habitat(self, id, data: dict) -> None:
-        self.pokemon_habitats[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_habitats[id] = data
+        else:
+            self.__init__()
+            self.pokemon_habitats[id] = data        
+        
 
     def add_pokemon_shape(self, id, data: dict) -> None:
-        self.pokemon_shapes[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_shapes[id] = data
+        else:
+            self.__init__()
+            self.pokemon_shapes[id] = data       
+        
 
     def add_pokemon_species(self, id, data: dict) -> None:
-        self.pokemon_species[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.pokemon_species[id] = data
+        else:
+            self.__init__()
+            self.pokemon_species[id] = data         
+        
 
     def add_stat(self, id, data: dict) -> None:
-        self.stats[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.stats[id] = data
+        else:
+            self.__init__()
+            self.stats[id] = data       
+        
 
     def add_type(self, id, data: dict) -> None:
-        self.types[id] = data
+        if (
+            not len(self.name_id_map) >= 10 
+            or not len(self.characteristics) >= 10 
+            or not len(self.genders) >= 10
+            or not len(self.growth_rates) >= 10
+        ):
+            self.types[id] = data
+        else:
+            self.__init__()
+            self.types[id] = data         
+        
