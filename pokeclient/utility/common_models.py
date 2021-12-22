@@ -36,6 +36,14 @@ class FlavorText:
     '''    
 
 @dataclass
+class GenerationGameIndex:
+    game_index:str
+    '''
+    TODO:
+    generation
+    '''    
+
+@dataclass
 class Name:
     name:str
     language:Language
