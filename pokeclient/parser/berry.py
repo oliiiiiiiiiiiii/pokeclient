@@ -40,7 +40,7 @@ class Berry:
         return self.data.get("soil_dryness")
 
 """
-Todo : 
+TODO : 
 firmness
 flavors
 item
