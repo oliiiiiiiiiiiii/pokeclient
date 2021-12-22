@@ -40,14 +40,16 @@ class Contests(CacheManager):
         self.super_contest_effects = dict()
 
     def add_contest_type(self, id, data: dict) -> None:
-        if not len(self.name_id_map) >= 10:
+        if (not len(self.name_id_map) >= 10
+            or not len(self.contest_effects) >= 10):
             self.contest_types[id] = data
         else:
             self.__init__()
             self.contest_types[id] = data
 
     def add_contest_effect(self, id, data: dict) -> None:
-        if not len(self.name_id_map) >= 10:
+        if (not len(self.name_id_map) >= 10
+            or not len(self.contest_effects) >= 10):
             self.contest_effects[id] = data
         else:
             self.__init__()
@@ -96,14 +98,16 @@ class Evolutions:
         self.evolution_triggers = dict()
 
     def add_evolution_chain(self, id, data: dict) -> None:
-        if not len(self.evolution_chains) >= 10 or not len(self.evolution_triggers) >= 10:
+        if (not len(self.evolution_chains) >= 10 or 
+            not len(self.evolution_triggers) >= 10):
             self.evolution_chains[id] = data
         else:
             self.__init__()
             self.encounter_condition_values[id] = data
 
     def add_evolution_trigger(self, id, data: dict) -> None:
-        if not len(self.evolution_chains) >= 10 or not len(self.evolution_triggers) >= 10:
+        if (not len(self.evolution_chains) >= 10 or 
+            not len(self.evolution_triggers) >= 10):
             self.evolution_triggers[id] = data
         else:
             self.__init__()
