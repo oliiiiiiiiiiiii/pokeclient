@@ -33,7 +33,7 @@ class EvolutionChain:
                 raise EvolutionNotFound(self.id)
             else:
                 EvolutionCache.add_evolution_chain(data.get('id'), data)
-                return data
+                return data 
         else:
             if isinstance(self.id, str):
                 try:
@@ -45,13 +45,13 @@ class EvolutionChain:
                         raise EvolutionNotFound(self.id)
                     else:
                         EvolutionCache.add_evolution_chain(data.get('id'), data)
-                        return data
+                        return data 
             elif isinstance(self.id, int):
                 id = self.id
             else:
                 raise EvolutionNotFound(self.id)
         data = EvolutionCache.evolution_chains.get(id)
-        return data            
+        return data 
 
 @dataclass(frozen=True)
 class EvolutionTrigger:
@@ -93,4 +93,4 @@ class EvolutionTrigger:
             else:
                 raise EvolutionNotFound(self.id)
         data = EvolutionCache.evolution_triggers.get(id)
-        return data  
+        return data

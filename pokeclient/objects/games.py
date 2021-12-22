@@ -55,7 +55,6 @@ class Generation:
                 id = self.name_or_id
             else:
                 raise GameNotFound(self.name_or_id)
-                return
         data = GameCache.generations.get(id)
         return data
 
@@ -105,7 +104,6 @@ class Pokedex:
                 id = self.name_or_id
             else:
                 raise GameNotFound(self.name_or_id)
-                return
         data = GameCache.pokedexes.get(id)
         return data
 
@@ -152,7 +150,6 @@ class Version:
                 id = self.name_or_id
             else:
                 raise GameNotFound(self.name_or_id)
-                return
         data = GameCache.versions.get(id)
         return data
 
@@ -199,6 +196,5 @@ class VersionGroup:
                 id = self.name_or_id
             else:
                 raise GameNotFound(self.name_or_id)
-                return
         data = GameCache.version_groups.get(id)
         return data

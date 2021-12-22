@@ -53,6 +53,5 @@ class Machine:
                 id = self.name_or_id
             else:
                 raise MachineNotFound(self.name_or_id)
-                return
         data = MachineCache.machines.get(id)
         return data

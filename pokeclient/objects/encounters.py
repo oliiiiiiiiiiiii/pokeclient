@@ -52,7 +52,6 @@ class EncounterMethod:
                 id = self.name_or_id
             else:
                 raise EncounterNotFound(self.name_or_id)
-                return
         data = EncounterCache.encounter_methods.get(id)
         return data
 
@@ -99,7 +98,6 @@ class EncounterCondition:
                 id = self.name_or_id
             else:
                 raise EncounterNotFound(self.name_or_id)
-                return
         data = EncounterCache.encounter_conditions.get(id)
         return data
 
@@ -146,6 +144,5 @@ class EncounterConditionValue:
                 id = self.name_or_id
             else:
                 raise EncounterNotFound(self.name_or_id)
-                return
         data = EncounterCache.encounter_condition_values.get(id)
         return data

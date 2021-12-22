@@ -55,7 +55,6 @@ class Move:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.moves.get(id)
         return data
 
@@ -103,7 +102,6 @@ class MoveAilment:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_ailments.get(id)
         return data
 
@@ -150,7 +148,6 @@ class MoveBattleStyle:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_battle_styles.get(id)
         return data
 
@@ -198,7 +195,6 @@ class MoveCategory:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_categories.get(id)
         return data
 
@@ -246,7 +242,6 @@ class MoveDamageClass:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_damage_classes.get(id)
         return data
 
@@ -293,7 +288,6 @@ class MoveLearnMethod:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_learn_methods.get(id)
         return data
 
@@ -342,6 +336,5 @@ class MoveTarget:
                 id = self.name_or_id
             else:
                 raise MoveNotFound(self.name_or_id)
-                return
         data = MovesCache.move_targets.get(id)
         return data

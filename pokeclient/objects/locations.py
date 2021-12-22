@@ -53,7 +53,6 @@ class Location:
                 id = self.name_or_id
             else:
                 raise LocationNotFound(self.name_or_id)
-                return
         data = LocationCache.locations.get(id)
         return data
 
@@ -103,7 +102,6 @@ class LocationArea:
                 id = self.name_or_id
             else:
                 raise LocationNotFound(self.name_or_id)
-                return
         data = LocationCache.location_area.get(id)
         return data
 
@@ -151,7 +149,6 @@ class PalParkArea:
                 id = self.name_or_id
             else:
                 raise LocationNotFound(self.name_or_id)
-                return
         data = LocationCache.pal_park_areas.get(id)
         return data
 
@@ -201,6 +198,5 @@ class Region:
                 id = self.name_or_id
             else:
                 raise LocationNotFound(self.name_or_id)
-                return
         data = LocationCache.regions.get(id)
         return data

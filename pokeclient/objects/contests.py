@@ -51,7 +51,6 @@ class ContestType:
                 id = self.name_or_id
             else:
                 raise ContestNotFound(self.name_or_id)
-                return
         data = ContestCache.contest_types.get(id)
         return data
 
@@ -98,7 +97,6 @@ class ContestEffect:
                 id = self.name_or_id
             else:
                 raise ContestNotFound(self.name_or_id)
-                return
         data = ContestCache.contest_effects.get(id)
         return data
 
@@ -145,6 +143,5 @@ class SuperContestEffect:
                 id = self.name_or_id
             else:
                 raise ContestNotFound(self.name_or_id)
-                return
         data = ContestCache.super_contest_effects.get(id)
         return data

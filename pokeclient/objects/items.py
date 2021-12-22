@@ -56,7 +56,6 @@ class ItemAttribute:
                 id = self.name_or_id
             else:
                 raise ItemNotFound(self.name_or_id)
-                return
         data = ItemCache.item_attributes.get(id)
         return data
 @dataclass(frozen=True)
@@ -103,7 +102,6 @@ class ItemCategory:
                 id = self.name_or_id
             else:
                 raise ItemNotFound(self.name_or_id)
-                return
         data = ItemCache.item_categories.get(id)
         return data
 
@@ -151,7 +149,6 @@ class ItemFlingEffect:
                 id = self.name_or_id
             else:
                 raise ItemNotFound(self.name_or_id)
-                return
         data = ItemCache.item_fling_effects.get(id)
         return data
 
@@ -199,7 +196,6 @@ class ItemPocket:
                 id = self.name_or_id
             else:
                 raise ItemNotFound(self.name_or_id)
-                return
         data = ItemCache.item_pockets.get(id)
         return data
 
@@ -250,6 +246,5 @@ class Item:
                 id = self.name_or_id
             else:
                 raise ItemNotFound(self.name_or_id)
-                return
         data = ItemCache.items.get(id)
         return data

@@ -51,7 +51,6 @@ class BerryFirmness:
                 id = self.name_or_id
             else:
                 raise BerryNotFound(self.name_or_id)
-                return
         data = BerryCache.berry_firmness.get(id)
         return data
 
@@ -100,7 +99,6 @@ class BerryFlavour:
                 id = self.name_or_id
             else:
                 raise BerryNotFound(self.name_or_id)
-                return
         data = BerryCache.berry_flavours.get(id)
         return data
 
@@ -149,6 +147,5 @@ class Berry:
                 id = self.name_or_id
             else:
                 raise BerryNotFound(self.name_or_id)
-                return
         data = BerryCache.berries.get(id)
         return data
