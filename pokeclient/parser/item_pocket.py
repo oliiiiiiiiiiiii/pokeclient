@@ -4,7 +4,7 @@ from ..utility.common_models import Name
 from item_category import ItemCategory
 
 @dataclass(frozen=True)
-class ItemFlingEffect:
+class ItemPocket:
 
     data : DataPayload
 

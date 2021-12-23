@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from payload import DataPayload
 from ..utility.common_models import Name
 from item import Item
+from item_pocket import ItemPocket
 
 @dataclass(frozen=True)
 class ItemCategory:
@@ -17,14 +18,13 @@ class ItemCategory:
         return self.data.get("name")
 
     @property
+    def name(self):
+        return ItemPocket(self.data.get("name"))
+
+    @property
     def items(self):
         return [Item(_) for _ in self.data.get("items")]
 
     @property
-    def items(self):
+    def names(self):
         return [Name(_) for _ in self.data.get("names")]
-
-'''
-TODO:
-pocket
-'''
