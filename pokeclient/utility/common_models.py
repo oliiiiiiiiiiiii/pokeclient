@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from languages import Language
 from ..payload import DataPayload
-
+from ..parser import encounter_method,encounter_condition_value,version,generation,version_group,machine
 
 @dataclass
 class APIResource:
@@ -39,9 +39,6 @@ class Effect:
 
 @dataclass
 class Encounter:
-    min_level:int
-    max_level:int
-    chance:int
     data:DataPayload
 
     @property
@@ -49,14 +46,20 @@ class Encounter:
         return self.data.get("chance")
 
     @property
-    def effect(self):
-        return self.data.get("effect")
+    def max_level(self):
+        return self.data.get("max_level")
 
-    '''
-    TODO:
-    condition_values
-    method
-    '''
+    @property
+    def max_level(self):
+        return self.data.get("min_level")
+
+    @property
+    def condition_values(self):
+        return encounter_condition_value.EncounterConditionValue(self.data.get("condition_values"))
+
+    @property
+    def method(self):
+        return encounter_method.EncounterMethod(self.data.get("method"))
 
 @dataclass
 class FlavorText:
@@ -64,15 +67,15 @@ class FlavorText:
 
     @property
     def flavor_text(self):
-        return self.data.get("chance")
+        return self.data.get("flavor_text")
 
     @property
     def name(self):
         return Language(self.data.get("name"))
-    '''
-    TODO:
-    version
-    '''    
+
+    @property
+    def version(self):
+        return version.Version((self.data.get("version")))
 
 @dataclass
 class GenerationGameIndex:
@@ -82,19 +85,22 @@ class GenerationGameIndex:
     def game_index(self):
         return self.data.get("game_index")
 
-    '''
-    TODO:
-    generation
-    '''    
+    @property
+    def generation(self):
+        return generation.Generation(self.data.get("generation"))
+   
 
 @dataclass
 class MachineVersionDetail:
     data:DataPayload
-    '''
-    TODO:
-    machine
-    version_group
-    '''    
+
+    @property
+    def machine(self):
+        return machine.Machine(self.data.get("machine"))
+
+    @property
+    def version_group(self):
+        return version_group.VersionGroup(self.data.get("version_group"))
 
 
 @dataclass

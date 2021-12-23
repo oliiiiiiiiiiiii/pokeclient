@@ -45,12 +45,15 @@ class EvolutionDetail:
         return [EvolutionTrigger(_) for _ in self.data.get('trigger')]
 
     @property
-    def turn_upside_down(self):
-        return Item(self.data.get('turn_upside_down'))
+    def item(self):
+        return Item(self.data.get('item'))
+
+    @property
+    def held_item(self):
+        return Item(self.data.get('held_item'))
 
     '''
     TODO : 
-    held_item
     known_move
     known_move_type
     location
