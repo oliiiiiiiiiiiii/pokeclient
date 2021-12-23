@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from payload import DataPayload
+from version_group import VersionGroup
 
 @dataclass(frozen=True)
 class Generation:
@@ -18,6 +19,10 @@ class Generation:
     def names(self):
         return self.data.get("names")
 
+    @property
+    def version_groups(self):
+        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+
 '''
 TODO:
 abilities
@@ -25,5 +30,4 @@ main_region
 moves
 pokemon_species
 types
-version_groups
 '''

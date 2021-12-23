@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from payload import DataPayload
 from berry_flavor import BerryFlavor
-
+from utility.languages import Language
 
 @dataclass(frozen=True)
 class ContestName:
@@ -17,7 +17,7 @@ class ContestName:
 
     @property
     def language(self):
-        return self.data.get("language")
+        return Language(self.data.get("language"))
 
 
 @dataclass(frozen=True)

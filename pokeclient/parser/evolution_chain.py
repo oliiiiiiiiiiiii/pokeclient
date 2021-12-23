@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from payload import DataPayload
+from evoluion_trigger import EvolutionTrigger
+
 
 @dataclass(frozen=True)
 class EvolutionDetail:
@@ -38,10 +40,13 @@ class EvolutionDetail:
     def turn_upside_down(self):
         return self.data.get('turn_upside_down')
 
+    @property
+    def trigger(self):
+        return [EvolutionTrigger(_) for _ in self.data.get('trigger')]
+
     '''
     TODO :
-    item
-    trigger
+    item  
     held_item
     known_move
     known_move_type

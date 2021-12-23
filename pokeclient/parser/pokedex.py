@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from payload import DataPayload
+from ..utility.common_models import Description
+from version_group import VersionGroup
 
 @dataclass(frozen=True)
 class PokemonEntry:
@@ -41,9 +43,15 @@ class Pokedex:
     def pokemon_entries(self):
         return [PokemonEntry(_) for _ in self.data.get("pokemon_entries")]
 
+    @property
+    def descriptions(self):
+        return [Description(_) for _ in self.data.get("descriptions")]
+
+    @property
+    def version_groups(self):
+        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+
     '''
     TODO:
-    descriptions
     region
-    version_groups
     '''
