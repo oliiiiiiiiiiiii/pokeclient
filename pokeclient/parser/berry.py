@@ -1,5 +1,8 @@
+from _typeshed import Self
 from dataclasses import dataclass
 from ..payload import DataPayload
+from berry_firmness import BerryFirmness
+from item import Item
 
 @dataclass(frozen=True)
 class BerryFlavorMap:
@@ -53,12 +56,18 @@ class Berry:
         return self.data.get("soil_dryness")
 
     @property
+    def firmness(self):
+        return BerryFirmness(self.data.get("firmness"))
+
+    @property
+    def item(self):
+        return Item(self.data.get("item"))
+
+    @property
     def flavors(self):
         return [BerryFlavorMap(_) for _ in self.data.get("flavors")]       
 
 """
 TODO : 
-firmness
-item
 natural_gift_type
 """

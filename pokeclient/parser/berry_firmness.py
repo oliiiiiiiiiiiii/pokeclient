@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from ..payload import DataPayload
-
+from berry import Berry
+from ..utility.common_models import Name
 
 @dataclass(frozen=True)
 class BerryFirmness:
@@ -17,9 +18,8 @@ class BerryFirmness:
 
     @property
     def names(self):
-        return self.data.get('names')
+        return [Name(_) for _ in self.data.get('names')]
 
-"""
-TODO : 
-berries
-"""
+    @property
+    def berries(self):
+        return [Berry(_) for _ in self.data.get('berries')]

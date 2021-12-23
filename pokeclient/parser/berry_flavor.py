@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from ..payload import DataPayload
 from berry import Berry
-
+from contest_type import ContestType
+from ..utility.common_models import Name
 
 @dataclass(frozen=True)
 class FlavorBerryMap:
@@ -32,13 +33,12 @@ class BerryFlavor:
 
     @property
     def names(self):
-        return self.data.get('names')
+        return [Name(_) for _ in self.data.get('names')]
 
     @property
     def berries(self):
         return [FlavorBerryMap(_) for _ in self.data.get('berries')]
 
-'''
-TODO : 
-contest_type
-'''
+    @property
+    def berries(self):
+        return [ContestType(_) for _ in self.data.get('contest_type')]
