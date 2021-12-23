@@ -1,25 +1,57 @@
 from dataclasses import dataclass
 from languages import Language
-from ..parser
+from ..payload import DataPayload
+
+
 @dataclass
 class APIResource:
-    url:str
+
+    data:DataPayload
+
+    @property
+    def url(self):
+        return self.data.get("url")
 
 @dataclass
 class Description:
-    description:str
-    language:Language
+
+    data:DataPayload
+
+    @property
+    def description(self):
+        return self.data.get("description")
+
+    @property
+    def language(self):
+        return Language(self.data.get("language"))
 
 @dataclass
 class Effect:
-    effect:str
-    language:Language
+    data:DataPayload
+
+    @property
+    def language(self):
+        return Language(self.data.get("language"))
+
+    @property
+    def effect(self):
+        return self.data.get("effect")
 
 @dataclass
 class Encounter:
     min_level:int
     max_level:int
     chance:int
+    data:DataPayload
+
+    @property
+    def chance(self):
+        return self.data.get("chance")
+
+    @property
+    def effect(self):
+        return self.data.get("effect")
+
     '''
     TODO:
     condition_values
@@ -28,8 +60,15 @@ class Encounter:
 
 @dataclass
 class FlavorText:
-    flavor_text:str
-    language:Language
+    data:DataPayload
+
+    @property
+    def flavor_text(self):
+        return self.data.get("chance")
+
+    @property
+    def name(self):
+        return Language(self.data.get("name"))
     '''
     TODO:
     version
@@ -37,7 +76,12 @@ class FlavorText:
 
 @dataclass
 class GenerationGameIndex:
-    game_index:str
+    data:DataPayload
+
+    @property
+    def game_index(self):
+        return self.data.get("game_index")
+
     '''
     TODO:
     generation
@@ -45,6 +89,7 @@ class GenerationGameIndex:
 
 @dataclass
 class MachineVersionDetail:
+    data:DataPayload
     '''
     TODO:
     machine
@@ -54,5 +99,12 @@ class MachineVersionDetail:
 
 @dataclass
 class Name:
-    name:str
-    language:Language
+    data:DataPayload
+
+    @property
+    def name(self):
+        return self.data.get("name")
+
+    @property
+    def language(self):
+        return Language(self.data.get("language"))
