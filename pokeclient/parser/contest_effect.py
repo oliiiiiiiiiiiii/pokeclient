@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from payload import DataPayload
 
 @dataclass(frozen=True)
-class ContestName:
+class ContestEffect:
     data : DataPayload
 
     @property

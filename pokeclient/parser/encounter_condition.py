@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from payload import DataPayload
+from ..payload import DataPayload
 from ..utility.common_models import Name
 from encounter_condition_value import EncounterConditionValue
 

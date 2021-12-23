@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from languages import Language
-
+from ..parser
 @dataclass
 class APIResource:
     url:str

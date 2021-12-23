@@ -1,9 +1,18 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from payload import DataPayload
 from ..utility.common_models import Name
 
 @dataclass(frozen=True)
-class EncounterMethod:
+class ItemSprites:
+
+    data : DataPayload
+
+    @property
+    def default(self):
+        return self.data.get("default")
+
+@dataclass(frozen=True)
+class Item:
 
     data : DataPayload
 
@@ -16,8 +25,12 @@ class EncounterMethod:
         return self.data.get("name")
 
     @property
-    def order(self):
-        return self.data.get("order")
+    def cost(self):
+        return self.data.get("cost")
+
+    @property
+    def fling_power(self):
+        return self.data.get("fling_power")
 
     @property
     def names(self):

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from payload import DataPayload
+from ..payload import DataPayload
 from version_group import VersionGroup
 
 @dataclass(frozen=True)

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from payload import DataPayload
+from ..payload import DataPayload
 from ..utility.common_models import Name
 
 @dataclass(frozen=True)
