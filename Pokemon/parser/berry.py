@@ -1,6 +1,5 @@
-from _typeshed import Self
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from berry_firmness import BerryFirmness
 from item import Item
 

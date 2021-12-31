@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from languages import Language
-from ..payload import DataPayload
+from ..base import DataPayload
 from ..parser import encounter_method,encounter_condition_value,version,generation,version_group,machine
 
 @dataclass
@@ -9,7 +9,7 @@ class APIResource:
     data:DataPayload
 
     @property
-    def url(self):
+    def url(self)->str:
         return self.data.get("url")
 
 @dataclass

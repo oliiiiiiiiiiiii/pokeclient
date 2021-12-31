@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from berry import Berry
 from contest_type import ContestType
 from ..utility.common_models import Name

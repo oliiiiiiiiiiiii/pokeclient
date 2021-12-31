@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from berry_flavor import BerryFlavor
 from utility.languages import Language
 

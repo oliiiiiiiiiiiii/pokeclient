@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from evoluion_trigger import EvolutionTrigger
 from item import Item
 from location import Location

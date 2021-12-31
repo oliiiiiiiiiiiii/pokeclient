@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from version import Version
 from pokedex import Pokedex
 from generation import Generation

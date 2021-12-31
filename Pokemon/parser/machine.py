@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..payload import DataPayload
+from ..base import DataPayload
 from item import Item
 from version_group import VersionGroup
 

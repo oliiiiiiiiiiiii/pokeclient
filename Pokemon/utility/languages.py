@@ -1,11 +1,12 @@
+from typing import Dict,Any
 from dataclasses import dataclass
 from common_models import Name
-from ..payload import DataPayload
+from ..base import DataPayload
 
 @dataclass
 class Language:
 
-    data:DataPayload
+    data:Dict[str, Any]
 
     @property
     def id(self):
