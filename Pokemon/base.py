@@ -2,18 +2,7 @@ from abc import ABC, abstractmethod
 import httpx
 from pydantic import BaseModel, root_validator
 from typing import Any, Dict, Optional, Union
-from errors import (
-    BerryNotFound,
-    ContestNotFound,
-    EncounterNotFound,
-    EvolutionNotFound,
-    GameNotFound,
-    ItemNotFound,
-    LocationNotFound,
-    MachineNotFound,
-    MoveNotFound,
-    PokemonNotFound,
-)
+
 
 base_url = "https://pokeapi.co/api/v2/"
 
@@ -47,6 +36,11 @@ class BaseType1(BaseModel, ABC):
         )
 
     @property
+    @abstractmethod
+    def error(self) -> type:
+        ...
+
+    @property
     def raw_data(self) -> Dict[str, Any]:
         return httpx.get(self.url).json()
 
@@ -72,6 +66,11 @@ class BaseType2(BaseModel, ABC):
     @property
     def url(self) -> str:
         return f"{base_url}{self.address}/{self.id}"
+
+    @property
+    @abstractmethod
+    def error(self) -> type:
+        ...
 
     @property
     def raw_data(self) -> Dict[str, Any]:
