@@ -4,7 +4,7 @@ from base import BaseType1, BaseType2
 class Berry(BaseType1):
     @property
     def address(self) -> str:
-        return "berry/"
+        return "berry"
 
     @property
     def parsed_data(self) -> object:
@@ -14,7 +14,7 @@ class Berry(BaseType1):
 class BerryFirmness(BaseType1):
     @property
     def address(self) -> str:
-        return "berry-firmness/"
+        return "berry-firmness"
 
     @property
     def parsed_data(self) -> object:
@@ -24,7 +24,7 @@ class BerryFirmness(BaseType1):
 class BerryFlavour(BaseType1):
     @property
     def address(self) -> str:
-        return "berry-flavour/"
+        return "berry-flavour"
 
     @property
     def parsed_data(self) -> object:
@@ -34,7 +34,7 @@ class BerryFlavour(BaseType1):
 class ContestType(BaseType1):
     @property
     def address(self) -> str:
-        return "contest-type/"
+        return "contest-type"
 
     @property
     def parsed_data(self) -> object:
@@ -44,7 +44,7 @@ class ContestType(BaseType1):
 class ContestEffect(BaseType2):
     @property
     def address(self) -> str:
-        return "contest-effect/"
+        return "contest-effect"
 
     @property
     def parsed_data(self) -> object:
@@ -54,7 +54,7 @@ class ContestEffect(BaseType2):
 class SuperContestEffect(BaseType2):
     @property
     def address(self) -> str:
-        return "super-contest-effect/"
+        return "super-contest-effect"
 
     @property
     def parsed_data(self) -> object:
@@ -64,7 +64,7 @@ class SuperContestEffect(BaseType2):
 class EncounterMethod(BaseType1):
     @property
     def address(self) -> str:
-        return "encounter-method/"
+        return "encounter-method"
 
     @property
     def parsed_data(self) -> object:
@@ -74,7 +74,7 @@ class EncounterMethod(BaseType1):
 class EncounterCondition(BaseType1):
     @property
     def address(self) -> str:
-        return "encounter-condition/"
+        return "encounter-condition"
 
     @property
     def parsed_data(self) -> object:
@@ -84,7 +84,7 @@ class EncounterCondition(BaseType1):
 class EncounterConditionValue(BaseType1):
     @property
     def address(self) -> str:
-        return "encounter-condition-value/"
+        return "encounter-condition-value"
 
     @property
     def parsed_data(self) -> object:
@@ -94,7 +94,7 @@ class EncounterConditionValue(BaseType1):
 class EvolutionChain(BaseType2):
     @property
     def address(self) -> str:
-        return "evolution-chain/"
+        return "evolution-chain"
 
     @property
     def parsed_data(self) -> object:
@@ -104,7 +104,7 @@ class EvolutionChain(BaseType2):
 class EvolutionTrigger(BaseType2):
     @property
     def address(self) -> str:
-        return "evolution-trigger/"
+        return "evolution-trigger"
 
     @property
     def parsed_data(self) -> object:
@@ -114,7 +114,7 @@ class EvolutionTrigger(BaseType2):
 class Generation(BaseType1):
     @property
     def address(self) -> str:
-        return "generation/"
+        return "generation"
 
     @property
     def parsed_data(self) -> object:
@@ -124,7 +124,7 @@ class Generation(BaseType1):
 class Pokedex(BaseType1):
     @property
     def address(self) -> str:
-        return "pokedex/"
+        return "pokedex"
 
     @property
     def parsed_data(self) -> object:
@@ -134,7 +134,7 @@ class Pokedex(BaseType1):
 class Version(BaseType1):
     @property
     def address(self) -> str:
-        return "version/"
+        return "version"
 
     @property
     def parsed_data(self) -> object:
@@ -144,7 +144,7 @@ class Version(BaseType1):
 class VersionGroup(BaseType1):
     @property
     def address(self) -> str:
-        return "version-group/"
+        return "version-group"
 
     @property
     def parsed_data(self) -> object:
@@ -154,7 +154,7 @@ class VersionGroup(BaseType1):
 class ItemAttribute(BaseType1):
     @property
     def address(self) -> str:
-        return "item-attribute/"
+        return "item-attribute"
 
     @property
     def parsed_data(self) -> object:
@@ -164,7 +164,7 @@ class ItemAttribute(BaseType1):
 class ItemCategory(BaseType1):
     @property
     def address(self) -> str:
-        return "item-category/"
+        return "item-category"
 
     @property
     def parsed_data(self) -> object:
@@ -174,7 +174,7 @@ class ItemCategory(BaseType1):
 class ItemFlingEffect(BaseType1):
     @property
     def address(self) -> str:
-        return "item-fling-effect/"
+        return "item-fling-effect"
 
     @property
     def parsed_data(self) -> object:
@@ -184,7 +184,7 @@ class ItemFlingEffect(BaseType1):
 class Item(BaseType1):
     @property
     def address(self) -> str:
-        return "item/"
+        return "item"
 
     @property
     def parsed_data(self) -> object:
@@ -194,7 +194,7 @@ class Item(BaseType1):
 class Location(BaseType1):
     @property
     def address(self) -> str:
-        return "location/"
+        return "location"
 
     @property
     def parsed_data(self) -> object:
@@ -204,7 +204,7 @@ class Location(BaseType1):
 class LocationArea(BaseType1):
     @property
     def address(self) -> str:
-        return "location-area/"
+        return "location-area"
 
     @property
     def parsed_data(self) -> object:
@@ -214,7 +214,7 @@ class LocationArea(BaseType1):
 class PalParkArea(BaseType1):
     @property
     def address(self) -> str:
-        return "pal-park-area/"
+        return "pal-park-area"
 
     @property
     def parsed_data(self) -> object:
@@ -224,7 +224,7 @@ class PalParkArea(BaseType1):
 class Region(BaseType1):
     @property
     def address(self) -> str:
-        return "region/"
+        return "region"
 
     @property
     def parsed_data(self) -> object:
@@ -234,7 +234,234 @@ class Region(BaseType1):
 class Machine(BaseType2):
     @property
     def address(self) -> str:
-        return "machine/"
+        return "machine"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Move(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveAilment(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-ailment"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveBattleStyle(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-battle-style"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveCategory(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-category"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveDamageClass(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-damage-class"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveLearnMethod(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-learn-method"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class MoveTarget(BaseType1):
+    @property
+    def address(self) -> str:
+        return "move-target"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Ability(BaseType1):
+    @property
+    def address(self) -> str:
+        return "ability"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Characteristic(BaseType2):
+    @property
+    def address(self) -> str:
+        return "characteristic"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Gender(BaseType2):
+    @property
+    def address(self) -> str:
+        return "gender"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class GrowthRate(BaseType2):
+    @property
+    def address(self) -> str:
+        return "growth-rate"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Nature(BaseType1):
+    @property
+    def address(self) -> str:
+        return "nature"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokeathlonStat(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokeathlon-stat"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Pokemon(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonLocationArea(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon"
+
+    @property
+    def url(self) -> str:
+        return (
+            f"https://pokeapi.co/api/v2/{self.address}/{self.id}/encounters"
+            or f"https://pokeapi.co/api/v2/{self.address}{self.name}/encounters"
+        )
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonColor(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon-color"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonForm(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon-form"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonHabitat(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon-habitat"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonShape(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon-shape"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class PokemonSpecies(BaseType1):
+    @property
+    def address(self) -> str:
+        return "pokemon-species"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Stat(BaseType1):
+    @property
+    def address(self) -> str:
+        return "stat"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+
+class Type(BaseType1):
+    @property
+    def address(self) -> str:
+        return "type"
 
     @property
     def parsed_data(self) -> object:

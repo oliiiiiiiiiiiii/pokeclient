@@ -42,7 +42,7 @@ class BaseType1(BaseModel, ABC):
     @property
     def url(self) -> str:
         return (
-            f"{base_url}{self.address}{self.id}"
+            f"{base_url}{self.address}/{self.id}"
             or f"{base_url}{self.address}{self.name}"
         )
 
@@ -71,7 +71,7 @@ class BaseType2(BaseModel, ABC):
 
     @property
     def url(self) -> str:
-        return f"{base_url}{self.address}{self.id}"
+        return f"{base_url}{self.address}/{self.id}"
 
     @property
     def raw_data(self) -> Dict[str, Any]:
