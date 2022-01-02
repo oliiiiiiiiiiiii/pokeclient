@@ -1,11 +1,24 @@
 from abc import ABC, abstractmethod
+import httpx
 from pydantic import BaseModel, root_validator
 from typing import Any, Dict, Optional, Union
+from errors import (
+    BerryNotFound,
+    ContestNotFound,
+    EncounterNotFound,
+    EvolutionNotFound,
+    GameNotFound,
+    ItemNotFound,
+    LocationNotFound,
+    MachineNotFound,
+    MoveNotFound,
+    PokemonNotFound,
+)
 
 base_url = "https://pokeapi.co/api/v2/"
 
 
-class Base(BaseModel, ABC):
+class BaseType1(BaseModel, ABC):
 
     id: Optional[Union[int, str]]
     name: Optional[str]
@@ -18,67 +31,56 @@ class Base(BaseModel, ABC):
         if "id" not in values and "name" not in values:
             raise TypeError("Missing Arguments : name or id")
         elif "id" in values and "name" in values:
-            raise TypeError("Two many Arguments provided : name and id")
+            raise TypeError("Too many Arguments provided : name and id")
         return values
 
     @property
-    def url(self) -> None:...
-
-    @url.getter
     @abstractmethod
-    def url(self) -> None:...
+    def address(self) -> str:
+        ...
 
     @property
-    def raw_data(self) -> None:...
-
-    @raw_data.getter
-    @abstractmethod
-    def raw_data(self) -> None:...
+    def url(self) -> str:
+        return (
+            f"{base_url}{self.address}{self.id}"
+            or f"{base_url}{self.address}{self.name}"
+        )
 
     @property
-    def parsed_data(self) -> None:...
+    def raw_data(self) -> Dict[str, Any]:
+        return httpx.get(self.url).json()
 
-    @parsed_data.getter
+    @property
     @abstractmethod
-    def parsed_data(self) -> None:...
+    def parsed_data(self) -> object:
+        ...
 
     class Config:
         allow_mutation = False
 
 
-class Base2(BaseModel, ABC):
+class BaseType2(BaseModel, ABC):
 
-    id: Optional[Union[int, str]]
+    id: Union[int, str]
     from_cache: bool
 
-    @root_validator(pre=True)
-    @classmethod
-    def check_id_or_name(cls, values: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Check if id is passed raises TypeError if id is not passed"""
-        if "id" not in values:
-            raise TypeError("Missing Argument : id")
-        return values
+    @property
+    @abstractmethod
+    def address(self) -> str:
+        ...
 
     @property
-    def url(self) -> None:...
-
-    @url.getter
-    @abstractmethod
-    def url(self) -> None:...
+    def url(self) -> str:
+        return f"{base_url}{self.address}{self.id}"
 
     @property
-    def raw_data(self) -> None:...
-
-    @raw_data.getter
-    @abstractmethod
-    def raw_data(self) -> None:...
+    def raw_data(self) -> Dict[str, Any]:
+        return httpx.get(self.url).json()
 
     @property
-    def parsed_data(self) -> None:...
-
-    @parsed_data.getter
     @abstractmethod
-    def parsed_data(self) -> None:...
+    def parsed_data(self) -> object:
+        ...
 
     class Config:
         allow_mutation = False
