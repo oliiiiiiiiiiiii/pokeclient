@@ -15,13 +15,16 @@ class BaseType1(BaseModel, ABC):
 
     @root_validator(pre=True)
     @classmethod
-    def check_id_or_name(cls, values: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Checks if either of name or id is passed returns error if none of them is passed or both are passed"""
-        if "id" not in values and "name" not in values:
+    def id_or_name(cls, vals: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Checks if either of name or id is
+        passed returns error if none of
+        them is passed or both are passed"""
+
+        if "id" not in vals and "name" not in vals:
             raise TypeError("Missing Arguments : name or id")
-        elif "id" in values and "name" in values:
+        elif "id" in vals and "name" in vals:
             raise TypeError("Too many Arguments provided : name and id")
-        return values
+        return vals
 
     @property
     @abstractmethod
