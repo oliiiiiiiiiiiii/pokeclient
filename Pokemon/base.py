@@ -44,8 +44,8 @@ class BaseType1(BaseModel, ABC):
         ...
 
     @property
-    def raw_data(self) -> Dict[str, Any]:
-        return httpx.get(self.url).json()
+    def raw_data(self) -> Optional[Dict[str, Any]]:
+        return httpx.get(self.url).json() or None
 
     @property
     @abstractmethod
@@ -76,8 +76,8 @@ class BaseType2(BaseModel, ABC):
         ...
 
     @property
-    def raw_data(self) -> Dict[str, Any]:
-        return httpx.get(self.url).json()
+    def raw_data(self) -> Optional[Dict[str, Any]]:
+        return httpx.get(self.url).json() or None
 
     @property
     @abstractmethod
