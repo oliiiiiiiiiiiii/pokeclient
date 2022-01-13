@@ -4,7 +4,6 @@ import caching
 import errors
 
 
-
 class BerryGroup(ABC):
     @property
     def cache(self) -> type:
@@ -129,6 +128,7 @@ class EvolutionGroup(ABC):
     @property
     def cache(self) -> type:
         return caching.EvolutionCache
+
     @property
     def error(self) -> type:
         return errors.EvolutionNotFound
@@ -158,6 +158,7 @@ class GameGroup(ABC):
     @property
     def cache(self) -> type:
         return caching.GameCache
+
     @property
     def error(self) -> type:
         return errors.GameNotFound
@@ -207,6 +208,7 @@ class ItemGroup(ABC):
     @property
     def cache(self) -> type:
         return caching.ItemCache
+
     @property
     def error(self) -> type:
         return errors.ItemNotFound
@@ -328,6 +330,7 @@ class MoveGroup(ABC):
     @property
     def cache(self) -> type:
         return caching.MoveCache
+
 
 class Move(BaseType1, MoveGroup):
     @property
