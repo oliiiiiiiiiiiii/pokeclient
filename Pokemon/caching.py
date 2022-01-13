@@ -1,6 +1,5 @@
 from typing import Dict, Any
 from abc import ABC
-import inspect
 
 
 class CacheDict(dict):
