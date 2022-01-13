@@ -6,11 +6,11 @@ import errors
 
 class BerryGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.BerryCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.BerryNotFound
 
 
@@ -46,11 +46,11 @@ class BerryFlavour(BaseType1, BerryGroup):
 
 class ContestGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.ContestCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.ContestNotFound
 
 
@@ -86,11 +86,11 @@ class SuperContestEffect(BaseType2, ContestGroup):
 
 class EncounterGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.EncounterCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.EncounterNotFound
 
 
@@ -126,11 +126,11 @@ class EncounterConditionValue(BaseType1, EncounterGroup):
 
 class EvolutionGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.EvolutionCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.EvolutionNotFound
 
 
@@ -156,11 +156,11 @@ class EvolutionTrigger(BaseType2, EvolutionGroup):
 
 class GameGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.GameCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.GameNotFound
 
 
@@ -206,11 +206,11 @@ class VersionGroup(BaseType1, GameGroup):
 
 class ItemGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.ItemCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.ItemNotFound
 
 
@@ -256,11 +256,11 @@ class Item(BaseType1, ItemGroup):
 
 class LocationGroup(ABC):
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.LocationCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.LocationNotFound
 
 
@@ -310,11 +310,11 @@ class Machine(BaseType2):
         return "machine"
 
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.MachineCache
 
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.MachineNotFound
 
     @property
@@ -324,11 +324,11 @@ class Machine(BaseType2):
 
 class MoveGroup(ABC):
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.MoveNotFound
 
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.MoveCache
 
 
@@ -404,11 +404,11 @@ class MoveTarget(BaseType1, MoveGroup):
 
 class PokemonGroup(ABC):
     @property
-    def error(self) -> type:
+    def error(self) -> Exception:
         return errors.PokemonNotFound
 
     @property
-    def cache(self) -> type:
+    def cache(self) -> object:
         return caching.PokemonCache
 
 

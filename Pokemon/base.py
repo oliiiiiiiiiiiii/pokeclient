@@ -40,7 +40,11 @@ class BaseType1(BaseModel, ABC):
 
     @property
     @abstractmethod
-    def error(self) -> type:
+    def error(self) -> Exception:
+        ...
+
+    @property
+    def error(self) -> Exception:
         ...
 
     @property
@@ -72,7 +76,7 @@ class BaseType2(BaseModel, ABC):
 
     @property
     @abstractmethod
-    def error(self) -> type:
+    def error(self) -> Exception:
         ...
 
     @property
