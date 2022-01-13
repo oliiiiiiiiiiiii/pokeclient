@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 import httpx
+from dataclasses import dataclass
 from pydantic import BaseModel, root_validator
 from typing import Any, Dict, Optional, Union
 
-
+Payload = Dict[str,Any]
 base_url = "https://pokeapi.co/api/v2/"
 
 
@@ -90,3 +91,30 @@ class BaseType2(BaseModel, ABC):
 
     class Config:
         allow_mutation = False
+
+
+@dataclass(frozen=True)
+class BaseParser1(ABC):
+    data:Payload
+
+    @property
+    def id(self):
+        return self.data.get('id')
+
+    @property
+    def name(self):
+        return self.data.get('name')
+
+
+@dataclass(frozen=True)
+class BaseParser2(ABC):
+    data:Payload
+
+    @property
+    def id(self):
+        return self.data.get('id')
+
+
+@dataclass(frozen=True)
+class UtilsParser(ABC):
+    data:Payload
