@@ -1,10 +1,12 @@
 from typing import Dict, Any
 from base import BaseParser1, BaseParser2, UtilsParser
 
+
 class APIResource(UtilsParser):
     @property
-    def url(self)->str:
+    def url(self) -> str:
         return self.data.get("url")
+
 
 class Description(UtilsParser):
     @property
@@ -15,6 +17,7 @@ class Description(UtilsParser):
     def language(self):
         return Language(self.data.get("language"))
 
+
 class Effect(UtilsParser):
     @property
     def language(self):
@@ -23,6 +26,7 @@ class Effect(UtilsParser):
     @property
     def effect(self):
         return self.data.get("effect")
+
 
 class Encounter(UtilsParser):
     @property
@@ -45,6 +49,7 @@ class Encounter(UtilsParser):
     def method(self):
         return EncounterMethod(self.data.get("method"))
 
+
 class FlavorText(UtilsParser):
     @property
     def flavor_text(self):
@@ -58,6 +63,7 @@ class FlavorText(UtilsParser):
     def version(self):
         return Version((self.data.get("version")))
 
+
 class GenerationGameIndex(UtilsParser):
     @property
     def game_index(self):
@@ -66,7 +72,7 @@ class GenerationGameIndex(UtilsParser):
     @property
     def generation(self):
         return Generation(self.data.get("generation"))
-   
+
 
 class MachineVersionDetail(UtilsParser):
     @property
@@ -86,6 +92,7 @@ class Name(UtilsParser):
     @property
     def language(self):
         return Language(self.data.get("language"))
+
 
 class Language(BaseParser1):
     @property
