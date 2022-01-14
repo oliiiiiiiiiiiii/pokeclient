@@ -409,7 +409,7 @@ class Pokedex(BaseParser1):
 
     @property
     def names(self):
-        return self.data.get("names")
+        get_names(self.data)
 
     @property
     def region(self):
