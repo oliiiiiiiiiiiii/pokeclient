@@ -13,6 +13,7 @@ class BaseType1(BaseModel, ABC):
     id: Optional[Union[int, str]]
     name: Optional[str]
     from_cache: bool
+    async_mode: bool
 
     @root_validator(pre=True)
     @classmethod
@@ -65,6 +66,7 @@ class BaseType2(BaseModel, ABC):
 
     id: Union[int, str]
     from_cache: bool
+    async_mode: bool
 
     @property
     @abstractmethod

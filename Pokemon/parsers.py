@@ -2,6 +2,10 @@ from typing import Dict, Any
 from base import BaseParser1, BaseParser2, UtilsParser
 
 
+def get_names(data: Dict[str, Any]):
+    return [Name(_) for _ in data.get("names")]
+
+
 class APIResource(UtilsParser):
     @property
     def url(self) -> str:
@@ -109,13 +113,13 @@ class Language(BaseParser1):
 
     @property
     def names(self):
-        return [Name(_) for _ in self.data.get("names")]
+        get_names(self.data)
 
 
 class BerryFirmness(BaseParser1):
     @property
     def names(self):
-        return [Name(_) for _ in self.data.get("names")]
+        get_names(self.data)
 
     @property
     def berries(self):
@@ -135,7 +139,7 @@ class FlavorBerryMap(UtilsParser):
 class BerryFlavor(BaseParser1):
     @property
     def names(self):
-        return [Name(_) for _ in self.data.get("names")]
+        get_names(self.data)
 
     @property
     def berries(self):
@@ -196,3 +200,496 @@ class Berry(BaseParser1):
     @property
     def flavors(self):
         return [BerryFlavorMap(_) for _ in self.data.get("flavors")]
+
+
+class ContestName(UtilsParser):
+    @property
+    def name(self):
+        return self.data.get("name")
+
+    @property
+    def color(self):
+        return self.data.get("color")
+
+    @property
+    def language(self):
+        return Language(self.data.get("language"))
+
+
+class ContestType(BaseParser1):
+    @property
+    def names(self):
+        return [ContestName(_) for _ in self.data.get("names")]
+
+    @property
+    def berry_flavor(self):
+        return BerryFlavor(self.data.get("berry_flavor"))
+
+
+class ContestEffect(BaseParser2):
+    @property
+    def appeal(self):
+        return self.data.get("appeal")
+
+    @property
+    def jam(self):
+        return self.data.get("jam")
+
+    @property
+    def effect_entries(self):
+        return [_ for _ in self.data.get("effect_entries")]
+
+    @property
+    def flavor_text_entries(self):
+        return [_ for _ in self.data.get("flavor_text_entries")]
+
+
+class SuperContestEffect(BaseParser2):
+    @property
+    def appeal(self):
+        return self.data.get("appeal")
+
+    @property
+    def flavor_text_entries(self):
+        return [_ for _ in self.data.get("flavor_text_entries")]
+
+    @property
+    def moves(self):
+        return [_ for _ in self.data.get("moves")]
+
+
+class EncounterMethod(BaseParser1):
+    @property
+    def order(self):
+        return self.data.get("order")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+
+class EncounterCondition(BaseParser1):
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def values(self):
+        return [EncounterConditionValue(_) for _ in self.data.get("values")]
+
+
+class EncounterConditionValue(BaseParser1):
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def condition(self):
+        return EncounterCondition(self.data.get("condition"))
+
+class EvolutionDetail(UtilsParser):
+    @property
+    def gender(self):
+        return self.data.get('gender')
+
+    @property
+    def min_level(self):
+        return self.data.get('min_level')
+
+    @property
+    def min_happiness(self):
+        return self.data.get('min_happiness')
+
+    @property
+    def min_affection(self):
+        return self.data.get('min_affection')    
+
+    @property
+    def needs_overworld_rain(self):
+        return self.data.get('needs_overworld_rain')        
+
+    @property
+    def relative_physical_stats(self):
+        return self.data.get('relative_physical_stats')
+
+    @property
+    def time_of_day(self):
+        return self.data.get('time_of_day')
+
+    @property
+    def turn_upside_down(self):
+        return self.data.get('turn_upside_down')
+
+    @property
+    def trigger(self):
+        return [EvolutionTrigger(_) for _ in self.data.get('trigger')]
+
+    @property
+    def item(self):
+        return Item(self.data.get('item'))
+
+    @property
+    def held_item(self):
+        return Item(self.data.get('held_item'))
+
+    @property
+    def known_move(self):
+        return self.data.get('known_move')
+
+    @property
+    def known_move_type(self):
+        return self.data.get('known_move_type')
+
+    @property
+    def location(self):
+        return Location(self.data.get('location'))
+
+    @property
+    def party_species(self):
+        return self.data.get('party_species')
+
+    @property
+    def party_type(self):
+        return self.data.get('party_type')
+
+    @property
+    def trade_species(self):
+        return self.data.get('trade_species')
+
+
+class ChainLink(UtilsParser):
+    @property
+    def is_baby(self):
+        return self.data.get('is_baby')
+
+    @property
+    def evolution_details(self):
+        return [EvolutionDetail(_) for _ in self.data.get('evolution_details')]
+
+    @property
+    def evolves_to(self):
+        return self.data.get('evolves_to')
+
+    @property
+    def species(self):
+        return self.data.get('species')
+
+
+class EvolutionChain(BaseParser2):
+    @property
+    def chain(self):
+        return ChainLink(self.data.get('chain'))
+
+class EvolutionTrigger(BaseParser1):
+    @property
+    def names(self):
+        get_names(self.data)
+    @property
+    def pokemon_species(self):
+        return [Name(_) for _  in self.data.get('pokemon_species')]
+
+
+class PokemonEntry(UtilsParser):
+    @property
+    def entry_number(self):
+        return self.data.get("entry_number")
+
+    @property
+    def pokemon_species(self):
+        return self.data.get("pokemon_species")
+
+
+
+class Pokedex(BaseParser1):
+    @property
+    def is_main_series(self):
+        return self.data.get("is_main_series")
+
+    @property
+    def names(self):
+        return self.data.get("names")
+
+    @property
+    def region(self):
+        return self.data.get("region")
+
+    @property
+    def pokemon_entries(self):
+        return [PokemonEntry(_) for _ in self.data.get("pokemon_entries")]
+
+    @property
+    def descriptions(self):
+        return [Description(_) for _ in self.data.get("descriptions")]
+
+    @property
+    def version_groups(self):
+        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+
+class Generation(BaseParser1):
+    @property
+    def main_region(self):
+        return self.data.get("main_region")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def version_groups(self):
+        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+
+    @property
+    def abilities(self):
+        return [_ for _ in self.data.get("abilities")]
+
+    @property
+    def types(self):
+        return [_ for _ in self.data.get("types")]
+
+    @property
+    def moves(self):
+        return [_ for _ in self.data.get("moves")]
+
+    @property
+    def pokemon_species(self):
+        return [_ for _ in self.data.get("pokemon_species")]
+
+class Version(BaseParser1):
+    @property
+    def name(self):
+        get_names(self.data)
+
+    @property
+    def version_group(self):
+        return [VersionGroup(_) for _ in self.data.get('version_group')]
+
+class VersionGroup(BaseParser1):
+    @property
+    def order(self):
+        return self.data.get('order')
+
+    @property
+    def versions(self):
+        return [Version(_) for _ in self.data.get('versions')]
+
+    @property
+    def pokedexes(self):
+        return [Pokedex(_) for _ in self.data.get('pokedexes')]
+
+    @property
+    def pokedexes(self):
+        return [Generation(_) for _ in self.data.get('generation')]
+
+    @property
+    def regions(self):
+        return [_ for _ in self.data.get('regions')]
+
+    @property
+    def move_learn_methods(self):
+        return [_ for _ in self.data.get('move_learn_methods')]
+
+
+class ItemAttribute(BaseParser1):
+    @property
+    def items(self):
+        return [Item(_) for _ in self.data.get("items")]
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def names(self):
+        return [Description(_) for _ in self.data.get("descriptions")]
+
+class ItemCategory(BaseParser1):
+    @property
+    def items(self):
+        return [Item(_) for _ in self.data.get("items")]
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+
+class ItemHolderPokemonVersionDetail(UtilsParser):
+    @property
+    def rarity(self):
+        return self.data.get("rarity")
+
+    @property
+    def version(self):
+        return Version(self.data.get("version"))
+
+
+class ItemHolderPokemon(UtilsParser):
+    @property
+    def pokemon(self):
+        return self.data.get("pokemon")
+
+    @property
+    def version_details(self):
+        return ItemHolderPokemonVersionDetail(self.data.get("version_details"))
+
+class ItemSprite(UtilsParser):
+    @property
+    def default(self):
+        return self.data.get("default")
+
+
+class Item(BaseParser1):
+    @property
+    def cost(self):
+        return self.data.get("cost")
+
+    @property
+    def fling_power(self):
+        return self.data.get("fling_power")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def sprites(self):
+        return ItemSprite(self.data.get("sprites"))
+
+    @property
+    def baby_trigger_for(self):
+        return EvolutionChain(self.data.get("baby_trigger_for"))
+
+    @property
+    def category(self):
+        return ItemCategory(self.data.get("category"))
+
+    @property
+    def held_by_pokemon(self):
+        return ItemHolderPokemon(self.data.get("held_by_pokemon"))
+
+    @property
+    def fling_effect(self):
+        return ItemFlingEffect(self.data.get("fling_effect"))
+
+    @property
+    def attributes(self):
+        return [ItemAttribute(_) for _ in self.data.get("attributes")]
+
+    @property
+    def machines(self):
+        return [_ for _ in self.data.get("machines")]
+
+    @property
+    def effect_entries(self):
+        return [_ for _ in self.data.get("effect_entries")]
+
+    @property
+    def flavor_text_entries(self):
+        return [_ for _ in self.data.get("flavor_text_entries")]
+
+    @property
+    def game_indices(self):
+        return [_ for _ in self.data.get("game_indices")]
+
+
+class ItemPocket(BaseParser1):
+    @property
+    def categories(self):
+        return [ItemCategory(_) for _ in self.data.get("categories")]
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+class ItemFlingEffect(BaseParser1):
+    @property
+    def items(self):
+        return [Item(_) for _ in self.data.get("items")]
+
+    @property
+    def effect_entries(self):
+        return [_ for _ in self.data.get("effect_entries")]
+
+
+class Machine(BaseParser2):
+    @property
+    def item(self):
+        return Item(self.data.get('item'))
+
+    @property
+    def version_group(self):
+        return VersionGroup(self.data.get('version_group'))
+
+    @property
+    def version_group(self):
+        return VersionGroup(self.data.get('move'))
+
+
+class Location(BaseParser1):
+    @property
+    def region(self):
+        return self.data.get("region")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def region(self):
+        return self.data.get("game_indices")
+
+    @property
+    def region(self):
+        return [LocationArea(_) for _ in self.data.get("areas")]
+
+
+class PokemonEncounter(UtilsParser):
+    @property
+    def pokemon(self):
+        return self.data.get("pokemon")
+
+    @property
+    def version_details(self):
+        return Version(self.data.get("version_details"))
+
+
+class EncounterVersionDetails(UtilsParser):
+    @property
+    def encounter_method(self):
+        return self.data.get("rate")
+
+    @property
+    def version(self):
+        return Version(self.data.get("version"))
+
+
+
+class EncounterMethodRate(UtilsParser):
+    @property
+    def encounter_method(self):
+        return EncounterMethod(self.data.get("encounter_method"))
+
+    @property
+    def version_details(self):
+        return EncounterMethod(self.data.get("version_details"))
+
+
+class LocationArea(BaseParser1):
+    @property
+    def game_index(self):
+        return self.data.get("game_index")
+
+    @property
+    def location(self):
+        return Location(self.data.get("location"))
+
+    @property
+    def pokemon_encounters(self):
+        return [PokemonEncounter(_) for _ in self.data.get("pokemon_encounters")]
+
+    @property
+    def encounter_method_rates(self):
+        return [EncounterMethodRate(_) for _ in self.data.get("encounter_method_rates")]
+
+    @property
+    def names(self):
+        get_names(self.data)
