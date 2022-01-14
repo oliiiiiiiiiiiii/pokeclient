@@ -3,6 +3,7 @@ import httpx
 from dataclasses import dataclass
 from pydantic import BaseModel, root_validator
 from typing import Any, Dict, Optional, Union
+from caching import CacheDict
 
 Payload = Dict[str, Any]
 base_url = "https://pokeapi.co/api/v2/"
@@ -69,7 +70,6 @@ class BaseType1(BaseModel, ABC):
 class BaseType2(BaseModel, ABC):
 
     id: Union[int, str]
-    from_cache: bool
     async_mode: bool
 
     @property
@@ -92,7 +92,10 @@ class BaseType2(BaseModel, ABC):
 
     @property
     def raw_data(self) -> Optional[Dict[str, Any]]:
-        return httpx.get(self.url).json() or None
+        if not id in self.cache.cached_data:
+            response = CacheDict(httpx.get(self.url).json())
+            self.cache.cached_data += response
+            return response
 
     @property
     @abstractmethod
