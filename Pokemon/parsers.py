@@ -287,106 +287,109 @@ class EncounterConditionValue(BaseParser1):
     def condition(self):
         return EncounterCondition(self.data.get("condition"))
 
+
 class EvolutionDetail(UtilsParser):
     @property
     def gender(self):
-        return self.data.get('gender')
+        return self.data.get("gender")
 
     @property
     def min_level(self):
-        return self.data.get('min_level')
+        return self.data.get("min_level")
 
     @property
     def min_happiness(self):
-        return self.data.get('min_happiness')
+        return self.data.get("min_happiness")
 
     @property
     def min_affection(self):
-        return self.data.get('min_affection')    
+        return self.data.get("min_affection")
 
     @property
     def needs_overworld_rain(self):
-        return self.data.get('needs_overworld_rain')        
+        return self.data.get("needs_overworld_rain")
 
     @property
     def relative_physical_stats(self):
-        return self.data.get('relative_physical_stats')
+        return self.data.get("relative_physical_stats")
 
     @property
     def time_of_day(self):
-        return self.data.get('time_of_day')
+        return self.data.get("time_of_day")
 
     @property
     def turn_upside_down(self):
-        return self.data.get('turn_upside_down')
+        return self.data.get("turn_upside_down")
 
     @property
     def trigger(self):
-        return [EvolutionTrigger(_) for _ in self.data.get('trigger')]
+        return [EvolutionTrigger(_) for _ in self.data.get("trigger")]
 
     @property
     def item(self):
-        return Item(self.data.get('item'))
+        return Item(self.data.get("item"))
 
     @property
     def held_item(self):
-        return Item(self.data.get('held_item'))
+        return Item(self.data.get("held_item"))
 
     @property
     def known_move(self):
-        return self.data.get('known_move')
+        return self.data.get("known_move")
 
     @property
     def known_move_type(self):
-        return self.data.get('known_move_type')
+        return self.data.get("known_move_type")
 
     @property
     def location(self):
-        return Location(self.data.get('location'))
+        return Location(self.data.get("location"))
 
     @property
     def party_species(self):
-        return self.data.get('party_species')
+        return self.data.get("party_species")
 
     @property
     def party_type(self):
-        return self.data.get('party_type')
+        return self.data.get("party_type")
 
     @property
     def trade_species(self):
-        return self.data.get('trade_species')
+        return self.data.get("trade_species")
 
 
 class ChainLink(UtilsParser):
     @property
     def is_baby(self):
-        return self.data.get('is_baby')
+        return self.data.get("is_baby")
 
     @property
     def evolution_details(self):
-        return [EvolutionDetail(_) for _ in self.data.get('evolution_details')]
+        return [EvolutionDetail(_) for _ in self.data.get("evolution_details")]
 
     @property
     def evolves_to(self):
-        return self.data.get('evolves_to')
+        return self.data.get("evolves_to")
 
     @property
     def species(self):
-        return self.data.get('species')
+        return self.data.get("species")
 
 
 class EvolutionChain(BaseParser2):
     @property
     def chain(self):
-        return ChainLink(self.data.get('chain'))
+        return ChainLink(self.data.get("chain"))
+
 
 class EvolutionTrigger(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
+
     @property
     def pokemon_species(self):
-        return [Name(_) for _  in self.data.get('pokemon_species')]
+        return [Name(_) for _ in self.data.get("pokemon_species")]
 
 
 class PokemonEntry(UtilsParser):
@@ -397,7 +400,6 @@ class PokemonEntry(UtilsParser):
     @property
     def pokemon_species(self):
         return self.data.get("pokemon_species")
-
 
 
 class Pokedex(BaseParser1):
@@ -424,6 +426,7 @@ class Pokedex(BaseParser1):
     @property
     def version_groups(self):
         return [VersionGroup(_) for _ in self.data.get("version_groups")]
+
 
 class Generation(BaseParser1):
     @property
@@ -454,6 +457,7 @@ class Generation(BaseParser1):
     def pokemon_species(self):
         return [_ for _ in self.data.get("pokemon_species")]
 
+
 class Version(BaseParser1):
     @property
     def name(self):
@@ -461,32 +465,33 @@ class Version(BaseParser1):
 
     @property
     def version_group(self):
-        return [VersionGroup(_) for _ in self.data.get('version_group')]
+        return [VersionGroup(_) for _ in self.data.get("version_group")]
+
 
 class VersionGroup(BaseParser1):
     @property
     def order(self):
-        return self.data.get('order')
+        return self.data.get("order")
 
     @property
     def versions(self):
-        return [Version(_) for _ in self.data.get('versions')]
+        return [Version(_) for _ in self.data.get("versions")]
 
     @property
     def pokedexes(self):
-        return [Pokedex(_) for _ in self.data.get('pokedexes')]
+        return [Pokedex(_) for _ in self.data.get("pokedexes")]
 
     @property
     def pokedexes(self):
-        return [Generation(_) for _ in self.data.get('generation')]
+        return [Generation(_) for _ in self.data.get("generation")]
 
     @property
     def regions(self):
-        return [_ for _ in self.data.get('regions')]
+        return [_ for _ in self.data.get("regions")]
 
     @property
     def move_learn_methods(self):
-        return [_ for _ in self.data.get('move_learn_methods')]
+        return [_ for _ in self.data.get("move_learn_methods")]
 
 
 class ItemAttribute(BaseParser1):
@@ -501,6 +506,7 @@ class ItemAttribute(BaseParser1):
     @property
     def names(self):
         return [Description(_) for _ in self.data.get("descriptions")]
+
 
 class ItemCategory(BaseParser1):
     @property
@@ -530,6 +536,7 @@ class ItemHolderPokemon(UtilsParser):
     @property
     def version_details(self):
         return ItemHolderPokemonVersionDetail(self.data.get("version_details"))
+
 
 class ItemSprite(UtilsParser):
     @property
@@ -600,6 +607,7 @@ class ItemPocket(BaseParser1):
     def names(self):
         get_names(self.data)
 
+
 class ItemFlingEffect(BaseParser1):
     @property
     def items(self):
@@ -613,15 +621,15 @@ class ItemFlingEffect(BaseParser1):
 class Machine(BaseParser2):
     @property
     def item(self):
-        return Item(self.data.get('item'))
+        return Item(self.data.get("item"))
 
     @property
     def version_group(self):
-        return VersionGroup(self.data.get('version_group'))
+        return VersionGroup(self.data.get("version_group"))
 
     @property
     def version_group(self):
-        return VersionGroup(self.data.get('move'))
+        return VersionGroup(self.data.get("move"))
 
 
 class Location(BaseParser1):
@@ -660,7 +668,6 @@ class EncounterVersionDetails(UtilsParser):
     @property
     def version(self):
         return Version(self.data.get("version"))
-
 
 
 class EncounterMethodRate(UtilsParser):
