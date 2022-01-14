@@ -29,6 +29,10 @@ class BaseType1(BaseModel, ABC):
         return vals
 
     @property
+    def cache(self) -> object:
+        ...
+
+    @property
     @abstractmethod
     def address(self) -> str:
         ...
@@ -67,6 +71,10 @@ class BaseType2(BaseModel, ABC):
     id: Union[int, str]
     from_cache: bool
     async_mode: bool
+
+    @property
+    def cache(self) -> object:
+        ...
 
     @property
     @abstractmethod

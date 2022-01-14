@@ -3,11 +3,22 @@ from abc import ABC
 import caching
 import errors
 
+berry_cache = caching.BerryCache()
+contest_cache = caching.ContestCache()
+encounter_cache = caching.EncounterCache()
+evolution_cache = caching.EvolutionCache()
+game_cache = caching.GameCache()
+item_cache = caching.ItemCache()
+location_cache = caching.LocationCache()
+machine_cache = caching.MachineCache()
+move_cache = caching.MoveCache()
+pokemon_cache = caching.PokemonCache()
+
 
 class BerryGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.BerryCache
+        return berry_cache
 
     @property
     def error(self) -> Exception:
@@ -47,7 +58,7 @@ class BerryFlavour(BaseType1, BerryGroup):
 class ContestGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.ContestCache
+        return contest_cache
 
     @property
     def error(self) -> Exception:
@@ -87,7 +98,7 @@ class SuperContestEffect(BaseType2, ContestGroup):
 class EncounterGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.EncounterCache
+        return encounter_cache
 
     @property
     def error(self) -> Exception:
@@ -127,7 +138,7 @@ class EncounterConditionValue(BaseType1, EncounterGroup):
 class EvolutionGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.EvolutionCache
+        return evolution_cache
 
     @property
     def error(self) -> Exception:
@@ -157,7 +168,7 @@ class EvolutionTrigger(BaseType2, EvolutionGroup):
 class GameGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.GameCache
+        return game_cache
 
     @property
     def error(self) -> Exception:
@@ -207,7 +218,7 @@ class VersionGroup(BaseType1, GameGroup):
 class ItemGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.ItemCache
+        return item_cache
 
     @property
     def error(self) -> Exception:
@@ -257,7 +268,7 @@ class Item(BaseType1, ItemGroup):
 class LocationGroup(ABC):
     @property
     def cache(self) -> object:
-        return caching.LocationCache
+        return location_cache
 
     @property
     def error(self) -> Exception:
@@ -311,7 +322,7 @@ class Machine(BaseType2):
 
     @property
     def cache(self) -> object:
-        return caching.MachineCache
+        return machine_cache
 
     @property
     def error(self) -> Exception:
@@ -329,7 +340,7 @@ class MoveGroup(ABC):
 
     @property
     def cache(self) -> object:
-        return caching.MoveCache
+        return move_cache
 
 
 class Move(BaseType1, MoveGroup):
@@ -409,7 +420,7 @@ class PokemonGroup(ABC):
 
     @property
     def cache(self) -> object:
-        return caching.PokemonCache
+        return pokemon_cache
 
 
 class Ability(BaseType1, PokemonGroup):

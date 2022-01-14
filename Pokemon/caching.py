@@ -35,10 +35,6 @@ class EncounterCache(CacheBase):
     ...
 
 
-class EncounterCache(CacheBase):
-    ...
-
-
 class EvolutionCache(CacheBase):
     ...
 
