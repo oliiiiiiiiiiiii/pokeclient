@@ -1,7 +1,7 @@
-from base import BaseType1, BaseType2
+from .base import BaseType1, BaseType2
 from abc import ABC
-import caching
-import errors
+import Pokemon.caching as caching
+import Pokemon.errors as errors
 
 berry_cache = caching.BerryCache()
 contest_cache = caching.ContestCache()
