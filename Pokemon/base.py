@@ -14,7 +14,6 @@ class BaseType1(BaseModel, ABC):
 
     id: Optional[Union[int, str]]
     name: Optional[str]
-    from_cache: Optional[bool]
     async_mode: Optional[bool]
 
     @root_validator(pre=True)
