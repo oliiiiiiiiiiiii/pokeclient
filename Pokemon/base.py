@@ -55,7 +55,6 @@ class BaseType1(BaseModel, ABC):
     def raw_data(self) -> CacheDict[int,CacheDict[str,Any]]:
         id_or_name = self.id or self.name
         id_and_name_list  = [i for h in self.cache.name_id_map.items() for i in h]
-        print(id_and_name_list)
         if not id_or_name in id_and_name_list:
             try:
                 response = CacheDict(httpx.get(self.url).json())
@@ -64,9 +63,9 @@ class BaseType1(BaseModel, ABC):
                 raise self.error(arg=id_or_name)
             else:
                 return response
-        #if not 
-        #id = self.cache.name_id_map[self.name]
-        #response = self.cache.cached_data[]
+        if not self.id:
+            return self.cache.cached_data[self.cache.name_id_map.get(self.name)][self.address]
+        return self.cache.cached_data[self.id][self.address]
 
     class Config:
         allow_mutation = False

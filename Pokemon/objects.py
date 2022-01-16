@@ -86,15 +86,16 @@ class ContestType(BaseType1):
         return "contest-type"
 
     @property
-    def parsed_data(self) -> object:
-        return
-
     def cache(self) -> object:
         return contest_cache
 
     @property
     def error(self) -> Exception:
         return errors.ContestNotFound
+
+    @property
+    def parsed_data(self) -> object:
+        ...
 
 
 class ContestEffect(ContestGroup):
