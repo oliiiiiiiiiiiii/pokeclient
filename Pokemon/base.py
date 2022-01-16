@@ -41,21 +41,20 @@ class BaseType1(BaseModel, ABC):
         ...
 
     @property
-    def url(self) -> str:
-        return (
-            f"{base_url}{self.address}/{self.id}"
-            or f"{base_url}{self.address}{self.name}"
-        )
-
-    @property
     @abstractmethod
     def error(self) -> Exception:
         ...
 
     @property
+    def url(self) -> str:
+        return (
+            f"{base_url}{self.address}/{self.id or self.name}"
+        )
+
+    @property
     def raw_data(self) -> CacheDict[int,CacheDict[str,Any]]:
         id_or_name = self.id or self.name
-        id_and_name_list  = [i for h in self.cache.name_id_map for i in h]
+        id_and_name_list  = [i for h in self.cache.name_id_map.items() for i in h]
         print(id_and_name_list)
         if not id_or_name in id_and_name_list:
             try:
@@ -68,11 +67,6 @@ class BaseType1(BaseModel, ABC):
         #if not 
         #id = self.cache.name_id_map[self.name]
         #response = self.cache.cached_data[]
-
-    @property
-    @abstractmethod
-    def parsed_data(self) -> object:
-        ...
 
     class Config:
         allow_mutation = False
@@ -94,13 +88,13 @@ class BaseType2(BaseModel, ABC):
         ...
 
     @property
-    def url(self) -> str:
-        return f"{base_url}{self.address}/{self.id}"
-
-    @property
     @abstractmethod
     def error(self) -> Exception:
         ...
+
+    @property
+    def url(self) -> str:
+        return f"{base_url}{self.address}/{self.id}"
 
     @property
     def raw_data(self) -> CacheDict[int,CacheDict[str,Any]]:
@@ -114,9 +108,6 @@ class BaseType2(BaseModel, ABC):
                 return response
         return self.cache.cached_data[self.id][self.address]
 
-    @property
-    @abstractmethod
-    def parsed_data(self) -> object:
         ...
 
     class Config:

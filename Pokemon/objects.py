@@ -1,5 +1,4 @@
 from .base import BaseType1, BaseType2
-from abc import ABC
 import Pokemon.caching as caching
 import Pokemon.errors as errors
 
@@ -15,7 +14,7 @@ move_cache = caching.MoveCache()
 pokemon_cache = caching.PokemonCache()
 
 
-class BerryGroup(ABC):
+class BerryGroup(BaseType1):
     @property
     def cache(self) -> object:
         return berry_cache
@@ -24,8 +23,16 @@ class BerryGroup(ABC):
     def error(self) -> Exception:
         return errors.BerryNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class Berry(BaseType1, BerryGroup):
+    @property
+    def address(self) -> str:
+        ...
+
+
+class Berry(BerryGroup):
     @property
     def address(self) -> str:
         return "berry"
@@ -35,7 +42,7 @@ class Berry(BaseType1, BerryGroup):
         return
 
 
-class BerryFirmness(BaseType1, BerryGroup):
+class BerryFirmness(BerryGroup):
     @property
     def address(self) -> str:
         return "berry-firmness"
@@ -45,7 +52,7 @@ class BerryFirmness(BaseType1, BerryGroup):
         return
 
 
-class BerryFlavour(BaseType1, BerryGroup):
+class BerryFlavour(BerryGroup):
     @property
     def address(self) -> str:
         return "berry-flavour"
@@ -55,7 +62,7 @@ class BerryFlavour(BaseType1, BerryGroup):
         return
 
 
-class ContestGroup(ABC):
+class ContestGroup(BaseType2):
     @property
     def cache(self) -> object:
         return contest_cache
@@ -64,8 +71,16 @@ class ContestGroup(ABC):
     def error(self) -> Exception:
         return errors.ContestNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class ContestType(BaseType1, ContestGroup):
+    @property
+    def address(self) -> str:
+        ...
+
+
+class ContestType(BaseType1):
     @property
     def address(self) -> str:
         return "contest-type"
@@ -74,8 +89,15 @@ class ContestType(BaseType1, ContestGroup):
     def parsed_data(self) -> object:
         return
 
+    def cache(self) -> object:
+        return contest_cache
 
-class ContestEffect(BaseType2, ContestGroup):
+    @property
+    def error(self) -> Exception:
+        return errors.ContestNotFound
+
+
+class ContestEffect(ContestGroup):
     @property
     def address(self) -> str:
         return "contest-effect"
@@ -85,7 +107,7 @@ class ContestEffect(BaseType2, ContestGroup):
         return
 
 
-class SuperContestEffect(BaseType2, ContestGroup):
+class SuperContestEffect(ContestGroup):
     @property
     def address(self) -> str:
         return "super-contest-effect"
@@ -95,7 +117,11 @@ class SuperContestEffect(BaseType2, ContestGroup):
         return
 
 
-class EncounterGroup(ABC):
+class EncounterGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...
+
     @property
     def cache(self) -> object:
         return encounter_cache
@@ -104,8 +130,12 @@ class EncounterGroup(ABC):
     def error(self) -> Exception:
         return errors.EncounterNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class EncounterMethod(BaseType1, EncounterGroup):
+
+class EncounterMethod(EncounterGroup):
     @property
     def address(self) -> str:
         return "encounter-method"
@@ -115,7 +145,7 @@ class EncounterMethod(BaseType1, EncounterGroup):
         return
 
 
-class EncounterCondition(BaseType1, EncounterGroup):
+class EncounterCondition(EncounterGroup):
     @property
     def address(self) -> str:
         return "encounter-condition"
@@ -125,7 +155,7 @@ class EncounterCondition(BaseType1, EncounterGroup):
         return
 
 
-class EncounterConditionValue(BaseType1, EncounterGroup):
+class EncounterConditionValue(EncounterGroup):
     @property
     def address(self) -> str:
         return "encounter-condition-value"
@@ -135,7 +165,11 @@ class EncounterConditionValue(BaseType1, EncounterGroup):
         return
 
 
-class EvolutionGroup(ABC):
+class EvolutionGroup(BaseType2):
+    @property
+    def address(self) -> str:
+        ...
+
     @property
     def cache(self) -> object:
         return evolution_cache
@@ -144,8 +178,12 @@ class EvolutionGroup(ABC):
     def error(self) -> Exception:
         return errors.EvolutionNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class EvolutionChain(BaseType2, EvolutionGroup):
+
+class EvolutionChain(EvolutionGroup):
     @property
     def address(self) -> str:
         return "evolution-chain"
@@ -155,7 +193,7 @@ class EvolutionChain(BaseType2, EvolutionGroup):
         return
 
 
-class EvolutionTrigger(BaseType2, EvolutionGroup):
+class EvolutionTrigger(EvolutionGroup):
     @property
     def address(self) -> str:
         return "evolution-trigger"
@@ -165,7 +203,10 @@ class EvolutionTrigger(BaseType2, EvolutionGroup):
         return
 
 
-class GameGroup(ABC):
+class GameGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...
     @property
     def cache(self) -> object:
         return game_cache
@@ -174,8 +215,12 @@ class GameGroup(ABC):
     def error(self) -> Exception:
         return errors.GameNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class Generation(BaseType1, GameGroup):
+
+class Generation(GameGroup):
     @property
     def address(self) -> str:
         return "generation"
@@ -185,7 +230,7 @@ class Generation(BaseType1, GameGroup):
         return
 
 
-class Pokedex(BaseType1, GameGroup):
+class Pokedex(GameGroup):
     @property
     def address(self) -> str:
         return "pokedex"
@@ -195,7 +240,7 @@ class Pokedex(BaseType1, GameGroup):
         return
 
 
-class Version(BaseType1, GameGroup):
+class Version(GameGroup):
     @property
     def address(self) -> str:
         return "version"
@@ -205,7 +250,7 @@ class Version(BaseType1, GameGroup):
         return
 
 
-class VersionGroup(BaseType1, GameGroup):
+class VersionGroup(GameGroup):
     @property
     def address(self) -> str:
         return "version-group"
@@ -215,7 +260,10 @@ class VersionGroup(BaseType1, GameGroup):
         return
 
 
-class ItemGroup(ABC):
+class ItemGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...
     @property
     def cache(self) -> object:
         return item_cache
@@ -224,8 +272,12 @@ class ItemGroup(ABC):
     def error(self) -> Exception:
         return errors.ItemNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class ItemAttribute(BaseType1, ItemGroup):
+
+class ItemAttribute(ItemGroup):
     @property
     def address(self) -> str:
         return "item-attribute"
@@ -235,7 +287,7 @@ class ItemAttribute(BaseType1, ItemGroup):
         return
 
 
-class ItemCategory(BaseType1, ItemGroup):
+class ItemCategory(ItemGroup):
     @property
     def address(self) -> str:
         return "item-category"
@@ -245,7 +297,7 @@ class ItemCategory(BaseType1, ItemGroup):
         return
 
 
-class ItemFlingEffect(BaseType1, ItemGroup):
+class ItemFlingEffect(ItemGroup):
     @property
     def address(self) -> str:
         return "item-fling-effect"
@@ -255,7 +307,7 @@ class ItemFlingEffect(BaseType1, ItemGroup):
         return
 
 
-class Item(BaseType1, ItemGroup):
+class Item(ItemGroup):
     @property
     def address(self) -> str:
         return "item"
@@ -265,7 +317,10 @@ class Item(BaseType1, ItemGroup):
         return
 
 
-class LocationGroup(ABC):
+class LocationGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...    
     @property
     def cache(self) -> object:
         return location_cache
@@ -274,8 +329,12 @@ class LocationGroup(ABC):
     def error(self) -> Exception:
         return errors.LocationNotFound
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class Location(BaseType1, LocationGroup):
+
+class Location(LocationGroup):
     @property
     def address(self) -> str:
         return "location"
@@ -285,7 +344,7 @@ class Location(BaseType1, LocationGroup):
         return
 
 
-class LocationArea(BaseType1, LocationGroup):
+class LocationArea(LocationGroup):
     @property
     def address(self) -> str:
         return "location-area"
@@ -295,7 +354,7 @@ class LocationArea(BaseType1, LocationGroup):
         return
 
 
-class PalParkArea(BaseType1, LocationGroup):
+class PalParkArea(LocationGroup):
     @property
     def address(self) -> str:
         return "pal-park-area"
@@ -305,7 +364,7 @@ class PalParkArea(BaseType1, LocationGroup):
         return
 
 
-class Region(BaseType1, LocationGroup):
+class Region(LocationGroup):
     @property
     def address(self) -> str:
         return "region"
@@ -333,7 +392,10 @@ class Machine(BaseType2):
         return
 
 
-class MoveGroup(ABC):
+class MoveGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...    
     @property
     def error(self) -> Exception:
         return errors.MoveNotFound
@@ -342,8 +404,12 @@ class MoveGroup(ABC):
     def cache(self) -> object:
         return move_cache
 
+    @property
+    def parsed_data(self) -> object:
+        ...
 
-class Move(BaseType1, MoveGroup):
+
+class Move(MoveGroup):
     @property
     def address(self) -> str:
         return "move"
@@ -353,7 +419,7 @@ class Move(BaseType1, MoveGroup):
         return
 
 
-class MoveAilment(BaseType1, MoveGroup):
+class MoveAilment(MoveGroup):
     @property
     def address(self) -> str:
         return "move-ailment"
@@ -363,7 +429,7 @@ class MoveAilment(BaseType1, MoveGroup):
         return
 
 
-class MoveBattleStyle(BaseType1, MoveGroup):
+class MoveBattleStyle(MoveGroup):
     @property
     def address(self) -> str:
         return "move-battle-style"
@@ -373,7 +439,7 @@ class MoveBattleStyle(BaseType1, MoveGroup):
         return
 
 
-class MoveCategory(BaseType1, MoveGroup):
+class MoveCategory(MoveGroup):
     @property
     def address(self) -> str:
         return "move-category"
@@ -383,7 +449,7 @@ class MoveCategory(BaseType1, MoveGroup):
         return
 
 
-class MoveDamageClass(BaseType1, MoveGroup):
+class MoveDamageClass(MoveGroup):
     @property
     def address(self) -> str:
         return "move-damage-class"
@@ -393,7 +459,7 @@ class MoveDamageClass(BaseType1, MoveGroup):
         return
 
 
-class MoveLearnMethod(BaseType1, MoveGroup):
+class MoveLearnMethod(MoveGroup):
     @property
     def address(self) -> str:
         return "move-learn-method"
@@ -403,7 +469,7 @@ class MoveLearnMethod(BaseType1, MoveGroup):
         return
 
 
-class MoveTarget(BaseType1, MoveGroup):
+class MoveTarget(MoveGroup):
     @property
     def address(self) -> str:
         return "move-target"
@@ -413,7 +479,41 @@ class MoveTarget(BaseType1, MoveGroup):
         return
 
 
-class PokemonGroup(ABC):
+class PokemonGroup(BaseType1):
+    @property
+    def address(self) -> str:
+        ...    
+    @property
+    def error(self) -> Exception:
+        return errors.PokemonNotFound
+
+    @property
+    def cache(self) -> object:
+        return pokemon_cache
+
+    @property
+    def parsed_data(self) -> object:
+        ...
+
+
+class Ability(PokemonGroup):
+    @property
+    def address(self) -> str:
+        return "ability"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
+class Characteristic(BaseType2):
+    @property
+    def address(self) -> str:
+        return "characteristic"
+
+    @property
+    def parsed_data(self) -> object:
+        return
+
     @property
     def error(self) -> Exception:
         return errors.PokemonNotFound
@@ -423,27 +523,7 @@ class PokemonGroup(ABC):
         return pokemon_cache
 
 
-class Ability(BaseType1, PokemonGroup):
-    @property
-    def address(self) -> str:
-        return "ability"
-
-    @property
-    def parsed_data(self) -> object:
-        return
-
-
-class Characteristic(BaseType2, PokemonGroup):
-    @property
-    def address(self) -> str:
-        return "characteristic"
-
-    @property
-    def parsed_data(self) -> object:
-        return
-
-
-class Gender(BaseType2, PokemonGroup):
+class Gender(BaseType2):
     @property
     def address(self) -> str:
         return "gender"
@@ -452,8 +532,17 @@ class Gender(BaseType2, PokemonGroup):
     def parsed_data(self) -> object:
         return
 
+    @property
+    def error(self) -> Exception:
+        return errors.PokemonNotFound
 
-class GrowthRate(BaseType2, PokemonGroup):
+    @property
+    def cache(self) -> object:
+        return pokemon_cache
+
+
+
+class GrowthRate(BaseType2):
     @property
     def address(self) -> str:
         return "growth-rate"
@@ -462,8 +551,17 @@ class GrowthRate(BaseType2, PokemonGroup):
     def parsed_data(self) -> object:
         return
 
+    @property
+    def error(self) -> Exception:
+        return errors.PokemonNotFound
 
-class Nature(BaseType1, PokemonGroup):
+    @property
+    def cache(self) -> object:
+        return pokemon_cache
+
+
+
+class Nature(PokemonGroup):
     @property
     def address(self) -> str:
         return "nature"
@@ -473,7 +571,7 @@ class Nature(BaseType1, PokemonGroup):
         return
 
 
-class PokeathlonStat(BaseType1, PokemonGroup):
+class PokeathlonStat(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokeathlon-stat"
@@ -483,7 +581,7 @@ class PokeathlonStat(BaseType1, PokemonGroup):
         return
 
 
-class Pokemon(BaseType1, PokemonGroup):
+class Pokemon(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon"
@@ -493,7 +591,7 @@ class Pokemon(BaseType1, PokemonGroup):
         return
 
 
-class PokemonLocationArea(BaseType1, PokemonGroup):
+class PokemonLocationArea(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon"
@@ -510,7 +608,7 @@ class PokemonLocationArea(BaseType1, PokemonGroup):
         return
 
 
-class PokemonColor(BaseType1, PokemonGroup):
+class PokemonColor(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon-color"
@@ -520,7 +618,7 @@ class PokemonColor(BaseType1, PokemonGroup):
         return
 
 
-class PokemonForm(BaseType1, PokemonGroup):
+class PokemonForm(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon-form"
@@ -530,7 +628,7 @@ class PokemonForm(BaseType1, PokemonGroup):
         return
 
 
-class PokemonHabitat(BaseType1, PokemonGroup):
+class PokemonHabitat(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon-habitat"
@@ -540,7 +638,7 @@ class PokemonHabitat(BaseType1, PokemonGroup):
         return
 
 
-class PokemonShape(BaseType1, PokemonGroup):
+class PokemonShape(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon-shape"
@@ -550,7 +648,7 @@ class PokemonShape(BaseType1, PokemonGroup):
         return
 
 
-class PokemonSpecies(BaseType1, PokemonGroup):
+class PokemonSpecies(PokemonGroup):
     @property
     def address(self) -> str:
         return "pokemon-species"
@@ -560,7 +658,7 @@ class PokemonSpecies(BaseType1, PokemonGroup):
         return
 
 
-class Stat(BaseType1, PokemonGroup):
+class Stat(PokemonGroup):
     @property
     def address(self) -> str:
         return "stat"
@@ -570,7 +668,7 @@ class Stat(BaseType1, PokemonGroup):
         return
 
 
-class Type(BaseType1, PokemonGroup):
+class Type(PokemonGroup):
     @property
     def address(self) -> str:
         return "type"
