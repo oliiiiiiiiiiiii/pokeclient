@@ -14,7 +14,6 @@ class BaseType1(pydantic.BaseModel, abc.ABC):
 
     id: typing.Optional[typing.Union[int, str]]
     name: typing.Optional[str]
-    async_mode: typing.Optional[bool] = False
 
     @pydantic.root_validator(pre=True)
     @classmethod
@@ -75,7 +74,6 @@ class BaseType1(pydantic.BaseModel, abc.ABC):
 class BaseType2(pydantic.BaseModel, abc.ABC):
 
     id: typing.Union[int, str]
-    async_mode: typing.Optional[bool] = False
 
     @property
     @abc.abstractmethod

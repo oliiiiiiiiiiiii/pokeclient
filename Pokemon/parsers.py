@@ -110,13 +110,13 @@ class Language(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class BerryFirmness(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def berries(self):
@@ -130,13 +130,13 @@ class FlavorBerryMap(UtilsParser):
 
     @property
     def berry(self):
-        Berry(self.data.get("berry"))
+        return Berry(self.data.get("berry"))
 
 
 class BerryFlavor(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def berries(self):
@@ -262,13 +262,13 @@ class EncounterMethod(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class EncounterCondition(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def values(self):
@@ -278,7 +278,7 @@ class EncounterCondition(BaseParser1):
 class EncounterConditionValue(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def condition(self):
@@ -382,7 +382,7 @@ class EvolutionChain(BaseParser2):
 class EvolutionTrigger(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def pokemon_species(self):
@@ -406,7 +406,7 @@ class Pokedex(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def region(self):
@@ -432,7 +432,7 @@ class Generation(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def version_groups(self):
@@ -458,7 +458,7 @@ class Generation(BaseParser1):
 class Version(BaseParser1):
     @property
     def name(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def version_group(self):
@@ -498,7 +498,7 @@ class ItemAttribute(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def names(self):
@@ -512,7 +512,7 @@ class ItemCategory(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class ItemHolderPokemonVersionDetail(UtilsParser):
@@ -552,7 +552,7 @@ class Item(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def sprites(self):
@@ -602,7 +602,7 @@ class ItemPocket(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class ItemFlingEffect(BaseParser1):
@@ -625,7 +625,7 @@ class Machine(BaseParser2):
         return VersionGroup(self.data.get("version_group"))
 
     @property
-    def version_group(self):
+    def move(self):
         return VersionGroup(self.data.get("move"))
 
 
@@ -636,7 +636,7 @@ class Location(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def region(self):
@@ -696,7 +696,7 @@ class LocationArea(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class Move(BaseParser1):
@@ -766,7 +766,7 @@ class Move(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def past_values(self):
@@ -920,13 +920,13 @@ class MoveAilment(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class MoveBattleStyle(BaseParser1):
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
 
 class MoveCategory(BaseParser1):
@@ -946,7 +946,7 @@ class MoveLearnMethod(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
     def moves(self):
@@ -960,8 +960,8 @@ class MoveTarget(BaseParser1):
 
     @property
     def names(self):
-        get_names(self.data)
+        return get_names(self.data)
 
     @property
-    def moves(self):
+    def descriptions(self):
         return self.data.get("descriptions")
