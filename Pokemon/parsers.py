@@ -1,4 +1,4 @@
-from base import BaseParser1, BaseParser2, UtilsParser
+from Pokemon.base import BaseParser1, BaseParser2, UtilsParser
 
 get_names = lambda data: [Name(_) for _ in data.get("names")]
 
