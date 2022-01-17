@@ -42,7 +42,7 @@ class MoveNotFound(Exception):
     def __init__(self, arg: str) -> None:
         super().__init__(f"Move was not found : {arg}")
 
-        
+
 class PokemonNotFound(Exception):
     def __init__(self, arg: str) -> None:
         super().__init__(f"Pokemon was not found : {arg}")
