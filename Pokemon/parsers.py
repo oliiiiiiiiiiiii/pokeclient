@@ -1,9 +1,6 @@
-from typing import Dict, Any
 from base import BaseParser1, BaseParser2, UtilsParser
 
-
-def get_names(data: Dict[str, Any]):
-    return [Name(_) for _ in data.get("names")]
+get_names = lambda data: [Name(_) for _ in data.get("names")]
 
 
 class APIResource(UtilsParser):
@@ -700,3 +697,217 @@ class LocationArea(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
+
+
+class Move(BaseParser1):
+    @property
+    def accuracy(self):
+        return self.data.get("accuracy")
+
+    @property
+    def effect_chance(self):
+        return self.data.get("effect_chance")
+
+    @property
+    def pp(self):
+        return self.data.get("pp")
+
+    @property
+    def priority(self):
+        return self.data.get("priority")
+
+    @property
+    def power(self):
+        return self.data.get("power")
+
+    @property
+    def contest_combos(self):
+        return self.data.get("contest_combos")
+
+    @property
+    def contest_type(self):
+        return self.data.get("contest_type")
+
+    @property
+    def contest_effect(self):
+        return self.data.get("contest_effect")
+
+    @property
+    def damage_class(self):
+        return self.data.get("damage_class")
+
+    @property
+    def effect_entries(self):
+        return self.data.get("effect_entries")
+
+    @property
+    def effect_changes(self):
+        return self.data.get("effect_changes")
+
+    @property
+    def learned_by_pokemon(self):
+        return self.data.get("learned_by_pokemon")
+
+    @property
+    def flavor_text_entries(self):
+        return self.data.get("flavor_text_entries")
+
+    @property
+    def generation(self):
+        return self.data.get("generation")
+
+    @property
+    def machines(self):
+        return self.data.get("machines")
+
+    @property
+    def meta(self):
+        return self.data.get("meta")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def past_values(self):
+        return self.data.get("past_values")
+
+    @property
+    def stat_changes(self):
+        return self.data.get("stat_changes")
+
+    @property
+    def super_contest_effect(self):
+        return self.data.get("super_contest_effect")
+
+    @property
+    def target(self):
+        return self.data.get("target")
+
+    @property
+    def type(self):
+        return self.data.get("type")
+
+
+class ContestComboSets(UtilsParser):
+    @property
+    def normal(self):
+        return self.data.get("normal")
+
+    @property
+    def super(self):
+        return self.data.get("super")
+
+
+class ContestComboDetail(UtilsParser):
+    @property
+    def use_before(self):
+        return self.data.get("use_before")
+
+    @property
+    def use_after(self):
+        return self.data.get("use_after")
+
+
+class MoveFlavorText(UtilsParser):
+    @property
+    def flavor_text(self):
+        return self.data.get("flavor_text")
+
+    @property
+    def language(self):
+        return self.data.get("language")
+
+    @property
+    def version_group(self):
+        return self.data.get("version_group")
+
+
+class MoveMetaData(UtilsParser):
+    @property
+    def ailment(self):
+        return self.data.get("ailment")
+
+    @property
+    def category(self):
+        return self.data.get("category")
+
+    @property
+    def min_hits(self):
+        return self.data.get("min_hits")
+
+    @property
+    def max_hits(self):
+        return self.data.get("max_hits")
+
+    @property
+    def min_turns(self):
+        return self.data.get("min_turns")
+
+    @property
+    def max_turns(self):
+        return self.data.get("max_turns")
+
+    @property
+    def drain(self):
+        return self.data.get("drain")
+
+    @property
+    def healing(self):
+        return self.data.get("healing")
+
+    @property
+    def crit_rate(self):
+        return self.data.get("crit_rate")
+
+    @property
+    def ailment_chance(self):
+        return self.data.get("ailment_chance")
+
+    @property
+    def flinch_chance(self):
+        return self.data.get("flinch_chance")
+
+    @property
+    def stat_chance(self):
+        return self.data.get("stat_chance")
+
+
+class MoveStatChange(UtilsParser):
+    @property
+    def change(self):
+        return self.data.get("change")
+
+    @property
+    def stat(self):
+        return self.data.get("stat")
+
+
+class MoveMetaData(UtilsParser):
+    @property
+    def accuracy(self):
+        return self.data.get("accuracy")
+
+    @property
+    def effect_chance(self):
+        return self.data.get("effect_chance")
+
+    @property
+    def power(self):
+        return self.data.get("power")
+
+    @property
+    def pp(self):
+        return self.data.get("pp")
+
+    @property
+    def effect_entries(self):
+        return self.data.get("effect_entries")
+
+    @property
+    def type(self):
+        return self.data.get("type")
+
+    @property
+    def version_group(self):
+        return self.data.get("version_group")

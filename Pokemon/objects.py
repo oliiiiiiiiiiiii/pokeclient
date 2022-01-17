@@ -1,4 +1,4 @@
-from .base import BaseType1, BaseType2
+from Pokemon.base import BaseType1, BaseType2
 import Pokemon.caching as caching
 import Pokemon.errors as errors
 
