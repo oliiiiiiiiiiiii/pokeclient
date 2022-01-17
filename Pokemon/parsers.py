@@ -951,7 +951,7 @@ class MoveLearnMethodParser(BaseParser1):
         return get_names(self.data)
 
     @property
-    def moves(self):
+    def descriptions(self):
         return self.data.get("descriptions")
 
 
