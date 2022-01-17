@@ -911,3 +911,57 @@ class MoveMetaData(UtilsParser):
     @property
     def version_group(self):
         return self.data.get("version_group")
+
+
+class MoveAilment(BaseParser1):
+    @property
+    def moves(self):
+        return self.data.get("moves")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+
+class MoveBattleStyle(BaseParser1):
+    @property
+    def names(self):
+        get_names(self.data)
+
+
+class MoveCategory(BaseParser1):
+    @property
+    def moves(self):
+        return self.data.get("moves")
+
+    @property
+    def descriptions(self):
+        return self.data.get("descriptions")
+
+
+class MoveLearnMethod(BaseParser1):
+    @property
+    def version_groups(self):
+        return self.data.get("version_groups")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def moves(self):
+        return self.data.get("descriptions")
+
+
+class MoveTarget(BaseParser1):
+    @property
+    def moves(self):
+        return self.data.get("moves")
+
+    @property
+    def names(self):
+        get_names(self.data)
+
+    @property
+    def moves(self):
+        return self.data.get("descriptions")
