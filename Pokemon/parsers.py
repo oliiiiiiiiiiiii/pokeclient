@@ -1,35 +1,35 @@
 from Pokemon.base import BaseParser1, BaseParser2, UtilsParser
 
-get_names = lambda data: [Name(_) for _ in data.get("names")]
+get_names = lambda data: [NameParser(_) for _ in data.get("names")]
 
 
-class APIResource(UtilsParser):
+class APIResourceParser(UtilsParser):
     @property
     def url(self) -> str:
         return self.data.get("url")
 
 
-class Description(UtilsParser):
+class DescriptionParser(UtilsParser):
     @property
-    def description(self):
+    def descriptionParserDescriptionParser(self):
         return self.data.get("description")
 
     @property
     def language(self):
-        return Language(self.data.get("language"))
+        return LanguageParser(self.data.get("language"))
 
 
-class Effect(UtilsParser):
+class EffectParser(UtilsParser):
     @property
     def language(self):
-        return Language(self.data.get("language"))
+        return LanguageParser(self.data.get("language"))
 
     @property
     def effect(self):
         return self.data.get("effect")
 
 
-class Encounter(UtilsParser):
+class EncounterParser(UtilsParser):
     @property
     def chance(self):
         return self.data.get("chance")
@@ -39,63 +39,63 @@ class Encounter(UtilsParser):
         return self.data.get("max_level")
 
     @property
-    def max_level(self):
+    def min_level(self):
         return self.data.get("min_level")
 
     @property
     def condition_values(self):
-        return EncounterConditionValue(self.data.get("condition_values"))
+        return EncounterConditionValueParser(self.data.get("condition_values"))
 
     @property
     def method(self):
-        return EncounterMethod(self.data.get("method"))
+        return EncounterMethodParser(self.data.get("method"))
 
 
-class FlavorText(UtilsParser):
+class FlavorTextParser(UtilsParser):
     @property
     def flavor_text(self):
         return self.data.get("flavor_text")
 
     @property
     def name(self):
-        return Language(self.data.get("name"))
+        return LanguageParser(self.data.get("name"))
 
     @property
-    def version(self):
-        return Version((self.data.get("version")))
+    def versionParser(self):
+        return VersionParser((self.data.get("version")))
 
 
-class GenerationGameIndex(UtilsParser):
+class GenerationGameIndexParser(UtilsParser):
     @property
     def game_index(self):
         return self.data.get("game_index")
 
     @property
-    def generation(self):
-        return Generation(self.data.get("generation"))
+    def generationParser(self):
+        return GenerationParser(self.data.get("generation"))
 
 
-class MachineVersionDetail(UtilsParser):
+class MachineVersionDetailParser(UtilsParser):
     @property
     def machine(self):
         return Machine(self.data.get("machine"))
 
     @property
     def version_group(self):
-        return VersionGroup(self.data.get("version_group"))
+        return VersionGroupParser(self.data.get("version_group"))
 
 
-class Name(UtilsParser):
+class NameParser(UtilsParser):
     @property
     def name(self):
         return self.data.get("name")
 
     @property
     def language(self):
-        return Language(self.data.get("language"))
+        return LanguageParser(self.data.get("language"))
 
 
-class Language(BaseParser1):
+class LanguageParser(BaseParser1):
     @property
     def official(self):
         return self.data.get("official")
@@ -113,51 +113,51 @@ class Language(BaseParser1):
         get_names(self.data)
 
 
-class BerryFirmness(BaseParser1):
+class BerryFirmnessParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
     @property
     def berries(self):
-        return [Berry(_) for _ in self.data.get("berries")]
+        return [BerryParser(_) for _ in self.data.get("berries")]
 
 
-class FlavorBerryMap(UtilsParser):
+class FlavorBerryMapParser(UtilsParser):
     @property
     def potency(self):
         return self.data.get("potency")
 
     @property
     def berry(self):
-        Berry(self.data.get("berry"))
+        BerryParser(self.data.get("berry"))
 
 
-class BerryFlavor(BaseParser1):
+class BerryFlavorParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
     @property
     def berries(self):
-        return [FlavorBerryMap(_) for _ in self.data.get("berries")]
+        return [FlavorBerryMapParser(_) for _ in self.data.get("berries")]
 
     @property
     def berries(self):
-        return [ContestType(_) for _ in self.data.get("contest_type")]
+        return [ContestTypeParser(_) for _ in self.data.get("contest_type")]
 
 
-class BerryFlavorMap(UtilsParser):
+class BerryFlavorMapParser(UtilsParser):
     @property
     def potency(self):
         return self.data.get("potency")
 
     @property
-    def potency(self):
+    def flavor(self):
         return self.data.get("flavor")
 
 
-class Berry(BaseParser1):
+class BerryParser(BaseParser1):
     @property
     def growth_time(self):
         return self.data.get("growth_time")
@@ -184,22 +184,22 @@ class Berry(BaseParser1):
 
     @property
     def firmness(self):
-        return BerryFirmness(self.data.get("firmness"))
+        return BerryFirmnessParser(self.data.get("firmness"))
 
     @property
-    def item(self):
-        return Item(self.data.get("item"))
+    def ItemParser(self):
+        return ItemParser(self.data.get("item"))
 
     @property
     def natural_gift_type(self):
-        return Item(self.data.get("natural_gift_type"))
+        return ItemParser(self.data.get("natural_gift_type"))
 
     @property
     def flavors(self):
-        return [BerryFlavorMap(_) for _ in self.data.get("flavors")]
+        return [BerryFlavorMapParser(_) for _ in self.data.get("flavors")]
 
 
-class ContestName(UtilsParser):
+class ContestNameParser(UtilsParser):
     @property
     def name(self):
         return self.data.get("name")
@@ -210,17 +210,17 @@ class ContestName(UtilsParser):
 
     @property
     def language(self):
-        return Language(self.data.get("language"))
+        return LanguageParser(self.data.get("language"))
 
 
-class ContestType(BaseParser1):
+class ContestTypeParser(BaseParser1):
     @property
     def names(self):
-        return [ContestName(_) for _ in self.data.get("names")]
+        return [ContestNameParser(_) for _ in self.data.get("names")]
 
     @property
     def berry_flavor(self):
-        return BerryFlavor(self.data.get("berry_flavor"))
+        return BerryFlavorParser(self.data.get("berry_flavor"))
 
 
 class ContestEffect(BaseParser2):
@@ -255,7 +255,7 @@ class SuperContestEffect(BaseParser2):
         return [_ for _ in self.data.get("moves")]
 
 
-class EncounterMethod(BaseParser1):
+class EncounterMethodParser(BaseParser1):
     @property
     def order(self):
         return self.data.get("order")
@@ -265,27 +265,27 @@ class EncounterMethod(BaseParser1):
         get_names(self.data)
 
 
-class EncounterCondition(BaseParser1):
+class EncounterConditionParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
     @property
     def values(self):
-        return [EncounterConditionValue(_) for _ in self.data.get("values")]
+        return [EncounterConditionValueParser(_) for _ in self.data.get("values")]
 
 
-class EncounterConditionValue(BaseParser1):
+class EncounterConditionValueParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
     @property
     def condition(self):
-        return EncounterCondition(self.data.get("condition"))
+        return EncounterConditionParser(self.data.get("condition"))
 
 
-class EvolutionDetail(UtilsParser):
+class EvolutionDetailParser(UtilsParser):
     @property
     def gender(self):
         return self.data.get("gender")
@@ -320,15 +320,15 @@ class EvolutionDetail(UtilsParser):
 
     @property
     def trigger(self):
-        return [EvolutionTrigger(_) for _ in self.data.get("trigger")]
+        return [EvolutionTriggerParser(_) for _ in self.data.get("trigger")]
 
     @property
     def item(self):
-        return Item(self.data.get("item"))
+        return ItemParser(self.data.get("item"))
 
     @property
     def held_item(self):
-        return Item(self.data.get("held_item"))
+        return ItemParser(self.data.get("held_item"))
 
     @property
     def known_move(self):
@@ -339,8 +339,8 @@ class EvolutionDetail(UtilsParser):
         return self.data.get("known_move_type")
 
     @property
-    def location(self):
-        return Location(self.data.get("location"))
+    def locationParser(self):
+        return LocationParser(self.data.get("location"))
 
     @property
     def party_species(self):
@@ -355,14 +355,14 @@ class EvolutionDetail(UtilsParser):
         return self.data.get("trade_species")
 
 
-class ChainLink(UtilsParser):
+class ChainLinkParser(UtilsParser):
     @property
     def is_baby(self):
         return self.data.get("is_baby")
 
     @property
     def evolution_details(self):
-        return [EvolutionDetail(_) for _ in self.data.get("evolution_details")]
+        return [EvolutionDetailParser(_) for _ in self.data.get("evolution_details")]
 
     @property
     def evolves_to(self):
@@ -376,20 +376,20 @@ class ChainLink(UtilsParser):
 class EvolutionChain(BaseParser2):
     @property
     def chain(self):
-        return ChainLink(self.data.get("chain"))
+        return ChainLinkParser(self.data.get("chain"))
 
 
-class EvolutionTrigger(BaseParser1):
+class EvolutionTriggerParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
     @property
     def pokemon_species(self):
-        return [Name(_) for _ in self.data.get("pokemon_species")]
+        return [NameParser(_) for _ in self.data.get("pokemon_species")]
 
 
-class PokemonEntry(UtilsParser):
+class PokemonEntryParser(UtilsParser):
     @property
     def entry_number(self):
         return self.data.get("entry_number")
@@ -399,7 +399,7 @@ class PokemonEntry(UtilsParser):
         return self.data.get("pokemon_species")
 
 
-class Pokedex(BaseParser1):
+class PokedexParser(BaseParser1):
     @property
     def is_main_series(self):
         return self.data.get("is_main_series")
@@ -414,18 +414,18 @@ class Pokedex(BaseParser1):
 
     @property
     def pokemon_entries(self):
-        return [PokemonEntry(_) for _ in self.data.get("pokemon_entries")]
+        return [PokemonEntryParser(_) for _ in self.data.get("pokemon_entries")]
 
     @property
     def descriptions(self):
-        return [Description(_) for _ in self.data.get("descriptions")]
+        return [DescriptionParser(_) for _ in self.data.get("descriptions")]
 
     @property
     def version_groups(self):
-        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+        return [VersionGroupParser(_) for _ in self.data.get("version_groups")]
 
 
-class Generation(BaseParser1):
+class GenerationParser(BaseParser1):
     @property
     def main_region(self):
         return self.data.get("main_region")
@@ -436,7 +436,7 @@ class Generation(BaseParser1):
 
     @property
     def version_groups(self):
-        return [VersionGroup(_) for _ in self.data.get("version_groups")]
+        return [VersionGroupParser(_) for _ in self.data.get("version_groups")]
 
     @property
     def abilities(self):
@@ -455,32 +455,32 @@ class Generation(BaseParser1):
         return [_ for _ in self.data.get("pokemon_species")]
 
 
-class Version(BaseParser1):
+class VersionParser(BaseParser1):
     @property
     def name(self):
         get_names(self.data)
 
     @property
     def version_group(self):
-        return [VersionGroup(_) for _ in self.data.get("version_group")]
+        return [VersionGroupParser(_) for _ in self.data.get("version_group")]
 
 
-class VersionGroup(BaseParser1):
+class VersionGroupParser(BaseParser1):
     @property
     def order(self):
         return self.data.get("order")
 
     @property
     def versions(self):
-        return [Version(_) for _ in self.data.get("versions")]
+        return [VersionParser(_) for _ in self.data.get("versions")]
 
     @property
     def pokedexes(self):
-        return [Pokedex(_) for _ in self.data.get("pokedexes")]
+        return [PokedexParser(_) for _ in self.data.get("pokedexes")]
 
     @property
     def pokedexes(self):
-        return [Generation(_) for _ in self.data.get("generation")]
+        return [GenerationParser(_) for _ in self.data.get("generation")]
 
     @property
     def regions(self):
@@ -491,10 +491,10 @@ class VersionGroup(BaseParser1):
         return [_ for _ in self.data.get("move_learn_methods")]
 
 
-class ItemAttribute(BaseParser1):
+class ItemAttributeParser(BaseParser1):
     @property
     def items(self):
-        return [Item(_) for _ in self.data.get("items")]
+        return [ItemParser(_) for _ in self.data.get("items")]
 
     @property
     def names(self):
@@ -502,46 +502,46 @@ class ItemAttribute(BaseParser1):
 
     @property
     def names(self):
-        return [Description(_) for _ in self.data.get("descriptions")]
+        return [DescriptionParser(_) for _ in self.data.get("descriptions")]
 
 
-class ItemCategory(BaseParser1):
+class ItemCategoryParser(BaseParser1):
     @property
     def items(self):
-        return [Item(_) for _ in self.data.get("items")]
+        return [ItemParser(_) for _ in self.data.get("items")]
 
     @property
     def names(self):
         get_names(self.data)
 
 
-class ItemHolderPokemonVersionDetail(UtilsParser):
+class ItemHolderPokemonVersionDetailParser(UtilsParser):
     @property
     def rarity(self):
         return self.data.get("rarity")
 
     @property
-    def version(self):
-        return Version(self.data.get("version"))
+    def versionParser(self):
+        return VersionParser(self.data.get("version"))
 
 
-class ItemHolderPokemon(UtilsParser):
+class ItemHolderPokemonParser(UtilsParser):
     @property
     def pokemon(self):
         return self.data.get("pokemon")
 
     @property
     def version_details(self):
-        return ItemHolderPokemonVersionDetail(self.data.get("version_details"))
+        return ItemHolderPokemonVersionDetailParser(self.data.get("version_details"))
 
 
-class ItemSprite(UtilsParser):
+class ItemSpriteParser(UtilsParser):
     @property
     def default(self):
         return self.data.get("default")
 
 
-class Item(BaseParser1):
+class ItemParser(BaseParser1):
     @property
     def cost(self):
         return self.data.get("cost")
@@ -556,7 +556,7 @@ class Item(BaseParser1):
 
     @property
     def sprites(self):
-        return ItemSprite(self.data.get("sprites"))
+        return ItemSpriteParser(self.data.get("sprites"))
 
     @property
     def baby_trigger_for(self):
@@ -564,19 +564,19 @@ class Item(BaseParser1):
 
     @property
     def category(self):
-        return ItemCategory(self.data.get("category"))
+        return ItemCategoryParser(self.data.get("category"))
 
     @property
     def held_by_pokemon(self):
-        return ItemHolderPokemon(self.data.get("held_by_pokemon"))
+        return ItemHolderPokemonParser(self.data.get("held_by_pokemon"))
 
     @property
     def fling_effect(self):
-        return ItemFlingEffect(self.data.get("fling_effect"))
+        return ItemFlingEffectParser(self.data.get("fling_effect"))
 
     @property
     def attributes(self):
-        return [ItemAttribute(_) for _ in self.data.get("attributes")]
+        return [ItemAttributeParser(_) for _ in self.data.get("attributes")]
 
     @property
     def machines(self):
@@ -595,20 +595,20 @@ class Item(BaseParser1):
         return [_ for _ in self.data.get("game_indices")]
 
 
-class ItemPocket(BaseParser1):
+class ItemPocketParser(BaseParser1):
     @property
     def categories(self):
-        return [ItemCategory(_) for _ in self.data.get("categories")]
+        return [ItemCategoryParser(_) for _ in self.data.get("categories")]
 
     @property
     def names(self):
         get_names(self.data)
 
 
-class ItemFlingEffect(BaseParser1):
+class ItemFlingEffectParser(BaseParser1):
     @property
     def items(self):
-        return [Item(_) for _ in self.data.get("items")]
+        return [ItemParser(_) for _ in self.data.get("items")]
 
     @property
     def effect_entries(self):
@@ -617,19 +617,19 @@ class ItemFlingEffect(BaseParser1):
 
 class Machine(BaseParser2):
     @property
-    def item(self):
-        return Item(self.data.get("item"))
+    def ItemParser(self):
+        return ItemParser(self.data.get("item"))
 
     @property
     def version_group(self):
-        return VersionGroup(self.data.get("version_group"))
+        return VersionGroupParser(self.data.get("version_group"))
 
     @property
     def version_group(self):
-        return VersionGroup(self.data.get("move"))
+        return VersionGroupParser(self.data.get("move"))
 
 
-class Location(BaseParser1):
+class LocationParser(BaseParser1):
     @property
     def region(self):
         return self.data.get("region")
@@ -644,62 +644,62 @@ class Location(BaseParser1):
 
     @property
     def region(self):
-        return [LocationArea(_) for _ in self.data.get("areas")]
+        return [LocationAreaParser(_) for _ in self.data.get("areas")]
 
 
-class PokemonEncounter(UtilsParser):
+class PokemonEncounterParser(UtilsParser):
     @property
     def pokemon(self):
         return self.data.get("pokemon")
 
     @property
     def version_details(self):
-        return Version(self.data.get("version_details"))
+        return VersionParser(self.data.get("version_details"))
 
 
-class EncounterVersionDetails(UtilsParser):
+class EncounterVersionDetailsParser(UtilsParser):
     @property
     def encounter_method(self):
         return self.data.get("rate")
 
     @property
-    def version(self):
-        return Version(self.data.get("version"))
+    def versionParser(self):
+        return VersionParser(self.data.get("version"))
 
 
-class EncounterMethodRate(UtilsParser):
+class EncounterMethodRateParser(UtilsParser):
     @property
     def encounter_method(self):
-        return EncounterMethod(self.data.get("encounter_method"))
+        return EncounterMethodParser(self.data.get("encounter_method"))
 
     @property
     def version_details(self):
-        return EncounterMethod(self.data.get("version_details"))
+        return EncounterMethodParser(self.data.get("version_details"))
 
 
-class LocationArea(BaseParser1):
+class LocationAreaParser(BaseParser1):
     @property
     def game_index(self):
         return self.data.get("game_index")
 
     @property
     def location(self):
-        return Location(self.data.get("location"))
+        return LocationParser(self.data.get("location"))
 
     @property
     def pokemon_encounters(self):
-        return [PokemonEncounter(_) for _ in self.data.get("pokemon_encounters")]
+        return [PokemonEncounterParser(_) for _ in self.data.get("pokemon_encounters")]
 
     @property
     def encounter_method_rates(self):
-        return [EncounterMethodRate(_) for _ in self.data.get("encounter_method_rates")]
+        return [EncounterMethodRateParser(_) for _ in self.data.get("encounter_method_rates")]
 
     @property
     def names(self):
         get_names(self.data)
 
 
-class Move(BaseParser1):
+class MoveParser(BaseParser1):
     @property
     def accuracy(self):
         return self.data.get("accuracy")
@@ -753,7 +753,7 @@ class Move(BaseParser1):
         return self.data.get("flavor_text_entries")
 
     @property
-    def generation(self):
+    def generationParser(self):
         return self.data.get("generation")
 
     @property
@@ -789,7 +789,7 @@ class Move(BaseParser1):
         return self.data.get("type")
 
 
-class ContestComboSets(UtilsParser):
+class ContestComboSetsParser(UtilsParser):
     @property
     def normal(self):
         return self.data.get("normal")
@@ -799,7 +799,7 @@ class ContestComboSets(UtilsParser):
         return self.data.get("super")
 
 
-class ContestComboDetail(UtilsParser):
+class ContestComboDetailParser(UtilsParser):
     @property
     def use_before(self):
         return self.data.get("use_before")
@@ -809,7 +809,7 @@ class ContestComboDetail(UtilsParser):
         return self.data.get("use_after")
 
 
-class MoveFlavorText(UtilsParser):
+class MoveFlavorTextParser(UtilsParser):
     @property
     def flavor_text(self):
         return self.data.get("flavor_text")
@@ -823,7 +823,7 @@ class MoveFlavorText(UtilsParser):
         return self.data.get("version_group")
 
 
-class MoveMetaData(UtilsParser):
+class MoveMetaDataParser(UtilsParser):
     @property
     def ailment(self):
         return self.data.get("ailment")
@@ -873,7 +873,7 @@ class MoveMetaData(UtilsParser):
         return self.data.get("stat_chance")
 
 
-class MoveStatChange(UtilsParser):
+class MoveStatChangeParser(UtilsParser):
     @property
     def change(self):
         return self.data.get("change")
@@ -883,7 +883,7 @@ class MoveStatChange(UtilsParser):
         return self.data.get("stat")
 
 
-class MoveMetaData(UtilsParser):
+class MoveMetaDataParser(UtilsParser):
     @property
     def accuracy(self):
         return self.data.get("accuracy")
@@ -913,7 +913,7 @@ class MoveMetaData(UtilsParser):
         return self.data.get("version_group")
 
 
-class MoveAilment(BaseParser1):
+class MoveAilmentParser(BaseParser1):
     @property
     def moves(self):
         return self.data.get("moves")
@@ -923,13 +923,13 @@ class MoveAilment(BaseParser1):
         get_names(self.data)
 
 
-class MoveBattleStyle(BaseParser1):
+class MoveBattleStyleParser(BaseParser1):
     @property
     def names(self):
         get_names(self.data)
 
 
-class MoveCategory(BaseParser1):
+class MoveCategoryParser(BaseParser1):
     @property
     def moves(self):
         return self.data.get("moves")
@@ -939,7 +939,7 @@ class MoveCategory(BaseParser1):
         return self.data.get("descriptions")
 
 
-class MoveLearnMethod(BaseParser1):
+class MoveLearnMethodParser(BaseParser1):
     @property
     def version_groups(self):
         return self.data.get("version_groups")
@@ -953,7 +953,7 @@ class MoveLearnMethod(BaseParser1):
         return self.data.get("descriptions")
 
 
-class MoveTarget(BaseParser1):
+class MoveTargetParser(BaseParser1):
     @property
     def moves(self):
         return self.data.get("moves")
@@ -963,5 +963,5 @@ class MoveTarget(BaseParser1):
         get_names(self.data)
 
     @property
-    def moves(self):
+    def descriptionParserDescriptionParser(self):
         return self.data.get("descriptions")
