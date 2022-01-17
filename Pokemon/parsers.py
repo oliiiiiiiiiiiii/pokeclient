@@ -61,7 +61,7 @@ class FlavorTextParser(UtilsParser):
         return LanguageParser(self.data.get("name"))
 
     @property
-    def versionParser(self):
+    def version(self):
         return VersionParser((self.data.get("version")))
 
 
@@ -71,7 +71,7 @@ class GenerationGameIndexParser(UtilsParser):
         return self.data.get("game_index")
 
     @property
-    def generationParser(self):
+    def generation(self):
         return GenerationParser(self.data.get("generation"))
 
 
@@ -963,5 +963,5 @@ class MoveTargetParser(BaseParser1):
         get_names(self.data)
 
     @property
-    def descriptionParserDescriptionParser(self):
+    def descriptions(self):
         return self.data.get("descriptions")
